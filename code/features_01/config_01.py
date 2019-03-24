@@ -13,15 +13,17 @@ You gave an XPath example like so: /html/body/div[1]/div/a/(@title|@href)
 This XPATH is in version 2.0. So, should any error happens, you must convert the XPATH to version 1.x, which is actually pretty simple, like so:
 
 v1.x: /html/body/div[1]/div/a/(@title|@href)
-c2.0: /html/body/div[1]/div/a/[@title|@href]
-*notice the bracket changes from () to []. For old version, you should really use () rather than []
+v2.0: /html/body/div[1]/div/a/[@title|@href]
+*notice the bracket changes from () to []. For old version, you should really use [] rather than ()
 
 
 
 You will also notice that majority of browser are still not suppurting XPATH v2.0. 
 This might be a consideration for your future affair regarding web automation with XPATH.
 
-Further reference: https://stackoverflow.com/questions/1936301/can-i-use-xpath-2-0-with-firefox-and-selenium
+Further reference: 
+https://stackoverflow.com/questions/1936301/can-i-use-xpath-2-0-with-firefox-and-selenium
+https://stackoverflow.com/questions/55319552/python-selenium-how-to-make-webdriver-use-xpath-version-2-0
 
 """
 
