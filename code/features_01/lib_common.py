@@ -81,3 +81,9 @@ list_data = [{"title": "title 1", "links": "link 1"}, {"title": "title 1", "link
 # test here
 # print(regex_xpath_to_attribute("//a[@title|@href]"))
 # write_csv(list_data, ['title', 'links'])
+
+
+# todo: write the unittest
+import unittest
+class LibCommonTest(unittest.TestCase):
+    pass
