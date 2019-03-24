@@ -1,5 +1,4 @@
 import re
-
 xpath = "/html/body/div[1]/div/a/(@title|@href)"
 xpath_2 = "/html/body/div[1]/div/(@class)/a/(@title|@href)"
 
