@@ -11,6 +11,7 @@ Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...
 
 
 
+[coded]
 Configuaration:
 -------------------------------------------------------
 XPath:  .. example: /html/body/div[1]/div/a/(@title|@href)
@@ -22,8 +23,10 @@ Column: .. example: B
 
 Notes:
 -------------------------------------------------------
+[coded]
 * Regex & Column are optional ( not always used ), so if there configuaration is empty, line 8 or 10 will not run
 
+[coded]
 -----------------------------
 * For the example XPath in line 16, there is an OR (@title|@href), each one will take a seperate column and result like this:
 	
@@ -33,7 +36,8 @@ Notes:
 
  Also the XPath may have multiple results not just 1 when they are multiple /a/ in the URL page content
 
- 
+
+[coded]
 -----------------------------
 * Example of Line 8 :
 
