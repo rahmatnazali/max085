@@ -27,7 +27,8 @@ https://stackoverflow.com/questions/55319552/python-selenium-how-to-make-webdriv
 
 """
 
-XPath = "/html/body/div[1]/div/a/(@title|@href)"
+XPath = "//a[@title|@href]"
+# XPath = "/html/body/div[1]/div/a/[@title|@href]"
 
 
 
