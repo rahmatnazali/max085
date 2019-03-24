@@ -39,7 +39,21 @@ def get_page(url):
 
 
 from lxml import html
+def regex_xpath_to_attribute(string):
+    # todo: should compile it first, for efficiency boost
+    # regex = re.compile("@\w+")
+    # print(re.findall(regex, xpath_2.split("/")[-1]))
+
+    string = string.split("/")[-1] if "/" in string else string
+    result = re.findall("@\w+", string)
+    return [attribute.replace('@', '') for attribute in result]
+
 def scrap_html(html_page):
     tree = html.fromstring(html_page)
     result_elements = tree.xpath(config.XPath)
     return result_elements
+
+
+# test here
+
+print(regex_xpath_to_attribute("//a[@title|@href]"))
