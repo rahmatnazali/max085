@@ -1,0 +1,98 @@
+Example Script Run:
+-------------------------------------------------------
+Loop: 	Scraping URL (1/#) from URLs.txt Using XPath ...
+		Adding Results to Output.csv ...
+		
+Exit Loop
+
+Regex Search & Replace in Output.csv ...
+Removing Rows In Output.csv If The Row Also In Done.csv ...
+Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...
+
+
+
+Configuaration:
+-------------------------------------------------------
+XPath:  .. example: /html/body/div[1]/div/a/(@title|@href)
+Regex:  .. example: ("(?<=\d\/).+","") , ("(\/([ab])\/)","/x/") , ("EFG ?(?=,)"," XYZ")
+Column: .. example: B
+
+
+
+
+Notes:
+-------------------------------------------------------
+* Regex & Column are optional ( not always used ), so if there configuaration is empty, line 8 or 10 will not run
+
+-----------------------------
+* For the example XPath in line 16, there is an OR (@title|@href), each one will take a seperate column and result like this:
+	
+	Title a , Link 1
+	Title b , Link 2
+	Title c , Link 3
+
+ Also the XPath may have multiple results not just 1 when they are multiple /a/ in the URL page content
+
+ 
+-----------------------------
+* Example of Line 8 :
+
+ given these regex:
+  (?<=\d\/).+     ->   delete
+  (\/([ab])\/) 	  ->   /x/
+  EFG ?(?=,)      ->    XYZ
+ 
+ given these values in Output.csv:
+	Title ABC , https://example.com/a/1000/MAK2X1Q/title-abc
+	Title EFG , https://example.com/b/2500/A2XSZ/title-efg
+	Title HIJ , https://example.com/c/5000/SMW3AJ/title-hij
+
+ It will then result in:
+	Title ABC , https://example.com/x/1000/
+	Title XYZ , https://example.com/x/2500/
+	Title HIJ , https://example.com/c/5000/
+	
+
+-----------------------------
+* Example of Line 9 :
+
+Output.csv :	Title a , Link 1
+				Title b , Link 2
+				Title c , Link 3
+				Title d , Link 4
+
+Done.csv :		Title a , Link 1
+				Title d , Link 4
+
+ It will removes these rows from Output.csv
+	Title a , Link 1
+	Title d , Link 4
+	
+-----------------------------
+* Example of Line 10 on given Column "B" :
+
+	Title a , Link 1
+	Title b , Link 2
+	Title c , Link 3
+	Title a , Link 4
+-	Title d , Link 1
+-	Title e , Link 1
+-	Title f , Link 3
+
+ It will removes Rows from Output.csv
+	Title d , Link 1
+	Title e , Link 1
+	Title f , Link 3
+	
+-----------------------------
+
+
+
+General Notes For Feature 1 & 2:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* After each step is executed, it creates a log file containing any errors, for example: unable to scrape or find XPath or unable to load HTML, ....
+
+* For URLs.txt in Feature 1 or 2 , when the script finish a URL it removes it from URLs.txt and Add it to URLsDone.txt when successful or URLsError.txt when error, this is for in case the script shuts suddenly, when it runs again it will continue and not repeat already done URLs
+
+* I would appreciate it if you documented your code with comments, thanks. 
+
