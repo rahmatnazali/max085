@@ -20,12 +20,26 @@ for url in enumerate(url_list):
 
     if links_found:
         # todo: CSV Operation. store title and the link on csv
-        print("\tAdding Results to Output.csv ...")
+        # todo IMPORTANT: it should be able to get the @attribute, maybe should have been built using class
+        for link in links_found:
+            print("\tAdding Results to Output.csv ...")
     else:
-        print("\tNo links found. The XPATH might be wrong or the page did not contain given XPATH.")
+        print("\tNo links found. The XPATH might be wrong or the page did not contains given XPATH.")
+
+    # todo: might be better to evalate all the given condition before saving the csv. e.g. better to regex it first, then remove multiple occurence, and finaly save it. will be much efficient.
+    # insert
 
 # todo
 print("Regex Search & Replace in Output.csv ...")
+# make a function that if called, will iterate each row and re.sub the title and links
+
+
+# todo
 print("Removing Rows In Output.csv If The Row Also In Done.csv ...")
+
+
+# todo
 print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...")
+
+# save csv
 
