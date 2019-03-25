@@ -26,11 +26,19 @@ def get_page(url):
     request_result = requests.get(url)
     if requests.status_codes == 200:
         return request_result.text
+    else:
+        print("Request failed. The link might be wrong, or there is no internet connection")
+        exit()
 
 from lxml import html
-def scrap_html(html_page):
+def scrap_html(html_page, Xpath):
+    """
+    A function to scrap html based on its XPath
+    :param html_page: the html page
+    :return: a list of element found. if no elements found, it will return empty list []
+    """
     tree = html.fromstring(html_page)
-    result_elements = tree.xpath(config.XPath)
+    result_elements = tree.xpath(Xpath)
     return result_elements
 
 
