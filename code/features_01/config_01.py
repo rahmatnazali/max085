@@ -50,9 +50,7 @@ Regex = (
 Regex = (
     ("(?<=\d\/).+", ""),
     ("(\/([ab])\/)", "/x/"),
-
-    # fixme: possible error for this regex because it did not change "Title EFG" to "Title XYZ". Strange that two above regex is completely worked
-    ("EFG?(?=,)", " XYZ")
+    ("EFG ?(?="")", " XYZ"),
 )
 
 # todo: make sure to clarify how should the logic works if multiple column is given
