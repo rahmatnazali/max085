@@ -38,14 +38,14 @@ def scrap_html(html_page):
 Regarding regex
 """
 
-
-
-def regex_string(string, regex_instance_list):
-    for regex in regex_instance_list:
-        string = re.sub(regex['regex_instance'], regex['regex_string'], string)
-    return string
-
 def compile_regex(regex_tuple):
+    """
+    A function to compile regex
+    because we will use this regex multiple time, we should compile it first for efficiency boost
+    :param regex_tuple: Regex variable from config_01.py
+    :return: list or compiled regex instance
+    """
+
     regex_instance = []
     for regex in regex_tuple:
         regex_instance.append({
@@ -53,6 +53,36 @@ def compile_regex(regex_tuple):
             'regex_string': regex[1]
         })
     return regex_instance
+
+def regex_content(list_data, list_attribute, regex_instance_list):
+    """
+    A function that, given the list_data, list_attribute, and compiled regex instance,
+    will iterate to each content and replace it with each compiled regex
+    :param list_data:
+    :param list_attribute:
+    :param regex_instance_list:
+    :return: list_data that already replaced with regex
+    """
+    for row in list_data:
+        for attribute in list_attribute:
+            row[attribute] = regex_string(row[attribute], regex_instance_list)
+    return list_data
+
+def regex_string(string, regex_instance_list):
+    """
+    A function, given string and list of compiled regex,
+    will replace the string with each of compiled regex
+
+    This function will be run several times, called by regex_content
+    :param string:
+    :param regex_instance_list:
+    :return:
+    """
+    for regex in regex_instance_list:
+        string = re.sub(regex['regex_instance'], regex['regex_string'], string)
+    return string
+
+
 
 def regex_xpath_to_attribute(xpath_string):
     # todo: should compile it first, for efficiency boost
@@ -62,7 +92,6 @@ def regex_xpath_to_attribute(xpath_string):
     xpath_string = xpath_string.split("/")[-1] if "/" in xpath_string else xpath_string
     result = re.findall("@\w+", xpath_string)
     return [attribute.replace('@', '') for attribute in result]
-
 
 
 
