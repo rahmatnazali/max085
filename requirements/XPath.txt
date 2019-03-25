@@ -1,0 +1,166 @@
+XPath
+--------------------------------------------------------------------------------------------------------------------------
+
+Sample Web Page Used For These Examples:
+https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/s/samsung_tv_upgrade-buy_online/_/n-10+11+hv1uh+g5+trqdm/
+
+
+---------------------------------------------------------
+Using Google Chrome inspector tool I Extracted the following XPath for 
+
+1st Product Title:  //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[1]/div/div[2]/a[1]/section/p[1]
+2nd Product Title:  //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[2]/div/div[2]/a[1]/section/p[1]
+3rd Product Title:  //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[3]/div/div[2]/a[1]/section/p[1]
+
+																		   | |
+																		    \/
+															this is what changed -> section[#]
+
+																									
+All Product Titles (11 Result)            : //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[1]
+
+Same Process For Images URLs(11 Result)   : //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/a/div/div/img/@src
+Same Process For Model Number (11 Result) : //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[2]
+Same Process For Links (11 Result)        : //*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/@href
+
+---------------------------------------------------------
+
+Now I'll Merge these 4 XPaths into 1 XPath using OR ( | ) between each XPath:
+
+//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[1]|//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/a/div/div/img/@src|//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[2]|//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/@href
+
+Which is the same as:
+
+//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/(div[2]/a[1]/(section/(p[1]|p[2])|@href)|a/div/div/img/@src)
+
+
+This XPath will return 44 resultes -> 11 Images,Links,Titles,Model#
+
+---------------------------------------------------------
+Test run in http://videlibri.sourceforge.net/cgi-bin/xidelcgi
+
+
+Results:
+
+in the following format:
+
+Image 1
+Link 1
+Title 1
+Model# 1
+Image 2
+Link 2
+Title 2
+Model# 2
+
+.
+.
+.
+.
+.
+
+Image 11
+Link 11
+Title 11
+Model# 11
+
+
+https://image-us.samsung.com/SamsungUS/home/televisions-and-home-theater/tvs/qled-8k-tv/pdp/03052019/01_65-75.jpg?$product-card-small-jpg$
+/us/televisions-home-theater/tvs/qled-8k-tvs/65-class-q900-qled-smart-8k-uhd-tv-2019-qn65q900rbfxza/
+65" Class Q900 QLED Smart 8K UHD TV (2019)
+QN65Q900RBFXZA
+https://image-us.samsung.com/SamsungUS/home/televisions-and-home-theater/tvs/qled-tvs/pdp/qn65q90rafxza/gallery/QN75Q90RAFXZA_001_Front1_Silver_NS_01.jpg?$product-card-small-jpg$
+/us/televisions-home-theater/tvs/qled-4k-tvs/65-class-q90r-qled-smart-4k-uhd-tv-2019-qn65q90rafxza/
+65" Class Q90R QLED Smart 4K UHD TV (2019)
+QN65Q90RAFXZA
+
+.
+.
+.
+.
+.
+.
+
+https://image-us.samsung.com/SamsungUS/home/televisions-and-home-theater/tvs/frame-tv/2-0-2018/gallery/UN65LS03NAFXZA_gallery_01.jpg?$product-card-small-jpg$
+/us/televisions-home-theater/tvs/the-frame/55--class-the-frame-premium-4k-uhd-tv--2018--un55ls03nafxza/
+55" Class The Frame Premium 4K UHD TV (2018)
+UN55LS03NAFXZA
+
+---------------------------------------------------------
+
+For this XPath example, when exporting to CSV it will be in the following format: (11 rows & 4 columns)
+
+
+Image 1  , Link 1  , Title 1  , Model# 1
+Image 2  , Link 2  , Title 2  , Model# 2
+Image 3  , Link 3  , Title 3  , Model# 3
+Image 4  , Link 4  , Title 4  , Model# 4
+Image 5  , Link 5  , Title 5  , Model# 5
+Image 6  , Link 6  , Title 6  , Model# 6
+Image 7  , Link 7  , Title 7  , Model# 7
+Image 8  , Link 8  , Title 8  , Model# 8
+Image 9  , Link 9  , Title 9  , Model# 9
+Image 10 , Link 10 , Title 10 , Model# 10
+Image 11 , Link 11 , Title 11 , Model# 11
+
+---------------------------------------------------------
+
+
+
+
+Notes:
+---------------------------------------------------------
+* I Will enter a single XPath like line 30 or 34 in the configuration file, the rest of these details is just for explanation.
+
+* I will create and test XPaths in this site: http://videlibri.sourceforge.net/cgi-bin/xidelcgi , so you can use it if you'd like to test and see what's the output of any XPath given and comparing it to the result the script outputs.
+
+* For the URL in line 5 , it turns out that it's javascript powered content, so instead of copying and pasting the source code to the test site "http://videlibri.sourceforge.net/cgi-bin/xidelcgi " which would not give any results, I copied and pasted the generated DOM from google inpector tool to test it.
+
+---------------------------------------------------------
+
+
+
+
+Note about F1.txt:
+---------------------------------------------------------
+Line 10: 
+	Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...
+
+Line 72-85 : 
+	* Example of Line 10 on given Column "B" :
+
+		Title a , Link 1		    -> Newst Row added
+		Title b , Link 2
+		Title c , Link 3
+		Title a , Link 4
+	-	Title d , Link 1
+	-	Title e , Link 1
+	-	Title f , Link 3			-> Oldest Row
+
+	 It will removes Rows from Output.csv
+		Title d , Link 1
+		Title e , Link 1
+		Title f , Link 3
+
+		
+Here I imagined these Data as a stack, and any new row will be added at the top , this is why "Except 1st Occurrence", which means that it deletes older occurrence
+
+---------------------
+
+If any new rows will be added to the CSV File at the end of the file not the begining, it should be "Except Last Occurrence", which means that if a new Title,Link added and there is a row with that same link, it remove that older row
+
+and example like this:
+
+	-	Title a , Link 1			-> Oldest Row
+		Title b , Link 2
+	-	Title c , Link 3
+		Title a , Link 4
+	-   Title d , Link 1
+		Title e , Link 1
+		Title f , Link 3			-> Newst Row added
+
+	 It will removes Rows from Output.csv
+		Title a , Link 1
+		Title c , Link 3
+		Title d , Link 1
+---------------------------------------------------------
