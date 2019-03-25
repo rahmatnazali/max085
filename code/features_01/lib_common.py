@@ -147,5 +147,21 @@ def read_done_csv():
 
 # todo: write the unittest
 import unittest
+import os
 class LibCommonTest(unittest.TestCase):
-    pass
+    def test_write_csv_can_produce_csv(self):
+        list_data = [{"title": "title 1", "links": "link 1"}, {"title": "title 1", "links": "link 1"}]
+        columns = ['title', 'links']
+        result_filename = write_csv(list_data, columns)
+        is_file_there = os.path.isfile('result/' + result_filename)
+        self.assertTrue(is_file_there)
+        try:
+            os.remove(result_filename)
+        except OSError:
+            pass
+
+    def test_regex_path_attribute_can_retrieve_attribute_correctly(self):
+        self.assertEqual(['title', 'href'], regex_xpath_to_attribute("//a[@title|@href]"))
+
+    def test_obtain_done_csv_data(self):
+        read_done_csv()
