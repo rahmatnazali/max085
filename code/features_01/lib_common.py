@@ -98,19 +98,44 @@ def regex_xpath_to_attribute(xpath_string):
 """
 Regarding CSV operation
 """
-
+import datetime
 import pandas as pd
 def write_csv(list_data, columns, filename = 'result.csv'):
-    # todo: tested, but column is in sorted format . should research how to not auto-order
+
+    filename = filename.replace('.csv', '') if filename.endswith('.csv') else filename
+    filename = filename + '_' + str(datetime.datetime.now())[:19].replace(":", '_') +'.csv'
+
     df = pd.DataFrame(list_data, columns=columns)
-    df.to_csv(filename, index=False)
-list_data = [{"title": "title 1", "links": "link 1"}, {"title": "title 1", "links": "link 1"}]
+    df.to_csv('result/' + filename, index=False)
+    return filename
+#
+# list_data = [{"title": "title 1", "links": "link 1"}, {"title": "title 1", "links": "link 1"}]
+# columns = ['title', 'links']
+# write_csv(list_data, columns)
 
 
-# test here
-# print(regex_xpath_to_attribute("//a[@title|@href]"))
-# write_csv(list_data, ['title', 'links'])
+# fix me: reading Done.csv in dataframe result somethink like this
+"""
+           href
+title          
+title 1  link 1
+title 1  link 1
 
+it should be like this
+
+title    href
+title 1  link 1
+title 1  link 1
+
+"""
+def read_done_csv():
+    return []
+    if os.path.isfile("result/Done.csv"):
+        df = pd.DataFrame.from_csv("result/Done.csv", sep=',')
+        print(df)
+        return df
+    else:
+        return []
 
 # todo: write the unittest
 import unittest
