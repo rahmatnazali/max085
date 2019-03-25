@@ -44,11 +44,14 @@ for url in enumerate(url_list):
         print("\tAdding Results to Output.csv ...  ({} link(s) found)".format(len(links_found)))
         for link in links_found:
 
+            """
+            Each attribte is obtained
+            Then each of it is cleaned with regex
+            """
             a_row = {}
             for attribute in list_attribute:
                 an_attribute = link.get(attribute, '')
-                regexed_attribute = lib.regex_string(an_attribute, regex_instance_list)
-                a_row[attribute] = regexed_attribute
+                a_row[attribute] = lib.regex_string(an_attribute, regex_instance_list)
 
             """
             An occurrence is evaluated here.
@@ -60,21 +63,15 @@ for url in enumerate(url_list):
                 link_list.append(a_row['href'])
                 list_data.append(a_row)
 
-        for i in list_data:
-            print(i)
-
-        # todo: the csv can be saved now with the code below, but it is better to evaluate regex, find occurence, etc first, and then be saved to csv. This will improve the speed better.
-        # lib.write_csv(list_data, columns = list_attribute)
+        # print current regexed and duplication removed result
+        # for i in list_data:
+        #     print(i)
 
         # fixme: remove break after testing
         break
 
     else:
         print("\tNo links found. The XPATH might be wrong or the page did not contains given XPATH.")
-
-    # todo: should initiate the csv here
-    # todo: might be better to evalate all the given condition before saving the csv. e.g. better to regex it first, then remove multiple occurence, and finaly save it. will be much efficient.
-    # insert
 
 # [DONE] Regex is already done in iteration. This will be more efficient
 print("Regex Search & Replace in Output.csv ...")
@@ -92,7 +89,7 @@ print("Removing Rows In Output.csv If The Row Also In Done.csv ...")
 print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...")
 
 
-# save csv
+# [DONE] save csv
 lib.write_csv(list_data, columns=list_attribute)
 
 
