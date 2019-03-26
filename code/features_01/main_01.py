@@ -14,7 +14,7 @@ Reading URLS.txt
 If no URLS.txt was given, the code will end.
 """
 
-url_list = lib.readUrl()
+url_list = lib.read_url()
 if not url_list:
     print("URLS.txt not found.")
     exit(1)

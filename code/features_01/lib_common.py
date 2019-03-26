@@ -1,28 +1,48 @@
 import importlib
 config = importlib.import_module('config_01')
 
-import os
 import requests
 import re
+from lxml import html
+import datetime
+import pandas as pd
+import unittest
+import os
+
 
 
 """
 Regarding reading URL, HTML request, and scrapping
 """
 
-def readUrl(filename = "URLS.txt"):
+def read_url(filename = "URLS.txt"):
+    """
+    Open file that contains the URL, and obtains all valid URL
+    :param filename: filename to look for URL
+    :return: the url_list (list    or   False (boolean) if empty
+    """
     url_list = []
     if os.path.isfile(filename):
         with open(filename) as url_file:
+            if config.DebugMode:
+                print("Reading URLS:")
+
             for line in url_file:
-                if not line.startswith("#"):
+                if not line.startswith("#") and not line.strip() == '':
+                    # insert the URL ito url_list
                     url_list.append(line.strip())
                     if config.DebugMode:
                         print(line.strip())
         return url_list
     return False
 
+
 def get_page(url):
+    """
+    Get the URL's HTML by doing a GET Request
+    :param url: url to be fetched
+    :return: The HTML (string)
+    """
     request_result = requests.get(url)
     if requests.status_codes == 200:
         return request_result.text
@@ -30,16 +50,34 @@ def get_page(url):
         print("Request failed. The link might be wrong, or there is no internet connection")
         exit()
 
-from lxml import html
-def scrap_html(html_page, Xpath):
+
+def scrap_html(html_page, list_attribute, Xpath):
     """
-    A function to scrap html based on its XPath
-    :param html_page: the html page
-    :return: a list of element found. if no elements found, it will return empty list []
+    Scrap html based on given XPath
+    :param html_page: string of HTML page
+    :param list_attribute: list of attribute. Obtained from config.XPath.keys()
+    :param Xpath: the XPath(s)
+    :return: result_dict (dictionary): A dictionary that contains the list of results    and    data_found_length (integer): number of row found
     """
+    data_found_length = 0
     tree = html.fromstring(html_page)
-    result_elements = tree.xpath(Xpath)
-    return result_elements
+    result_dict = {}
+
+    # for every attributes, find it all by xpath
+    for attribute in list_attribute:
+        result_dict[attribute] = tree.xpath(Xpath[attribute])
+        if len(result_dict[attribute]) > data_found_length:
+            data_found_length = len(result_dict[attribute])
+
+    # check if there is still an lxml <Element> type (not string). If so, convert it to string
+    for attribute in list_attribute:
+        if len(result_dict[attribute]) and not isinstance(result_dict[attribute][0], str):
+            result_dict[attribute] = [x.text_content() for x in result_dict[attribute]]
+    return result_dict, data_found_length
+
+
+
+
 
 
 """
@@ -53,7 +91,6 @@ def compile_regex(regex_tuple):
     :param regex_tuple: Regex variable from config_01.py
     :return: list or compiled regex instance
     """
-
     regex_instance = []
     for regex in regex_tuple:
         regex_instance.append({
@@ -66,9 +103,9 @@ def regex_content(list_data, list_attribute, regex_instance_list):
     """
     A function that, given the list_data, list_attribute, and compiled regex instance,
     will iterate to each content and replace it with each compiled regex
-    :param list_data:
-    :param list_attribute:
-    :param regex_instance_list:
+    :param list_data: list of raw data
+    :param list_attribute: list of attribute
+    :param regex_instance_list: compiled regex
     :return: list_data that already replaced with regex
     """
     for row in list_data:
@@ -80,7 +117,6 @@ def regex_string(string, regex_instance_list):
     """
     A function, given string and list of compiled regex,
     will replace the string with each of compiled regex
-
     This function will be run several times, called by regex_content
     :param string:
     :param regex_instance_list:
@@ -91,63 +127,47 @@ def regex_string(string, regex_instance_list):
     return string
 
 
-# todo: this is unused
-def regex_xpath_to_attribute(xpath_string):
-    # todo: should compile it first, for efficiency boost
-    # regex = re.compile("@\w+")
-    # print(re.findall(regex, xpath_2.split("/")[-1]))
-
-    xpath_string = xpath_string.split("/")[-1] if "/" in xpath_string else xpath_string
-    result = re.findall("@\w+", xpath_string)
-    return [attribute.replace('@', '') for attribute in result]
-
-
-
 """
 Regarding CSV operation
 """
-import datetime
-import pandas as pd
-def write_csv(list_data, columns, filename = 'result.csv'):
 
+def write_csv(list_data, columns, filename = 'Output.csv'):
+    """
+    Write list_data to CSV with columns as attribute and filename as the filename
+    :param list_data: list of row to be inserted (list of dict)
+    :param columns: list of attribute to be shown as column (list of string)
+    :param filename: csv file name
+    :return: csv filename (should any caller needed)
+    """
     filename = filename.replace('.csv', '') if filename.endswith('.csv') else filename
     filename = filename + '_' + str(datetime.datetime.now())[:19].replace(":", '_') +'.csv'
 
-    df = pd.DataFrame(list_data, columns=columns)
-    df.to_csv('result/' + filename, index=False)
+    data_frame = pd.DataFrame(list_data, columns=columns)
+    data_frame.to_csv('result/' + filename, index=False)
     return filename
-#
-# list_data = [{"title": "title 1", "links": "link 1"}, {"title": "title 1", "links": "link 1"}]
-# columns = ['title', 'links']
-# write_csv(list_data, columns)
 
 
-# fix me: reading Done.csv in dataframe result somethink like this
-"""
-           href
-title          
-title 1  link 1
-title 1  link 1
+def read_done_csv(list_attribute):
+    """
+    Will read Done.csv if given, and store the occurred value into it
+    If Done.csv is not given, the default value is empty list []
+    :param list_attribute: list of attributes
+    :return: dicitonary of list contains occurred elements
+    """
+    result_dict = {}
+    for attribute in list_attribute:
+        result_dict[attribute] = []
 
-it should be like this
-
-title    href
-title 1  link 1
-title 1  link 1
-
-"""
-def read_done_csv():
-    return []
     if os.path.isfile("result/Done.csv"):
-        df = pd.DataFrame.from_csv("result/Done.csv", sep=',')
-        print(df)
-        return df
-    else:
-        return []
+        df = pd.read_csv("result/Done.csv", sep=',')
+
+        for attribute in list_attribute:
+            if attribute in df.columns:
+                result_dict[attribute] = df[attribute].to_list()
+
+    return result_dict
 
 # todo: write the unittest
-import unittest
-import os
 class LibCommonTest(unittest.TestCase):
     def test_write_csv_can_produce_csv(self):
         list_data = [{"title": "title 1", "links": "link 1"}, {"title": "title 1", "links": "link 1"}]
