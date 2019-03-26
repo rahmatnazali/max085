@@ -2,6 +2,7 @@
 Python flexible web scrapper
 
 
+**this documentation is still work in progress**
 
 
 # Before Starting
@@ -30,6 +31,11 @@ cd /path/to/your/code/max085
     ```
     pip3 install -r requirements txt
     ```
+  - Check if dependency is installed by running
+      ```
+        pip3 install -r requirements txt  
+      ```
+    ![](assets/pip_freeze.png)
 
 ## Feature 1
 
