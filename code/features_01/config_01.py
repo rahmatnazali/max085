@@ -27,9 +27,15 @@ https://stackoverflow.com/questions/55319552/python-selenium-how-to-make-webdriv
 
 """
 
-XPath = "//a[@title|@href]"
+# XPath = "//a[@title|@href]"
 # XPath = "/html/body/div[1]/div/a/[@title|@href]"
-
+# todo: if xpath is not ended with @(not attribute), get the content with l.text_content()
+XPath = {
+    'Product Title' : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[1]',
+    'Image URL'     : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/a/div/div/img/@src',
+    'Model Number'  : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[2]',
+    'Link'          : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/@href',
+}
 
 
 """
@@ -54,10 +60,20 @@ Regex = (
 )
 
 # todo: make sure to clarify how should the logic works if multiple column is given
-Column = (
-    'B',
-    'C',
-    'D'
+"""
+Place your column that you did not want it to be multiple-occured
+
+For example, we want so that "Link" is not multiple-occured, so we put "Link" in the Column below.
+
+Note:
+1. The attribute listed on the Column *must also be defined in XPath*, if not, the code will got confused because
+he seeks something that did not there
+2. the Done.csv *should also* contains the same attributes that defined in XPath
+
+Important: the Columns is tuple type, so you should put a comma if you only insert one attribute. like this --> ("attribute", )
+"""
+Columns = (
+    'Link',
 )
 
 

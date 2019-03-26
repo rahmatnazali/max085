@@ -22,7 +22,7 @@ list_data = [] # list of row data to be converted to CSV later
 
 regex_instance_list = lib.compile_regex(config.Regex) # compiled regex
 
-list_attribute = lib.regex_xpath_to_attribute(config.XPath) # list of attributes
+list_attribute = list(config.XPath.keys()) # list of attributes
 
 
 
@@ -48,6 +48,7 @@ for url in enumerate(url_list):
             Each attribte is obtained
             Then each of it is cleaned with regex
             """
+            # todo: rewrite the changes
             a_row = {}
             for attribute in list_attribute:
                 an_attribute = link.get(attribute, '')

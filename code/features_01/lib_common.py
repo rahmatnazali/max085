@@ -91,7 +91,7 @@ def regex_string(string, regex_instance_list):
     return string
 
 
-
+# todo: this is unused
 def regex_xpath_to_attribute(xpath_string):
     # todo: should compile it first, for efficiency boost
     # regex = re.compile("@\w+")
