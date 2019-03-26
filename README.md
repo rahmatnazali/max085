@@ -25,7 +25,7 @@ cd /path/to/your/code/max085
     .\env\Scripts\activate
     ```
     if your cmd/powershell change like this, then it succeed (note the leading **(env)**)
-    [!](assets/virtual_env_enter.png)
+    ![](assets/virtual_env_enter.png)
   - install dependency
     ```
     pip3 install -r requirements txt
