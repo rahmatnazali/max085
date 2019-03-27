@@ -149,6 +149,10 @@ You are ready to go.
   
   ![](assets/result_csv.png)
   
+  
+  Note that Output.csv only contains 10 elements. This is because I picked 1 element and put it into Done.csv.
+  The code will know that duplucate link exist, and it will not be logged into Output.csv
+  
 ## Feature 2
 
 - the coding template is finished
