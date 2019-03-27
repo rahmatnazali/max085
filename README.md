@@ -112,6 +112,7 @@ You are ready to go.
   
   - `Regex`: place your regex here and what the replace string will be
   - `Columns`: place one or multiple Column's name that you want to be considered so that no multi occurrence appears
+    
     Example:
       - `'Link'`: means the Link attribute should always be unique
       - `'Link', 'Model Name''`: means the Link and Model Name attribute should always be unique
