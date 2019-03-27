@@ -58,10 +58,13 @@ This is optional. But I strongly recommend that you use virtual env so you did n
     - to exit from that, type `deactivate`
   
 - install dependency
+
+  Assuming that you are inside virtual env, run:
   ```
   pip3 install -r requirements txt
   ```
 - Check if dependency is installed by running
+
   ```
     pip3 install -r requirements txt
     
