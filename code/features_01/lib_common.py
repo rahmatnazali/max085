@@ -1,12 +1,44 @@
 import importlib
 config = importlib.import_module('config_01')
 
+"""
+requests is for making a HTTP Request to a URL
+"""
 import requests
+
+
+"""
+re is Regex module
+"""
 import re
+
+"""
+lxml is very basic scrapping module.
+Note that selenium and scrappy use this as their dependency.
+So we should only import what we need.
+"""
 from lxml import html
+
+"""
+A module for basic datetime. like get current date time
+"""
 import datetime
+
+"""
+pandas is a module for data science.
+It might looked overkill to import it here, but pandas come with a great csv operational tool.
+It can efficiently parse csv into list/dict, and write list/dict into csv.
+"""
 import pandas as pd
+
+"""
+unittest is builtin module for unit testing
+"""
 import unittest
+
+"""
+os is builtin module for system operation. Such as making a folder or file, check if file is exist, etc.
+"""
 import os
 
 
