@@ -1,0 +1,6 @@
+2019-03-27 20:59:01,306 INFO This is just info message
+2019-03-27 20:59:01,306 ERROR This is just info message
+2019-03-27 20:59:59,576 INFO This is just info message
+2019-03-27 20:59:59,576 ERROR This is just info message
+2019-03-27 21:01:48,673 INFO This is just info message
+2019-03-27 21:01:48,673 ERROR This is just info message
