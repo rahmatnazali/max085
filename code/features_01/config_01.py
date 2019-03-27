@@ -50,6 +50,8 @@ XPath = {
 
 
 """
+List of Regex that will be used.
+
 This is a tuple of tuple type. Make sure to wrap each elements with bracket.
 
 Format:
@@ -74,9 +76,9 @@ Regex = (
 
 
 """
-Place your column that you did not want it to be multiple-occured
+Place your column that you did not want it to be multiple-occurred
 
-For example, we want so that "Link" is not multiple-occured, so we put "Link" in the Column below.
+For example, we want so that "Link" is not multiple-occurred, so we put "Link" in the Column below.
 
 Note:
 1. The attribute listed on the Column *must also be defined in XPath*, if not, the code will got confused because

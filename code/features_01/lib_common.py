@@ -76,7 +76,7 @@ def get_page(url):
     :return: The HTML (string)
     """
     request_result = requests.get(url)
-    if requests.status_codes == 200:
+    if request_result.status_codes == 200:
         return request_result.text
     else:
         print("Request failed. The link might be wrong, or there is no internet connection")
