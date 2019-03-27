@@ -85,7 +85,7 @@ Some improvements requests for fast error detection:
 [DONE]
 * Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (# Rows Removed)
 
-todo
+[DONE]
 Last thing, can you make this option in config file:
 
 GenerateNewFiles= True / False
