@@ -62,7 +62,7 @@ Also tested XPath, Regex, Columns, Done.csv -> All Good.
 
 I have some questions and improvements request if I may:
 
-
+(answered in F1-Testing-Notes_answer_01.txt)
 * Does the code use Scrapy or Selenium? 
 * If I don't want to use the Regex feature, what should I change it to?
 * If I don't want to use the Columns feature, what should I change it to?
