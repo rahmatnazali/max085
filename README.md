@@ -115,7 +115,7 @@ You are ready to go.
     
     Example:
       - `'Link'`: means the Link attribute should always be unique
-      - `'Link', 'Model Name''`: means the Link and Model Name attribute should always be unique
+      - `'Link', 'Model Name'`: means the Link and Model Name attribute should always be unique
 
   - Test Mode and Debug Mode
     - `TestMode`: to test if you can run the code. If `True`, the code will not request an HTML via internet. 
