@@ -133,6 +133,7 @@ def compile_regex(regex_tuple):
 
 def regex_content(list_data, list_attribute, regex_instance_list):
     """
+    NOTE: this function is no longer used. I left it here should you need to tinker with.
     A function that, given the list_data, list_attribute, and compiled regex instance,
     will iterate to each content and replace it with each compiled regex
     :param list_data: list of raw data
