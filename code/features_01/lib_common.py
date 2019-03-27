@@ -172,13 +172,18 @@ def write_csv(list_data, columns, filename = 'Output.csv'):
     :param filename: csv file name
     :return: csv filename (should any caller needed)
     """
-    filename = filename.replace('.csv', '') if filename.endswith('.csv') else filename
-    filename = filename + '_' + str(datetime.datetime.now())[:19].replace(":", '_') +'.csv'
+    if config.GenerateNewFiles:
+        filename = filename.replace('.csv', '') if filename.endswith('.csv') else filename
+        filename = filename + '_' + str(datetime.datetime.now())[:19].replace(":", '_') +'.csv'
+    else:
+        if os.path.isfile("result/Output.csv"):
+            df = pd.read_csv("result/Output.csv", sep=',')
+            list_of_dict_in_done_csv = df.to_dict('records')
+            list_data = list_of_dict_in_done_csv + list_data
 
     data_frame = pd.DataFrame(list_data, columns=columns)
     data_frame.to_csv('result/' + filename, index=False)
     return filename
-
 
 def read_done_csv(list_attribute):
     """

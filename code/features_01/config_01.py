@@ -112,3 +112,14 @@ value: True | False
 """
 
 DebugMode = False
+
+
+
+"""
+This is a fix for
+
+True -> the software as it is, no change.
+False -> instead of creating new output-time.csv files on every run, append all results to the end or begening of output.csv
+
+"""
+GenerateNewFiles = False
