@@ -40,7 +40,7 @@ This is optional. But I strongly recommend that you use virtual env so you did n
   ```
   py -m virtualenv env
   ```
-  You will note that a new folder called "env" is present on you directory
+  You will note that a new folder called "env" will be present on you directory
   
   ![](assets/env_directory.png)
 
