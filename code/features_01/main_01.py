@@ -114,8 +114,14 @@ Here we are reusing regex instead of deleting it and keep instantiating it every
 regex_instance_list = lib.compile_regex(config.Regex)
 
 
+"""
+Initializing data_found_dict
+This variable will need to be initialized because we want to know later how much regex is matched
 
-
+this is fix for F1-Testing-Notes.txt: 
+* Regex Search & Replace in Output.csv ... (#/# Regex Matched) -> example: if I entered 4 regex in config and the software matched 3 of them in output.csv (3/4 Regex Matched)
+"""
+data_found_dict = {}
 
 
 """
@@ -223,7 +229,12 @@ for url in enumerate(url_list):
         break
 
 # [DONE] Regex is already done in iteration. This will be more efficient
-print("Regex Search & Replace in Output.csv ...")
+number_of_regex_found = 0
+for regex in data_found_dict.keys():
+    if len(data_found_dict[regex]):
+        number_of_regex_found += 1
+number_of_regex = len(data_found_dict.keys())
+print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found, number_of_regex))
 
 # [DONE] multiple occurrence in Rows is already evaluated in iteration. This will be more efficient
 print("Removing Rows In Output.csv If The Row Also In Done.csv ...")
