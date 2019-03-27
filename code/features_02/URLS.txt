@@ -1,0 +1,10 @@
+https://www.freelancer.com/
+# any line starting with "#" are ignored. so you can make note regarding the links here if needed
+
+
+# empty line will also be ignored
+
+
+https://www.google.com/
+https://www.facebook.com/
+https://www.instagram.com/
