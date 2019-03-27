@@ -216,7 +216,8 @@ for url in enumerate(url_list):
             print()
     else:
         print("\tNo links found. The XPATH might be wrong or the page did not contains given XPATH.")
-        exit()
+        logger_link.error("XPath not found for link: " + url[1])
+        continue
 
     if config.TestMode:
         break
