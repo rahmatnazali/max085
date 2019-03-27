@@ -80,7 +80,7 @@ def get_page(url):
         return request_result.text
     else:
         print("Request failed. The link might be wrong, or there is no internet connection")
-        exit()
+        return False
 
 
 def scrap_html(html_page, list_attribute, Xpath):

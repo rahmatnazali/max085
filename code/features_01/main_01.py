@@ -150,6 +150,9 @@ for url in enumerate(url_list):
             html_page = html_file.read()
     else:
         html_page = lib.get_page(url[1])
+        if not html_page:
+            logger_link.error("Get Request failed for link: " + url[1])
+            continue
 
 
 
