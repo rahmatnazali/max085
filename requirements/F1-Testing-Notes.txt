@@ -68,19 +68,24 @@ I have some questions and improvements request if I may:
 * If I don't want to use the Columns feature, what should I change it to?
 
 
-todo
 Some improvements requests for fast error detection:
 
 [DONE]
 * If URL has code status != 200 , log URL into Links-Errors.txt and skip to next URL, not exit
+
 [DONE]
 * If XPath not found , log URL into XPaths-Errors.txt and skip to next URL, not exit
 
+[DONE]
 * Regex Search & Replace in Output.csv ... (#/# Regex Matched) -> example: if I entered 4 regex in config and the software matched 3 of them in output.csv (3/4 Regex Matched)
+
+[DONE]
 * Removing Rows In Output.csv If The Row Also In Done.csv ... (# Rows Removed)
+
+[DONE]
 * Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (# Rows Removed)
 
-
+todo
 Last thing, can you make this option in config file:
 
 GenerateNewFiles= True / False
