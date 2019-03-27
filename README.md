@@ -112,7 +112,7 @@ You are ready to go.
   
   - `Regex`: place your regex here and what the replace string will be
   
-    If you want to disable this features, simply declare Xpath as empty tuple `Regex = ()`
+    **Disable Feature:** If you want to disable this features, simply declare Xpath as empty tuple `Regex = ()`
 
   - `Columns`: place one or multiple Column's name that you want to be considered so that no multi occurrence appears
     
@@ -120,7 +120,7 @@ You are ready to go.
       - `'Link'`: means the Link attribute should always be unique
       - `'Link', 'Model Name'`: means the Link and Model Name attribute should always be unique
     
-    If you want to disable this features, simply declare Columns as empty tuple `Columns = ()`
+    **Disable Feature:** If you want to disable this features, simply declare Columns as empty tuple `Columns = ()`
 
   - Test Mode and Debug Mode
     - `TestMode`: to test if you can run the code. If `True`, the code will not request an HTML via internet. 
