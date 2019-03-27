@@ -14,7 +14,7 @@ If User is logged in
 			Loading URL (1/#) from URLs.txt ...
 
 			Loop: 
-				if XPath (1/#) found on page -> click it to download the file and save it Files Directory
+				if XPath (1/#) found on page -> click it to download the file and save it at Files Directory
 				Add Result Description FilesLog.txt
 			Exit Loop
 
