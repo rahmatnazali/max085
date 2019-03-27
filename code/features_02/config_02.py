@@ -3,7 +3,8 @@
 Webdriver Options
 """
 
-WebDriverPath = 'path/to/your/webdriver.exe'
+# WebDriverPath = 'path/to/your/webdriver.exe'
+WebDriverPath = '/home/rahmat/PycharmProjects/Selenium Driver/chromedriver'
 UseProxies              = True or False
 ShowBrowserWindows      = True or False
 
@@ -12,7 +13,7 @@ ShowBrowserWindows      = True or False
 Credentials Option
 """
 LoginPage = "https://example.com/login"
-Credential = "user12:pass12" # accepts emails too
+Credentials = ["user12:pass12", "user13:pass13"] # accepts emails too
 XPathLoginSuccessProof = '//p' # any element that shows when login is success. if not found, code will throw "login failed"
 
 XPathFormUserOrEmail    = '//*[@id="user"]'
@@ -60,3 +61,27 @@ Anti Captcha options
 """
 ReCaptchaOption         = 1
 AntiCaptchaAPIKey       = "dce6bcbb1a728ea8d563de6d169a2057"
+
+
+
+
+
+
+"""
+To Test 
+(Not actually requesting. just use the samsung.com's html you gave as an html_page)
+value: True | False
+"""
+
+TestMode = True
+
+
+
+
+"""
+To Debug
+Will print every data verbosely
+value: True | False
+"""
+
+DebugMode = False
