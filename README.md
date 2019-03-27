@@ -133,6 +133,10 @@ You are ready to go.
       
       Turn this to `True` to enable verbose mode, but the CLI will get a bit dirty. Turn this to `False` to minimize 
       the verbosity.
+    
+    - `GenerateNewFiles`
+      - `True`: the software as it is, no change.
+      - `False`: instead of creating new output-time.csv files on every run, append all results to the **end** or begening of output.csv
 
 ### Running
 
