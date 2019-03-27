@@ -79,7 +79,7 @@ This is optional. But I strongly recommend that you use virtual env so you did n
   
   Note:
    I code with Linux Mint, so your list of dependency might a bit different because our system differ. 
-   It completely fine. Just make sure that these major module are printed at your console:
+   It is completely fine. Just make sure that these major module are printed at your console:
      - lxml
      - pandas
      - python-dateutil
