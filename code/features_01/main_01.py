@@ -124,6 +124,28 @@ this is fix for F1-Testing-Notes.txt:
 data_found_dict = {}
 
 
+
+
+
+"""
+this is fix for F1-Testing-Notes.txt: 
+* Removing Rows In Output.csv If The Row Also In Done.csv ... (# Rows Removed)
+"""
+rows_removed_due_to_appearance_in_done_csv = 0
+
+
+
+
+"""
+this is fix for F1-Testing-Notes.txt: 
+* Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (# Rows Removed)
+"""
+rows_removed_due_to_duplication_column = 0
+
+
+
+
+
 """
 Main Code
 
@@ -237,7 +259,7 @@ number_of_regex = len(data_found_dict.keys())
 print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found, number_of_regex))
 
 # [DONE] multiple occurrence in Rows is already evaluated in iteration. This will be more efficient
-print("Removing Rows In Output.csv If The Row Also In Done.csv ...")
+print("Removing Rows In Output.csv If The Row Also In Done.csv ... ({} Rows Removed)".format(rows_removed_due_to_appearance_in_done_csv))
 
 # [DONE] multiple occurrence in Rows regarding specified Columns is already evaluated in iteration. This will be more efficient
 print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...")
