@@ -126,7 +126,7 @@ You are ready to go.
     - `DebugMode`: to tell the verbosity. Good to find if attribute is correctly regexed or not, or if 
       multiple occurrence is evalueted correclty or not. 
       
-      Turn this to `True` to enable verbose mode. But the CLI will get a bit dirty. Turn this to `False` to minimize 
+      Turn this to `True` to enable verbose mode, but the CLI will get a bit dirty. Turn this to `False` to minimize 
       the verbosity.
 
 ### Running
