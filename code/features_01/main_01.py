@@ -25,25 +25,11 @@ if not url_list:
 """
 Creating logging instance
 """
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-
-def setup_logger(name, log_file, level=logging.INFO):
-    """Function setup as many loggers as you want"""
-
-    handler = logging.FileHandler(log_file)
-    handler.setFormatter(formatter)
-
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    logger.addHandler(handler)
-
-    return logger
-
 # logger for Links-Errors.txt
-logger_link = setup_logger("logger_link", 'log/Links-Errors.txt')
+logger_link = lib.setup_logger("logger_link", 'log/Links-Errors.txt')
 
 # logger for XPaths-error.txt
-logger_xpath = setup_logger("logger_xpath", 'log/XPaths-Errors.txt')
+logger_xpath = lib.setup_logger("logger_xpath", 'log/XPaths-Errors.txt')
 
 
 """

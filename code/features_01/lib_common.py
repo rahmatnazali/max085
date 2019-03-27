@@ -43,6 +43,35 @@ import os
 
 
 
+
+"""
+Regarding Logging instance
+"""
+import logging
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+
+def setup_logger(name, log_file, level=logging.INFO):
+    """
+    Function to set multiple logger instance
+    :param name: name of logger instance
+    :param log_file: path to the log file
+    :param level: minimum level of considered logging | how logging level works ? https://docs.python.org/2/howto/logging.html#logging-levels
+    :return: the logger instance
+    """
+    handler = logging.FileHandler(log_file)
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+
+    return logger
+
+
+
+
+
+
 """
 Regarding reading URL, HTML request, and scrapping
 """
