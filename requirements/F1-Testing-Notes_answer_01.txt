@@ -1,0 +1,54 @@
+Hi!
+
+Let me answer the first 3 question because it does not take time and not involved in any coding
+
+this file will be also available via github.
+
+
+
+
+* Does the code use Scrapy or Selenium?
+
+I can't say that this use either Scrapy or Selenium. Let me know if that is a problem.
+So basically Scrappy and Selenium is both a wrapper to a many many modules that focuses on web scrapping.
+They both have their own pros and cons and it differ accross variety of scrapping case, like should we need to use JS or not, etc, something like that.
+
+I simply don't find Feature 1 need to include Scrapy nor Selenium. Because Feature 1 is only a xpath scrapping.
+Thus, I pick a module called lxml. This module is actually used by both Scrapy and Selenium for their automation.
+So it is litteraly part of Scrapy, and part of Selenium too.
+
+I would call it "scrapping with lxml module" to be most precise, in my opinion.
+But if I should choose, it is close to Scrapy because our case did not need a JS instance.
+
+
+* If I don't want to use the Regex feature, what should I change it to?
+Simply delete all the config_01.Regex's element, but the variable must remain be a list.
+
+example
+
+# you can just comment all the attribute
+Regex = (
+    # ("(?<=\d\/).+", ""),
+    # ("(\/([ab])\/)", "/x/"),
+    # ("EFG ?(?="")", " XYZ"),
+)
+
+# or delete it all. Bot of these below will works
+Regex = (
+)
+
+Regex = ()
+
+
+
+* If I don't want to use the Columns feature, what should I change it to?
+Same as Regex, you should define it like these below and all are valid
+
+# comment the element
+Columns = (
+    # 'Link',
+)
+
+# or simply delete the element and declare empty tuple
+Columns = ()
+
