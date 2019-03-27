@@ -112,7 +112,7 @@ You are ready to go.
   
   - `Regex`: place your regex here and what the replace string will be
   
-    If you want to disable this features, simply declare Xpath as empty tuple `Columns = ()`
+    If you want to disable this features, simply declare Xpath as empty tuple `Regex = ()`
 
   - `Columns`: place one or multiple Column's name that you want to be considered so that no multi occurrence appears
     
