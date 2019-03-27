@@ -1,0 +1,87 @@
+-------------------------------------------------------------------------------------------------------------------------------
+First of all, 
+you did an amazing job, 
+the documantation was super great and very helpful and informative, 
+and your code and work is the best I've ever seen by far, 
+Thank you for it, I really appreciate it.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+For TestMode, when running I got the following error:
+
+" 
+return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 433739: character maps to <undefined>
+"
+
+I've solved it by changing "main_01.py" -> Line 126
+
+From:	with open("example_2.html") as html_file:
+To	:	with open("example_2.html", encoding="utf8") as html_file:
+
+by adding ", encoding="utf8"" it solved the decoding issue that it had when it was trying to read the html file.
+
+After that, everything worked smoothly, Reading, Scraping, XPath, Regex, ... -> all of it worked great as expected.
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+For LiveMode, when running I got the following error:
+
+"
+raise InvalidSchema("No connection adapters were found for '%s'" % url)
+requests.exceptions.InvalidSchema: No connection adapters were found for '(0, 'https://facebook.com')'
+"
+
+I've solved it by changing "main_01.py" -> Line 129
+
+From:	html_page = lib.get_page(url)
+To	:	html_page = lib.get_page(url[1])
+
+This issue was caused because "url" returns a tuple (0, 'https://facebook.com') and not a valid URL string
+by adding "[1]" it solved the issue by getting only the URL string "https://facebook.com" from the original (0, 'https://facebook.com')
+
+
+-------------------------------------------------------------------------------------------------------
+After that I kept getting "Request failed. The link might be wrong, or there is no internet connection" 
+even though the link is correct the there is a valid internet connection.
+
+I've solved it by changing "lib_common.py" -> Line 79
+
+From:	if requests.status_codes == 200:
+To	:	if request_result.status_code == 200:
+
+as the original "requests.status_codes" was not valid and the result would always !=200
+
+
+After that, everything worked great as expected.
+Also tested XPath, Regex, Columns, Done.csv -> All Good.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+I have some questions and improvements request if I may:
+
+
+* Does the code use Scrapy or Selenium? 
+* If I don't want to use the Regex feature, what should I change it to?
+* If I don't want to use the Columns feature, what should I change it to?
+
+
+Some improvements requests for fast error detection:
+
+* If URL has code status != 200 , log URL into Links-Errors.txt and skip to next URL, not exit
+* If XPath not found , log URL into XPaths-Errors.txt and skip to next URL, not exit
+* Regex Search & Replace in Output.csv ... (#/# Regex Matched) -> example: if I entered 4 regex in config and the software matched 3 of them in output.csv (3/4 Regex Matched)
+* Removing Rows In Output.csv If The Row Also In Done.csv ... (# Rows Removed)
+* Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (# Rows Removed)
+
+
+Last thing, can you make this option in config file:
+
+GenerateNewFiles= True / False
+
+True -> the software as it is, no change.
+False -> instead of creating new output-time.csv files on every run, append all results to the end or begening of output.csv
+
+-------------------------------------------------------------------------------------------------------------------------------
