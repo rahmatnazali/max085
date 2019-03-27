@@ -73,6 +73,7 @@ General Notes For Feature 1 & 2:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * After each step is executed, it creates a log file containing any errors, for example: unable to scrape or find XPath or unable to load HTML, ....
 
-* For URLs.txt in Feature 1 or 2 , when the script finish a URL it removes it from URLs.txt and Add it to URLsDone.txt when successful or URLsError.txt when error, this is for in case the script shuts suddenly, when it runs again it will continue and not repeat already done URLs
+* For URLs.txt in Feature 1 or 2 , when the script finish a URL it removes it from URLs.txt and Add it to URLsDone.txt
+when successful or URLsError.txt when error, this is for in case the script shuts suddenly, when it runs again it will continue and not repeat already done URLs
 
 * I would appreciate it if you documented your code with comments, thanks. 
