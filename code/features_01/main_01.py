@@ -14,7 +14,7 @@ Reading URLS.txt
 
 If no URLS.txt was given, the code will end.
 """
-
+url_list_succeed = 0
 url_list = lib.read_url()
 if not url_list:
     print("URLS.txt not found.")
@@ -27,10 +27,11 @@ Creating logging instance
 """
 # logger for Links-Errors.txt
 logger_link = lib.setup_logger("logger_link", 'log/Links-Errors.txt')
+logger_link_count = 0
 
 # logger for XPaths-error.txt
 logger_xpath = lib.setup_logger("logger_xpath", 'log/XPaths-Errors.txt')
-
+logger_xpath_count = 0
 
 """
 List of attributes to be evaluated
@@ -169,7 +170,9 @@ for url in enumerate(url_list):
         html_page = lib.get_page(url[1])
         if not html_page:
             logger_link.error("Get Request failed for link: " + url[1])
+            logger_link_count += 1
             continue
+        url_list_succeed += 1
 
 
 
@@ -238,7 +241,9 @@ for url in enumerate(url_list):
             print()
     else:
         print("\tNo data found. The XPATH might be wrong or the page did not contains given XPATH.")
-        logger_link.error("XPath not found for link: " + url[1])
+        logger_xpath.error("XPath not found for link: " + url[1])
+        logger_xpath_count += 1
+
         continue
 
     if config.TestMode:
@@ -270,4 +275,8 @@ print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.c
 
 
 
+print("\n\n\n")
+print("URLs Completed Logged in (URLsDone.txt): {}/{} TotalURLs".format(url_list_succeed, len(url_list)))
+print("Errors Logged in (Links-Errors.txt): {}".format(logger_link_count))
+print("Errors Logged in (XPaths-Errors.txt): {}".format(logger_xpath_count))
 
