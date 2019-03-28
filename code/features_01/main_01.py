@@ -155,6 +155,9 @@ The logical is like this:
         
 """
 
+number_of_regex = len(config.Regex)
+number_of_regex_found = 0
+
 for url in enumerate(url_list):
     print("Scraping URL ({}/{}) from URLs.txt Using XPath ...".format(url[0] + 1, len((url_list))))
 
@@ -191,8 +194,12 @@ for url in enumerate(url_list):
         for i in range(data_found_length):
             a_row = {}
             for attribute in list_attribute:
-                a_row[attribute] = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
+                a_row[attribute], number_of_regex_found_locally = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
 
+                # should any regex in any element in any row not found the found count will be smaller, and we must save it.
+                # So we need to log the smallest match
+                if number_of_regex_found_locally != 0 or number_of_regex_found > number_of_regex_found_locally:
+                    number_of_regex_found = number_of_regex_found_locally
             if config.DebugMode:
                 # print string that is regexed, but not yet evaluated for occurence (so multi occurence is possible)
                 print(a_row)
@@ -229,7 +236,7 @@ for url in enumerate(url_list):
             print(occured_data_dict)
             print()
     else:
-        print("\tNo links found. The XPATH might be wrong or the page did not contains given XPATH.")
+        print("\tNo data found. The XPATH might be wrong or the page did not contains given XPATH.")
         logger_link.error("XPath not found for link: " + url[1])
         continue
 
@@ -237,11 +244,6 @@ for url in enumerate(url_list):
         break
 
 # [DONE] Regex is already done in iteration. This will be more efficient
-number_of_regex_found = 0
-for regex in data_found_dict.keys():
-    if len(data_found_dict[regex]):
-        number_of_regex_found += 1
-number_of_regex = len(data_found_dict.keys())
 print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found, number_of_regex))
 
 # [DONE] multiple occurrence in Rows is already evaluated in iteration. This will be more efficient

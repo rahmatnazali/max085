@@ -184,9 +184,13 @@ def regex_string(string, regex_instance_list):
     :param regex_instance_list:
     :return:
     """
+    number_of_regex_found = 0
     for regex in regex_instance_list:
-        string = re.sub(regex['regex_instance'], regex['regex_string'], string)
-    return string
+        regexed_string = re.sub(regex['regex_instance'], regex['regex_string'], string)
+        if string != regexed_string:
+            number_of_regex_found += 1
+        string = regexed_string
+    return string, number_of_regex_found
 
 
 """

@@ -2,6 +2,7 @@ On LiveMode
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 This issue only happens when GenerateNewFiles=False
 
+[DONE]
 Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...
 ||
 \/
@@ -35,9 +36,12 @@ If I run the software again with the same config, the output.csv would result li
 	as it's needs also to compare old data already in output.csv from previous runs with the new added data.
 		
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-	
+[DONE - because no issue]
 *Adding Results to Output.csv ...  (20 row(s) of data found) 									   -> this works great
+
+[DONE]
 *Regex Search & Replace in Output.csv ... (4/4 Regex Matched) 									   -> this appears (4/4 Regex Matched) always
+
 *Removing Rows In Output.csv If The Row Also In Done.csv ... (0 Rows Removed) 					   -> this appears (0 Rows Removed) always
 *Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (0 Rows Removed)  -> this appears (0 Rows Removed) always
 

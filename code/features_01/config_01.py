@@ -70,6 +70,7 @@ Regex = (
     ("(?<=\d\/).+", ""),
     ("(\/([ab])\/)", "/x/"),
     ("EFG ?(?="")", " XYZ"),
+    ("REGEXTHATWILLNEVERMATCH", " XYZ"),
 )
 
 
