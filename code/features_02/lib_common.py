@@ -4,6 +4,32 @@ config = importlib.import_module('config_02')
 import time
 import os
 
+
+
+"""
+Regarding Logging instance
+"""
+import logging
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+
+def setup_logger(name, log_file, level=logging.INFO):
+    """
+    Function to set multiple logger instance
+    :param name: name of logger instance
+    :param log_file: path to the log file
+    :param level: minimum level of considered logging | how logging level works ? https://docs.python.org/2/howto/logging.html#logging-levels
+    :return: the logger instance
+    """
+    handler = logging.FileHandler(log_file)
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+
+    return logger
+
+
 """
 Regarding reading URL
 """
@@ -122,23 +148,19 @@ import requests
 def is_downloadable(url):
     """
     Does the url contain a downloadable resource
-
     :param url:
-    :return:
+    :return: boolean if url is downloadable, and its header
     """
     h = requests.head(url, allow_redirects=True)
     header = h.headers
     content_type = header.get('content-type')
-    if 'text' in content_type.lower():
-        return False
-    if 'html' in content_type.lower():
-        return False
-    return True
+    if 'text' in content_type.lower() or 'html' in content_type.lower():
+        return False, h
+    return True, h
 
-print(is_downloadable('https://freelancer.com'))
-# >> False
-print(is_downloadable('http://google.com/favicon.ico'))
-# >> True
+def download_binnary(url):
+    return requests.get(url, allow_redirects=True)
+
 
 # todo: check if link have param https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?cs=srgb&dl=beautiful-bloom-blooming-658687.jpg&fm=jpg
 # url.split('?')[0]
@@ -152,17 +174,18 @@ def limit_size(url):
         return False
 
 import re
-def get_filename_from_cd(cd):
+import datetime
+def seek_filename(header):
     """
-    Get filename from content-disposition
+    Get possible filename from header
+
+    :param header: request header
+    :return: filename or None
     """
-    if not cd:
-        return None
-    fname = re.findall('filename=(.+)', cd)
-    if len(fname) == 0:
-        return None
-    return fname[0]
-# url = 'http://google.com/favicon.ico'
-# r = requests.get(url, allow_redirects=True)
-# filename = get_filename_from_cd(r.headers.get('content-disposition'))
-# open(filename, 'wb').write(r.content)
+    content_disposistion = header.get('content-disposition', None)
+    if content_disposistion:
+        result_list = re.findall('filename=(.+)', content_disposistion)
+        if result_list:
+            return True, result_list[0]
+    return False, str(datetime.datetime.now())[:19].replace(":", '_')
+

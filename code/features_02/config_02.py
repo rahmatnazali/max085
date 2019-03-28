@@ -91,7 +91,7 @@ DebugMode = False
 
 
 """
-Experimental feature
-Waiting for download to finish
+True -> will check for file completion and wait for interval. Download is made by requests module
+False -> will NOT check for file completion. Just wait for interval. Download is made by selenium
 """
-WaitDownload = False
+SequentialFiles = False
