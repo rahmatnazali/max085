@@ -11,7 +11,7 @@ this file will be also available via github.
 
 I can't say that this use either Scrapy or Selenium. Let me know if that is a problem.
 So basically Scrappy and Selenium is both a wrapper to a many many modules that focuses on web scrapping.
-They both have their own pros and cons and it differ accross variety of scrapping case, like should we need to use JS or not, etc, something like that.
+They both have their own pros and cons and it differ across variety of scrapping case, like should we need to use JS or not, etc, something like that.
 
 I simply don't find Feature 1 need to include Scrapy nor Selenium. Because Feature 1 is only a xpath scrapping.
 Thus, I pick a module called lxml. This module is actually used by both Scrapy and Selenium for their automation.
