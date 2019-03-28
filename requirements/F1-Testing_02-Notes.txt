@@ -49,7 +49,7 @@ Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ...
 [DONE]
 *Removing Rows In Output.csv If The Row Also In Done.csv ... (0 Rows Removed) 					   -> this appears (0 Rows Removed) always
 
-[ON IT]
+[DONE]
 *Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (0 Rows Removed)  -> this appears (0 Rows Removed) always
 
 Everything else I tested seems to be working great, thanks.

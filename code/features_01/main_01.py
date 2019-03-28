@@ -126,7 +126,7 @@ rows_removed_due_to_appearance_in_done_csv = 0
 this is fix for F1-Testing_01-Notes.txt: 
 * Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (# Rows Removed)
 """
-rows_removed_due_to_duplication_column = 0
+rows_removed_due_to_duplicate_in_output_csv = 0
 
 
 
@@ -250,9 +250,6 @@ print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(nu
 # [DONE] multiple occurrence in Rows is already evaluated in iteration. This will be more efficient
 print("Removing Rows In Output.csv If The Row Also In Done.csv ... ({} Rows Removed)".format(rows_removed_due_to_appearance_in_done_csv))
 
-# [DONE] multiple occurrence in Rows regarding specified Columns is already evaluated in iteration. This will be more efficient
-print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... ({} Rows Removed)".format(rows_removed_due_to_duplication_column))
-
 
 """
 [DONE] Saving CSV
@@ -265,6 +262,12 @@ lib.write_csv(csv_data, columns=list_attribute, filename = "My Custom Output Nam
 that will generate file with name: My Custom Output Name_datetime.csv
 
 """
-lib.write_csv(csv_data, columns=list_attribute)
+rows_removed_due_to_duplicate_in_output_csv = lib.write_csv(csv_data, columns=list_attribute)
+
+# [DONE] multiple occurrence in Rows regarding specified Columns is already evaluated in iteration. This will be more efficient
+print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... ({} Rows Removed)".format(rows_removed_due_to_duplicate_in_output_csv))
+
+
+
 
 

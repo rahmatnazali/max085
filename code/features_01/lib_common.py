@@ -212,6 +212,7 @@ def write_csv(list_data, columns, filename = 'Output.csv'):
     :param filename: csv file name
     :return: csv filename (should any caller needed)
     """
+    rows_removed_due_to_duplicate_in_output_csv = 0
     if config.GenerateNewFiles:
         filename = filename.replace('.csv', '') if filename.endswith('.csv') else filename
         filename = filename + '_' + str(datetime.datetime.now())[:19].replace(":", '_') +'.csv'
@@ -226,12 +227,14 @@ def write_csv(list_data, columns, filename = 'Output.csv'):
                 row_not_in_output_csv = is_row_not_in_output_csv(row, list_of_dict_in_done_csv)
                 if row_not_in_output_csv:
                     evaluated_list_data.append(row)
+                else:
+                    rows_removed_due_to_duplicate_in_output_csv += 1
 
             list_data = list_of_dict_in_done_csv + evaluated_list_data
 
     data_frame = pd.DataFrame(list_data, columns=columns)
     data_frame.to_csv('result/' + filename, index=False)
-    return filename
+    return rows_removed_due_to_duplicate_in_output_csv
 
 def read_done_csv(list_attribute):
     """
