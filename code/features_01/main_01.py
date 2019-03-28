@@ -29,9 +29,13 @@ Creating logging instance
 logger_link = lib.setup_logger("logger_link", 'log/Links-Errors.txt')
 logger_link_count = 0
 
+# logger for LinkDone
+logger_link_done = lib.setup_link_done_logger('logger_link_done', 'log/URLsDone.txt')
+
 # logger for XPaths-error.txt
 logger_xpath = lib.setup_logger("logger_xpath", 'log/XPaths-Errors.txt')
 logger_xpath_count = 0
+
 
 """
 List of attributes to be evaluated
@@ -239,6 +243,9 @@ for url in enumerate(url_list):
             print('below is the dictionary of occurence at the end of process')
             print(occured_data_dict)
             print()
+
+        # if the link have successfully requested and scrapped for result, log it into URLSDone.txt
+        logger_link_done.info(url[1])
     else:
         print("\tNo data found. The XPATH might be wrong or the page did not contains given XPATH.")
         logger_xpath.error("XPath not found for link: " + url[1])
