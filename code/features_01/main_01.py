@@ -104,7 +104,7 @@ regex_instance_list = lib.compile_regex(config.Regex)
 Initializing data_found_dict
 This variable will need to be initialized because we want to know later how much regex is matched
 
-this is fix for F1-Testing-Notes.txt: 
+this is fix for F1-Testing_01-Notes.txt: 
 * Regex Search & Replace in Output.csv ... (#/# Regex Matched) -> example: if I entered 4 regex in config and the software matched 3 of them in output.csv (3/4 Regex Matched)
 """
 data_found_dict = {}
@@ -114,7 +114,7 @@ data_found_dict = {}
 
 
 """
-this is fix for F1-Testing-Notes.txt: 
+this is fix for F1-Testing_01-Notes.txt: 
 * Removing Rows In Output.csv If The Row Also In Done.csv ... (# Rows Removed)
 """
 rows_removed_due_to_appearance_in_done_csv = 0
@@ -123,7 +123,7 @@ rows_removed_due_to_appearance_in_done_csv = 0
 
 
 """
-this is fix for F1-Testing-Notes.txt: 
+this is fix for F1-Testing_01-Notes.txt: 
 * Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (# Rows Removed)
 """
 rows_removed_due_to_duplication_column = 0
