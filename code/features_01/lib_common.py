@@ -193,6 +193,13 @@ def regex_string(string, regex_instance_list):
 Regarding CSV operation
 """
 
+def is_row_not_in_output_csv(new_row, list_of_dict_in_done_csv):
+    for attribute in config.Columns:
+        for old_row in list_of_dict_in_done_csv:
+            if new_row[attribute] == old_row[attribute]:
+                return False
+    return True
+
 def write_csv(list_data, columns, filename = 'Output.csv'):
     """
     Write list_data to CSV with columns as attribute and filename as the filename
@@ -208,7 +215,15 @@ def write_csv(list_data, columns, filename = 'Output.csv'):
         if os.path.isfile("result/Output.csv"):
             df = pd.read_csv("result/Output.csv", sep=',')
             list_of_dict_in_done_csv = df.to_dict('records')
-            list_data = list_of_dict_in_done_csv + list_data
+
+            # find the occurrence of new row in Output.csv
+            evaluated_list_data = []
+            for row in list_data:
+                row_not_in_output_csv = is_row_not_in_output_csv(row, list_of_dict_in_done_csv)
+                if row_not_in_output_csv:
+                    evaluated_list_data.append(row)
+
+            list_data = list_of_dict_in_done_csv + evaluated_list_data
 
     data_frame = pd.DataFrame(list_data, columns=columns)
     data_frame.to_csv('result/' + filename, index=False)

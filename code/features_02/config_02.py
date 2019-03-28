@@ -85,3 +85,13 @@ value: True | False
 """
 
 DebugMode = False
+
+
+
+
+
+"""
+Experimental feature
+Waiting for download to finish
+"""
+WaitDownload = False

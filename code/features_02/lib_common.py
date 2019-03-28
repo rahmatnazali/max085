@@ -91,3 +91,78 @@ def initialization_process(driver = None):
 
     return driver, is_successfully_login
 
+
+def wait_download(directory, timeout, nfiles=None):
+    """
+    Wait for downloads to finish with a specified timeout.
+
+    :param directory: The path to the folder where the files will be downloaded.
+    :param timeout: How many seconds to wait until timing out.
+    :param nfiles: If provided, also wait for the expected number of files.
+    :return:
+    """
+    seconds = 0
+    dl_wait = True
+    while dl_wait and seconds < timeout:
+        time.sleep(1)
+        dl_wait = False
+        files = os.listdir(directory)
+        if nfiles and len(files) != nfiles:
+            dl_wait = True
+
+        for fname in directory:
+            if fname.endswith('.crdownload'):
+                dl_wait = True
+
+        seconds += 1
+    return seconds
+
+
+import requests
+def is_downloadable(url):
+    """
+    Does the url contain a downloadable resource
+
+    :param url:
+    :return:
+    """
+    h = requests.head(url, allow_redirects=True)
+    header = h.headers
+    content_type = header.get('content-type')
+    if 'text' in content_type.lower():
+        return False
+    if 'html' in content_type.lower():
+        return False
+    return True
+
+print(is_downloadable('https://freelancer.com'))
+# >> False
+print(is_downloadable('http://google.com/favicon.ico'))
+# >> True
+
+# todo: check if link have param https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?cs=srgb&dl=beautiful-bloom-blooming-658687.jpg&fm=jpg
+# url.split('?')[0]
+
+
+def limit_size(url):
+    h = requests.head(url, allow_redirects=True)
+    header = h.headers
+    content_length = header.get('content-length', None)
+    if content_length and content_length > 2e8:  # 200 mb approx
+        return False
+
+import re
+def get_filename_from_cd(cd):
+    """
+    Get filename from content-disposition
+    """
+    if not cd:
+        return None
+    fname = re.findall('filename=(.+)', cd)
+    if len(fname) == 0:
+        return None
+    return fname[0]
+# url = 'http://google.com/favicon.ico'
+# r = requests.get(url, allow_redirects=True)
+# filename = get_filename_from_cd(r.headers.get('content-disposition'))
+# open(filename, 'wb').write(r.content)
