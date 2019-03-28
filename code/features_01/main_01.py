@@ -214,6 +214,7 @@ for url in enumerate(url_list):
             for attribute in config.Columns:
                 if a_row[attribute] in occured_data_dict[attribute]:
                     is_duplicate = True
+                    rows_removed_due_to_appearance_in_done_csv += 1
                     break
 
             # if not marked as duplicate, then insert the row to csv_data. Also record this row as "occurred"
