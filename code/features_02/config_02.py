@@ -35,6 +35,16 @@ XPathFiles              = (
     '//*[@id="Download"]" , "//*[@id="button"]'
 )
 
+"""
+This is an Xpath that links to any (single) element in the page after login.
+We need to have this to ensure that the login process is succeed.
+
+
+You need to define 
+
+"""
+LoggedInXPath = '//*[@class="logged_in"]'
+
 
 IntervalsBetweenFiles   = 10 # this is a custom intervals in seconds between each XPath download button click
 IntervalsBetweenUrls    = 10 # this is a custom intervals in seconds to move from each URL to the next
@@ -91,7 +101,9 @@ DebugMode = False
 
 
 """
+Download file mode: sequential or not.
+
 True -> will check for file completion and wait for interval. Download is made by requests module
 False -> will NOT check for file completion. Just wait for interval. Download is made by selenium
 """
-SequentialFiles = False
+SequentialFiles = True

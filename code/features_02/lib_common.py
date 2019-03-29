@@ -4,6 +4,18 @@ config = importlib.import_module('config_02')
 import time
 import os
 
+import requests
+
+
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+
+
+import re
+import datetime
 
 
 """
@@ -56,13 +68,19 @@ def read_url(filename = "URLS.txt"):
     return False
 
 
-# pop a credential
 def credential_pop(credentials):
-    if len(credentials):
+    """
+    Code will pop one element from list of credentials,
+    return the popped credential and the remain lists
+    :param credentials:
+    :return: list_of_remaining_credentials, username, password
+    """
+
+    for i in range(len(credentials)):
         c = credentials.pop()
         if not isinstance(c, str) or not ':' in c:
-            print("Invalid credentials format")
-            exit(1)
+            print("Invalid credentials format:", c)
+            continue
         username, password = c.split(":")
         return credentials, username, password
     print("No credentials left")
@@ -71,9 +89,17 @@ def credential_pop(credentials):
 
 
 
-from selenium import webdriver
-def initialization_process(driver = None):
 
+
+def init_webdriver(driver = None):
+    """
+    Code will generate a Chrome webdriver.
+    If given driver is None, it will create a webdriver.
+    If given driver is there, it will only restart it (clear all cookies, etc)
+
+    :param driver: the webdriver
+    :return: the webdriver
+    """
     config.Credentials, username, password = credential_pop(config.Credentials)
 
 
@@ -87,10 +113,12 @@ def initialization_process(driver = None):
     # Clear cookies (logout)
     driver.delete_all_cookies()
 
-    # Set Proxy to Next Proxy From Proxies.txt
-    # todo
 
-    # Loading Login Page ...
+    exit()
+
+
+    # get loading page
+    print('Loading Login Page ...')
     driver.get(config.LoginPage)
 
     # Clicking On Username/Email Input -> Filling Next Username/Email ...
@@ -102,21 +130,121 @@ def initialization_process(driver = None):
     # If reCaptcha found -> Solving reCaptcha ...
     recaptcha_element = driver.find_element_by_xpath(config.XPathRecaptcha)
     if recaptcha_element:
-        time.sleep(60) # wait 1 minute for user to solve captcha
+        """
+        For now we have 2 options:
+        1. Wait for certain seconds to solve recaptcha
+        2. CLI will ask for input (it will wait forever). So user can take time to solve captcha, 
+           and after that user will need to go to CLI and press any key (say, enter)
+        """
+        # option 1
+        # time.sleep(60) # wait 1 minute / any given time for user to solve captcha
+
+        # option 2
+        input("Captcha found. Please solve it and press any key to continue")
+
+
         # todo: or anti-captcha.com services will be called here
 
-    # Clicking on Login Button ...
+    # click login button
+    print('Clicking on Login Button ...')
     driver.find_element_by_xpath(config.XPathLoginButton).click()
 
 
-    # todo: check if succeed logged in. with webdriver
-    # web driver wait few secs, if there, return true, else false
-    is_successfully_login = False
+    # at this time, browser will took time to do login process, might took a little time
 
-    # todo: else will login again (?)
+
+    """
+    Code will check if a certain XPath that will be always appear after successful login, appears.
+    If appears, it is guaranteed that the login process is success.
+    If not, it may be also running well, but are suspected for error in long term 
+    (e.g. browser will keep access something when the login process is failed).
+    
+    If login is done via requests method, we can easily see the status_code to determine if login was successful.
+    But because login process must be done via HTML Form, this is considered the best practice to check if login is succesful or not.
+    """
+    is_successfully_login = False
+    try:
+        login_timeout = 10
+        WebDriverWait(driver, login_timeout).until(EC.presence_of_element_located((By.XPATH, config.LoggedInXPath)))
+        is_successfully_login = True
+    except TimeoutException:
+        print("Login takes too much time. Code can not tell if browser is logged in or not."
+              "This is not an error statement but a warning, as in some case this may lead to an error."
+              "This is because the code did not know if browser is successfully logged or not")
 
     return driver, is_successfully_login
 
+
+def is_downloadable(url):
+    """
+    Does the url contain a downloadable resource?
+
+    Simply calling, a URL can be considered webpage if its 'Content-Type' is 'text', 'html', or 'text/html'
+    Any value except said type is actually a file (or as far we call it "direct link')
+
+    So code need to get the url and keep tracing it until it leads to a URL where the content-type is a file.
+    Else, then the URL is not downloadable.
+
+    :param url: url to be downloaded
+    :return: boolean if url is downloadable, and its header
+    """
+
+    """
+    We just need the header, so don't waste bandwith by downloading all the content.
+    Also we are enabling allow_redirects so that the requests module will keep linking any URL 
+    it founds until no redirects happen.
+    """
+    h = requests.head(url, allow_redirects=True)
+    header = h.headers
+    content_type = header.get('content-type')
+    if 'text' in content_type.lower() or 'html' in content_type.lower():
+        return False, h
+    return True, h
+
+def download_binary(url):
+    """
+    Like the funciton name said, this download the binary file contained in URL.
+    :param url: url
+    :return: request result
+    """
+    return requests.get(url, allow_redirects=True)
+
+
+
+def seek_filename(header):
+    """
+    Get possible filename from header.
+
+    :param header: request header
+    :return: filename or None
+    """
+    content_disposistion = header.get('content-disposition', None)
+    if content_disposistion:
+        result_list = re.findall('filename=(.+)', content_disposistion)
+        if result_list:
+            return True, result_list[0]
+    return False, 'unnamed_file_' + str(datetime.datetime.now())[:19].replace(":", '_')
+
+
+
+# experimental code. currently not used
+
+"""
+All of these codes below are experimental and currently unused.
+Maybe it will help us later time.
+"""
+
+def limit_size(url):
+    """
+    Evaluate wether a file size is inside the size limit length
+    :param url:
+    :return:
+    """
+    h = requests.head(url, allow_redirects=True)
+    header = h.headers
+    content_length = header.get('content-length', None)
+    if content_length and content_length > 2e8:  # approximately 200 mb
+        return False
 
 def wait_download(directory, timeout, nfiles=None):
     """
@@ -142,50 +270,3 @@ def wait_download(directory, timeout, nfiles=None):
 
         seconds += 1
     return seconds
-
-
-import requests
-def is_downloadable(url):
-    """
-    Does the url contain a downloadable resource
-    :param url:
-    :return: boolean if url is downloadable, and its header
-    """
-    h = requests.head(url, allow_redirects=True)
-    header = h.headers
-    content_type = header.get('content-type')
-    if 'text' in content_type.lower() or 'html' in content_type.lower():
-        return False, h
-    return True, h
-
-def download_binnary(url):
-    return requests.get(url, allow_redirects=True)
-
-
-# todo: check if link have param https://images.pexels.com/photos/658687/pexels-photo-658687.jpeg?cs=srgb&dl=beautiful-bloom-blooming-658687.jpg&fm=jpg
-# url.split('?')[0]
-
-
-def limit_size(url):
-    h = requests.head(url, allow_redirects=True)
-    header = h.headers
-    content_length = header.get('content-length', None)
-    if content_length and content_length > 2e8:  # 200 mb approx
-        return False
-
-import re
-import datetime
-def seek_filename(header):
-    """
-    Get possible filename from header
-
-    :param header: request header
-    :return: filename or None
-    """
-    content_disposistion = header.get('content-disposition', None)
-    if content_disposistion:
-        result_list = re.findall('filename=(.+)', content_disposistion)
-        if result_list:
-            return True, result_list[0]
-    return False, str(datetime.datetime.now())[:19].replace(":", '_')
-
