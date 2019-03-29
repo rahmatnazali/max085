@@ -40,25 +40,39 @@ This is an Xpath that links to any (single) element in the page after login.
 We need to have this to ensure that the login process is succeed.
 
 
-You need to define 
+You need to define any element that you thing will be there after login process succeed.
+The most common thing is to scrap a "Logout" text in the upper left of screen.
 
+It can reallly be *any* element that are guaranteed to be there after login succeed, and not there if login failed
 """
 LoggedInXPath = '//*[@class="logged_in"]'
 
+"""
+This is a custom intervals in seconds between each XPath download button click
+"""
+IntervalsBetweenFiles   = 10
 
-IntervalsBetweenFiles   = 10 # this is a custom intervals in seconds between each XPath download button click
-IntervalsBetweenUrls    = 10 # this is a custom intervals in seconds to move from each URL to the next
-URLCountToSwitch        = 20 # every # of URLS completed, clear cookies (logout), set next custom proxy, login(different account), continue
+"""
+This is a custom intervals in seconds to move from each URL to the next
+"""
+IntervalsBetweenUrls    = 10
+
+"""
+Every # of URLS completed, clear cookies (logout), set next custom proxy, login(different account), continue
+"""
+URLCountToSwitch        = 20
 
 
 
 
 """
 Save/Directory options
+
+Make SaveDirectory to empty string '' and code will look at DefaultSaveDirectory.
 """
 
 SaveDirectory           = 'C:\Script\Zipfiles'
-DefaultSaveDirectory    = 'result'
+DefaultSaveDirectory    = 'download'
 
 
 
