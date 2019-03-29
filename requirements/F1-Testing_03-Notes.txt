@@ -1,0 +1,150 @@
+LiveMode Test Parameters:
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+URLS.txt, feel free to test it also on those pages:
+
+https://www.hrkgame.com/en/games/products/
+https://www.hrkgame.com/en/games/products/?page=2
+https://www.hrkgame.com/en/404/
+https://www.hrkgame.com/en/randomkeyshop/make-bundle/
+https://www.hrkgame.com/en/account/login/
+https://www.hrkgame.com/en/games/products/?page=3
+
+
+Note: 
+	Pages Lines 6,7,11 are valid with valid XPath and 2/4 matched regex ,
+	Pages Lines 8 are 404 not found pages
+	Pages Lines 9,10 are valid but XPath is not found
+	
+-------------------------------------------------------------
+config_01.py
+
+XPath = {
+    'Tite'        : '//div[3]/div[2]/div[1]/div/div[2]/a',
+    'Price'       : '//*[@id="store_form"]/div/div[2]/div/div[1]/div[2]',
+    'ImageURL'    : '//div[3]/div[2]/div[1]/div/div[1]/a/img/@src',
+    'Link'        : '//div[3]/div[2]/div[1]/div/div[1]/a/@href',    
+}
+
+
+Regex = (
+    ("(?<=\/)en\/", ""),
+    ("TESTNOMATCH", ""),
+    ("Call of Duty", "COD"),
+    ("REGEXTHATWILLNEVERMATCH", " XYZ"),
+)
+
+
+Columns = (
+    'Link',
+)
+
+TestMode = False
+GenerateNewFiles = False
+
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
+Test Resutls: 1st Run
+
+
+Scraping URL (1/6) from URLs.txt Using XPath ...
+        Adding Results to Output.csv ...  (20 row(s) of data found)							-> Correct
+		
+Scraping URL (2/6) from URLs.txt Using XPath ...
+        Adding Results to Output.csv ...  (20 row(s) of data found)							-> Correct
+		
+Scraping URL (3/6) from URLs.txt Using XPath ...
+		Request failed. The link might be wrong, or there is no internet connection			-> Correct
+
+Scraping URL (4/6) from URLs.txt Using XPath ...
+        No data found. The XPATH might be wrong or the page did not contains given XPATH.	-> Correct
+		
+Scraping URL (5/6) from URLs.txt Using XPath ...
+        No data found. The XPATH might be wrong or the page did not contains given XPATH.	-> Correct
+		
+Scraping URL (6/6) from URLs.txt Using XPath ...
+        Adding Results to Output.csv ...  (20 row(s) of data found)							-> Correct
+		
+
+
+Regex Search & Replace in Output.csv ... (1/4 Regex Matched)										-> Print Not Correct, It should be (2/4 Regex Matched)
+Removing Rows In Output.csv If The Row Also In Done.csv ... (0 Rows Removed)						-> Correct
+Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (0 Rows Removed)	-> Correct
+
+
+URLs Completed Logged in (URLsDone.txt): 5/6 TotalURLs		-> Print Not Correct, It should be (3/6 TotalURLs), it shouldn't count XPath not found
+Errors Logged in (Links-Errors.txt): 1						-> Correct
+Errors Logged in (XPaths-Errors.txt): 2						-> Correct
+
+
+URLsDone.txt:											-> Correct
+https://www.hrkgame.com/en/games/products/
+https://www.hrkgame.com/en/games/products/?page=2
+https://www.hrkgame.com/en/games/products/?page=3
+
+
+-------------------------------------------------------------------------------
+
+Test Resutls: 2nd Run without changing anything
+
+Scraping URL (1/5) from URLs.txt Using XPath ...
+        Adding Results to Output.csv ...  (20 row(s) of data found)				-> It shouldn't scrape as it's in URLsDone.txt
+		
+Scraping URL (2/5) from URLs.txt Using XPath ...
+        Adding Results to Output.csv ...  (20 row(s) of data found)				-> It shouldn't scrape as it's in URLsDone.txt
+
+		
+https://www.hrkgame.com/en/games/products/?page=3								-> This Link Not scraped -> Correct
+
+																				
+URLs Completed Logged in (URLsDone.txt): 4/5 TotalURLs		-> Print Not Correct, It should be (0/6 TotalURLs), because they are already completed
+
+
+URLsDone.txt:												-> Not Correct, Line 108,109 already added and done before
+https://www.hrkgame.com/en/games/products/
+https://www.hrkgame.com/en/games/products/?page=2
+https://www.hrkgame.com/en/games/products/?page=3
+https://www.hrkgame.com/en/games/products/
+https://www.hrkgame.com/en/games/products/?page=2
+
+
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
+Other Errors:
+
+https://www.amazon.com/s/browse?_encoding=UTF8&node=16225016011
+https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=2
+https://www.amazon.com/404
+https://www.amazon.com
+https://www.amazon.com/notfound
+https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=3
+
+all of these links resulted in: " Request failed. The link might be wrong, or there is no internet connection "
+
+-------------------------------------------------------------------
+
+If I added the XPath 'ReleaseDate' : '//div[3]/div[2]/div[1]/div/div[2]/div[1]/div[2]',
+it results in:
+"
+File "main_01.py", line 204, in <module>
+    a_row[attribute], number_of_regex_found_locally = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
+IndexError: list index out of range
+"
+
+-------------------------------------------------------------------
+
+Also if I added this URL to the middle of URLS.txt:
+https://www.hrkgame.com/en/randomkeyshop/buy/
+it results in the same error then stops without generating output.csv , ( can it continue to the remaining URLs in case of an error like this occurs? )
+"
+File "main_01.py", line 204, in <module>
+    a_row[attribute], number_of_regex_found_locally = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
+IndexError: list index out of range
+"
+
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
+Everything else I tested seems to work great, thanks.
