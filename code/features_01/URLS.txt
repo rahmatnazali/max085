@@ -1,11 +1,25 @@
-https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/s/samsung_tv_upgrade-buy_online/_/n-10+11+hv1uh+g5+trqdm/
-# any line starting with "#" are ignored. so you can make note regarding the links here if needed
+# testing live mode
+https://www.hrkgame.com/en/games/products/
+https://www.hrkgame.com/en/games/products/?page=2
+https://www.hrkgame.com/en/404/
+https://www.hrkgame.com/en/randomkeyshop/make-bundle/
+https://www.hrkgame.com/en/account/login/
+https://www.hrkgame.com/en/games/products/?page=3
 
+# old samsung link
+# https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/s/samsung_tv_upgrade-buy_online/_/n-10+11+hv1uh+g5+trqdm/
+
+
+
+
+
+
+# any line starting with "#" are ignored. so you can make note regarding the links here if needed
 
 # empty line will also be ignored
 
 
-https://www.freelancer.com/
-https://www.google.com/
-https://www.facebook.com/
-https://www.instagram.com/
+#https://www.freelancer.com/
+#https://www.google.com/
+#https://www.facebook.com/
+#https://www.instagram.com/

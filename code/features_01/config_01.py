@@ -42,10 +42,15 @@ https://stackoverflow.com/questions/55319552/python-selenium-how-to-make-webdriv
 """
 
 XPath = {
-    'Product Title' : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[1]',
-    'Image URL'     : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/a/div/div/img/@src',
-    'Model Number'  : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[2]',
-    'Link'          : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/@href',
+    'Tite': '//div[3]/div[2]/div[1]/div/div[2]/a',
+    'Price': '//*[@id="store_form"]/div/div[2]/div/div[1]/div[2]',
+    'ImageURL': '//div[3]/div[2]/div[1]/div/div[1]/a/img/@src',
+    'Link': '//div[3]/div[2]/div[1]/div/div[1]/a/@href',
+
+    # 'Product Title' : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[1]',
+    # 'Image URL'     : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/a/div/div/img/@src',
+    # 'Model Number'  : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[2]',
+    # 'Link'          : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/@href',
 }
 
 
@@ -67,10 +72,15 @@ Regex = (
 """
 
 Regex = (
-    ("(?<=\d\/).+", ""),
-    ("(\/([ab])\/)", "/x/"),
-    ("EFG ?(?="")", " XYZ"),
+    ("(?<=\/)en\/", ""),
+    ("TESTNOMATCH", ""),
+    ("Call of Duty", "COD"),
     ("REGEXTHATWILLNEVERMATCH", " XYZ"),
+
+    # ("(?<=\d\/).+", ""),
+    # ("(\/([ab])\/)", "/x/"),
+    # ("EFG ?(?="")", " XYZ"),
+    # ("REGEXTHATWILLNEVERMATCH", " XYZ"),
 )
 
 
@@ -101,7 +111,7 @@ To Test
 value: True | False
 """
 
-TestMode = True
+TestMode = False
 
 
 
@@ -123,4 +133,4 @@ True -> the software as it is, no change.
 False -> instead of creating new output-time.csv files on every run, append all results to the end or begening of output.csv
 
 """
-GenerateNewFiles = False
+GenerateNewFiles = True
