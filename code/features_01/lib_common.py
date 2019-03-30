@@ -127,15 +127,10 @@ def get_page(url):
     """
     Get the URL's HTML by doing a GET Request
     :param url: url to be fetched
-    :return: The HTML (string)
+    :return: Request result
     """
     request_result = requests.get(url)
-    if request_result.status_codes == 200:
-        return request_result.text
-    else:
-        print("Request failed. The link might be wrong, or there is no internet connection")
-        return False
-
+    return request_result
 
 def scrap_html(html_page, list_attribute, Xpath):
     """

@@ -171,12 +171,21 @@ for url in enumerate(url_list):
         with open("example_2.html", encoding='utf-8') as html_file:
             html_page = html_file.read()
     else:
-        html_page = lib.get_page(url[1])
-        if not html_page:
-            logger_link.error("Get Request failed for link: " + url[1])
+        request_result = lib.get_page(url[1])
+
+        if request_result.status_code == 200:
+            html_page = request_result.text
+        else:
+            if request_result.status_code == 404:
+                print("\t[404] Request failed. Link not found")
+                print()
+            else:
+                print("\t[{}] Request failed. The link might be wrong, or there is no internet connection".format(request_result.status_code))
+                print()
+
+            logger_link.warn("[{}] Get Request failed for link: {}".format(request_result.status_code, url[1]))
             logger_link_count += 1
             continue
-
 
 
     """
@@ -248,6 +257,8 @@ for url in enumerate(url_list):
         url_list_succeed += 1
     else:
         print("\tNo data found. The XPATH might be wrong or the page did not contains given XPATH.")
+        print()
+
         logger_xpath.error("XPath not found for link: " + url[1])
         logger_xpath_count += 1
 
@@ -255,6 +266,9 @@ for url in enumerate(url_list):
 
     if config.TestMode:
         break
+
+    # cosmetic
+    print()
 
 # [DONE] Regex is already done in iteration. This will be more efficient
 print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found, number_of_regex))
