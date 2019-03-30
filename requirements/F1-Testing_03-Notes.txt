@@ -67,7 +67,7 @@ Scraping URL (6/6) from URLs.txt Using XPath ...
         Adding Results to Output.csv ...  (20 row(s) of data found)							-> Correct
 		
 
-
+[DONE]
 Regex Search & Replace in Output.csv ... (1/4 Regex Matched)										-> Print Not Correct, It should be (2/4 Regex Matched)
 Removing Rows In Output.csv If The Row Also In Done.csv ... (0 Rows Removed)						-> Correct
 Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (0 Rows Removed)	-> Correct
