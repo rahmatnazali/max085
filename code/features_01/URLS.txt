@@ -1,18 +1,18 @@
 # testing amazon
-https://www.amazon.com/s/browse?_encoding=UTF8&node=16225016011
-https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=2
-https://www.amazon.com/404
-https://www.amazon.com
-https://www.amazon.com/notfound
-https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=3
+#https://www.amazon.com/s/browse?_encoding=UTF8&node=16225016011
+#https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=2
+#https://www.amazon.com/404
+#https://www.amazon.com
+#https://www.amazon.com/notfound
+#https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=3
 
 # testing live mode
-#https://www.hrkgame.com/en/games/products/
-#https://www.hrkgame.com/en/games/products/?page=2
-#https://www.hrkgame.com/en/404/
-#https://www.hrkgame.com/en/randomkeyshop/make-bundle/
-#https://www.hrkgame.com/en/account/login/
-#https://www.hrkgame.com/en/games/products/?page=3
+https://www.hrkgame.com/en/games/products/
+https://www.hrkgame.com/en/games/products/?page=2
+https://www.hrkgame.com/en/404/
+https://www.hrkgame.com/en/randomkeyshop/make-bundle/
+https://www.hrkgame.com/en/account/login/
+https://www.hrkgame.com/en/games/products/?page=3
 
 # old samsung link
 # https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/s/samsung_tv_upgrade-buy_online/_/n-10+11+hv1uh+g5+trqdm/

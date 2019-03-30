@@ -215,8 +215,26 @@ for url in enumerate(url_list):
 
             regex_found_per_row = 0
             for attribute in list_attribute:
-                a_row[attribute], regex_found_per_attribute = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
-                regex_found_per_row += regex_found_per_attribute
+
+                """
+                In a much more variety of usecase, we can see that sometimes not every rows on a page
+                contain empty html tag when their content is empty.
+                Sometimes those content will just not there, so the XPath will return noting.
+                
+                This will result to Index Error, that is when the code is trying to access a value by key
+                where key is actually not there.
+                
+                So I added a try-except block, so that when the error occurs, it will defaults the missing
+                tag with string "(No string found)".                
+                
+                Now the script will continue to run even if the error occurs.
+                
+                """
+                try:
+                    a_row[attribute], regex_found_per_attribute = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
+                    regex_found_per_row += regex_found_per_attribute
+                except IndexError:
+                    a_row[attribute], regex_found_per_attribute = '(No string found)', 0
 
             # Before, we get 1/4 instead of 2/4 because I minimzie it. Now it will be maximized
             number_of_regex_found = max(number_of_regex_found, regex_found_per_row)
