@@ -1,4 +1,2 @@
-2019-03-27 20:59:59,577 INFO This is just info message
-2019-03-27 20:59:59,577 ERROR This is just info message
-2019-03-27 21:01:48,673 INFO This is just info message
-2019-03-27 21:01:48,673 ERROR This is just info message
+2019-03-30 17:32:28,728 ERROR XPath not found for link: https://www.hrkgame.com/en/randomkeyshop/make-bundle/
+2019-03-30 17:32:30,056 ERROR XPath not found for link: https://www.hrkgame.com/en/account/login/
