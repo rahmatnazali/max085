@@ -88,9 +88,11 @@ https://www.hrkgame.com/en/games/products/?page=3
 
 Test Resutls: 2nd Run without changing anything
 
+[DONE]
 Scraping URL (1/5) from URLs.txt Using XPath ...
         Adding Results to Output.csv ...  (20 row(s) of data found)				-> It shouldn't scrape as it's in URLsDone.txt
-		
+
+[DONE]
 Scraping URL (2/5) from URLs.txt Using XPath ...
         Adding Results to Output.csv ...  (20 row(s) of data found)				-> It shouldn't scrape as it's in URLsDone.txt
 

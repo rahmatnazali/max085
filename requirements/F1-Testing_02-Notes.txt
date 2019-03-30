@@ -59,7 +59,7 @@ Everything else I tested seems to be working great, thanks.
 
 May I also add this request to increase efficiency:
 
-[ON IT]
+[DONE]
 * For any url in URLs.txt that is successfully scraped and its results added to output.csv, it is Removed from URLs.txt and Added to URLsDone.txt, this is for in case the script shuts down or exit suddenly, when it runs again it will continue and not repeat already done URLs
 
 [DONE]
