@@ -46,6 +46,8 @@ XPath = {
     'Price': '//*[@id="store_form"]/div/div[2]/div/div[1]/div[2]',
     'ImageURL': '//div[3]/div[2]/div[1]/div/div[1]/a/img/@src',
     'Link': '//div[3]/div[2]/div[1]/div/div[1]/a/@href',
+    'ReleaseDate' : '//div[3]/div[2]/div[1]/div/div[2]/div[1]/div[2]',
+    'Another example field': '//div[3]/div[2]/div[1]/div[14]/div[2]/div[1]/div[2]'
 
     # 'Product Title' : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/div[2]/a[1]/section/p[1]',
     # 'Image URL'     : '//*[@id="app"]/div/div[2]/div/div/div[3]/div[1]/section[*]/div/a/div/div/img/@src',

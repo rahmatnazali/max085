@@ -128,7 +128,7 @@ https://www.amazon.com/s?i=videogames-intl-ship&rh=n%3A%2116225016011&page=3
 all of these links resulted in: " Request failed. The link might be wrong, or there is no internet connection "
 
 -------------------------------------------------------------------
-
+[DONE - Should ask confirmation from Max]
 If I added the XPath 'ReleaseDate' : '//div[3]/div[2]/div[1]/div/div[2]/div[1]/div[2]',
 it results in:
 "
