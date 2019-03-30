@@ -208,13 +208,15 @@ for url in enumerate(url_list):
         """
         for i in range(data_found_length):
             a_row = {}
-            for attribute in list_attribute:
-                a_row[attribute], number_of_regex_found_locally = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
 
-                # should any regex in any element in any row not found the found count will be smaller, and we must save it.
-                # So we need to log the smallest match
-                if number_of_regex_found_locally != 0 or number_of_regex_found > number_of_regex_found_locally:
-                    number_of_regex_found = number_of_regex_found_locally
+            regex_found_per_row = 0
+            for attribute in list_attribute:
+                a_row[attribute], regex_found_per_attribute = lib.regex_string(data_found_dict[attribute][i], regex_instance_list)
+                regex_found_per_row += regex_found_per_attribute
+
+            # Before, we get 1/4 instead of 2/4 because I minimzie it. Now it will be maximized
+            number_of_regex_found = max(number_of_regex_found, regex_found_per_row)
+
             if config.DebugMode:
                 # print string that is regexed, but not yet evaluated for occurence (so multi occurence is possible)
                 print(a_row)
@@ -267,11 +269,15 @@ for url in enumerate(url_list):
     if config.TestMode:
         break
 
+    print("\tRegex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found,
+                                                                                    number_of_regex))
+
     # cosmetic
     print()
 
 # [DONE] Regex is already done in iteration. This will be more efficient
-print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found, number_of_regex))
+# We already printed in every row, so for now I will comment this
+# print("Regex Search & Replace in Output.csv ... ({}/{} Regex Matched)".format(number_of_regex_found, number_of_regex))
 
 # [DONE] multiple occurrence in Rows is already evaluated in iteration. This will be more efficient
 print("Removing Rows In Output.csv If The Row Also In Done.csv ... ({} Rows Removed)".format(rows_removed_due_to_appearance_in_done_csv))
@@ -289,6 +295,7 @@ that will generate file with name: My Custom Output Name_datetime.csv
 
 """
 rows_removed_due_to_duplicate_in_output_csv = lib.write_csv(csv_data, columns=list_attribute)
+
 
 # [DONE] multiple occurrence in Rows regarding specified Columns is already evaluated in iteration. This will be more efficient
 print("Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... ({} Rows Removed)".format(rows_removed_due_to_duplicate_in_output_csv))
