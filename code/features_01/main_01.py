@@ -175,7 +175,7 @@ for url in enumerate(url_list):
         with open("example_2.html", encoding='utf-8') as html_file:
             html_page = html_file.read()
     else:
-        request_result = lib.get_page(url[1])
+        request_result = lib.get_page(url[1], config.RequestHeader)
 
         if request_result.status_code == 200:
             html_page = request_result.text

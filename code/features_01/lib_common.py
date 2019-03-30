@@ -122,13 +122,13 @@ def read_url(filename = "URLS.txt"):
     return url_list, url_done_list
 
 
-def get_page(url):
+def get_page(url, header = None):
     """
     Get the URL's HTML by doing a GET Request
     :param url: url to be fetched
     :return: Request result
     """
-    request_result = requests.get(url)
+    request_result = requests.get(url, headers = header)
     return request_result
 
 def scrap_html(html_page, list_attribute, Xpath):
