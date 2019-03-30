@@ -1,11 +1,61 @@
-Product Title,Image URL,Model Number,Link
-"65"" Class Q90R QLED Smart 4K UHD TV (2019)",./example_2_files/QN75Q90RAFXZA_001_Front1_Silver_NS_01.jpg,QN65Q90RAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/65-class-q90r-qled-smart-4k-uhd-tv-2019-qn65q90rafxza/
-"65"" Class Q80R QLED Smart 4K UHD TV (2019)",./example_2_files/QN65Q80RAFXZA_012_Front3_Silver_NS_0.jpg,QN65Q80RAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/65--class-q80r-qled-smart-4k-uhd-tv--2019--qn65q80rafxza/
-"65"" Class Q70R QLED Smart 4K UHD TV (2019)",./example_2_files/Q70R_001_Front1_Slate-Black_NS.jpg,QN65Q70RAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/65--class-q70-qled-smart-4k-uhd-tv--2019--qn65q70rafxza/
-"65"" Class Q60R QLED Smart 4K UHD TV (2019)",./example_2_files/Q60R_65_001_Front1_Black_NS.jpg,QN65Q60RAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/65-class-q60-qled-smart-4k-uhd-tv-2019-qn65q60rafxza/
-"65"" Class Q9FN QLED Smart 4K UHD TV (2018) ",./example_2_files/01_QN75Q9FNAFXZA.jpg,QN65Q9FNAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/65-class-q9f-4k-smart-qled-tv-2018-qn65q9fnafxza/
-"55"" Class Q8FN QLED Smart 4K UHD TV (2018)",./example_2_files/01_QN65Q8FNBFXZA_001_Front_Carbon-Silver-20180220.jpg,QN55Q8FNBFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/55-class-q8f-4k-smart-qled-tv-2018-qn55q8fnbfxza/
-"55"" Class Q7FN QLED Smart 4K UHD TV (2018)",./example_2_files/01_QN65Q7FNAFXZA_001_Front_Eclipse-Silver.jpg,QN55Q7FNAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/55-class-q7f-4k-smart-qled-tv-qn55q7fnafxza/
-"55"" Class Q7CN QLED Curved Smart 4K UHD TV (2018)",./example_2_files/01-QN65Q7CNAFXZA_004_L-Perspective_Eclipse-Silver-v01-20180223.jpg,QN55Q7CNAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/55-class-q7c-4k-curved-smart-qled-tv-2018-qn55q7cnafxza/
-"55"" Class Q6FN QLED Smart 4K UHD TV (2018)",./example_2_files/01_QN65Q6FNAFXZA_001_Front_Eclipse-Silver.jpg,QN55Q6FNAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/qled-4k-tvs/55-class-q6f-4k-smart-qled-tv-2018-qn55q6fnafxza/
-"55"" Class The Frame Premium 4K UHD TV (2018)",./example_2_files/UN65LS03NAFXZA_gallery_01.jpg,UN55LS03NAFXZA,https://www.samsung.com/us/televisions-home-theater/tvs/the-frame/55--class-the-frame-premium-4k-uhd-tv--2018--un55ls03nafxza/
+Tite,Price,ImageURL,Link
+Windows 10 Professional OEM PC CD Key,€4.51,https://www.hrkgame.com/media/games/.thumbnails/win10pro_cover_MEYUPT9.jpg/win10pro_cover_MEYUPT9-460x215.jpg,/games/product/windows-10-professional-oem-pc-cd-key/
+Minecraft Windows 10 Edition,€1.51,https://www.hrkgame.com/media/games/.thumbnails/minecraft_windows_10_steam_grid_icon_by_drjord-daxq99u.png/minecraft_windows_10_steam_grid_icon_by_drjord-daxq99u-460x215.png,/games/product/minecraft-windows-10-edition/
+Windows 10 Professional RETAIL PC CD Key,€14.25,https://www.hrkgame.com/media/games/.thumbnails/win10procd_cover.jpg/win10procd_cover-460x215.jpg,/games/product/windows-10-professional-retail-pc-cd-key/
+PLAYERUNKNOWN'S BATTLEGROUNDS,€19.51,https://www.hrkgame.com/media/games/.thumbnails/header_nWUZQiu.jpg/header_nWUZQiu-460x215.jpg,/games/product/playerunknowns-battlegrounds/
+Windows 10 Home Edition OEM PC CD Key,€5.8,https://www.hrkgame.com/media/games/.thumbnails/win10home_cover_2Thje64.jpg/win10home_cover_2Thje64-460x215.jpg,/games/product/windows-10-home-edition-pc-cd-key/
+Rocket League,€7.43,https://www.hrkgame.com/media/games/.thumbnails/header_alt_assets_5.jpg/header_alt_assets_5-460x215.jpg,/games/product/rocket-league/
+Battlefield 4,€7.22,https://www.hrkgame.com/media/games/.thumbnails/Battlefield_4.jpg/Battlefield_4-460x215.jpg,/games/product/battlefield-4/
+Microsoft Office 2016 Professional Plus,€28.5,https://www.hrkgame.com/media/games/.thumbnails/Microsoft-office-professional-plus-2016_cover.jpg/Microsoft-office-professional-plus-2016_cover-460x215.jpg,/games/product/microsoft-office-2016-professional-plus/
+DOOM,€6.43,https://www.hrkgame.com/media/games/.thumbnails/header_65EYjQz.jpg/header_65EYjQz-460x215.jpg,/games/product/doom/
+Fallout 4,€6.67,https://www.hrkgame.com/media/games/.thumbnails/header_zVYqfyP.jpg/header_zVYqfyP-460x215.jpg,/games/product/fallout-4/
+Grand Theft Auto V RockStar Edition,€13.84,https://www.hrkgame.com/media/games/.thumbnails/header_hvPFKvn.jpg/header_hvPFKvn-460x215.jpg,/games/product/grand-theft-auto-v-rockstar-edition/
+BATTLEFIELD™ 1 STANDARD EDITION,€9.48,https://www.hrkgame.com/media/games/.thumbnails/Battlefield1List.jpg/Battlefield1List-460x215.jpg,/games/product/battlefield-1-standard-edition/
+COD®: Black Ops III,€7.98,https://www.hrkgame.com/media/games/.thumbnails/header_GWkRJOp.jpg/header_GWkRJOp-460x215.jpg,/games/product/call-of-duty-black-ops-iii/
+Tom Clancy's Rainbow Six® Siege,€14.08,https://www.hrkgame.com/media/games/.thumbnails/header_Aenkido.jpg/header_Aenkido-460x215.jpg,/games/product/tom-clancys-rainbow-six-siege/
+COD®: Black Ops II,€7.08,https://www.hrkgame.com/media/games/.thumbnails/header_Cg6dG6Y.jpg/header_Cg6dG6Y-460x215.jpg,/games/product/call-of-duty-black-ops-ii/
+The Elder Scrolls V: Skyrim - Legendary Edition,€7.69,https://www.hrkgame.com/media/uploads/games/.thumbnails/sadcasdqwdasdadwdd.jpg/sadcasdqwdasdadwdd-460x215.jpg,/games/product/the-elder-scrolls-v-skyrim-legendary-edition/
+Middle-earth Shadow of Mordor Game of the Year Edition,€3.39,https://www.hrkgame.com/media/uploads/games/som/.thumbnails/header.jpg/header-460x215.jpg,/games/product/middle-earth-shadow-of-mordor-game-of-the-year-edition/
+Overwatch Standard Edition,€19.98,https://www.hrkgame.com/media/games/.thumbnails/overwatchstd_cover.jpg/overwatchstd_cover-460x215.jpg,/games/product/overwatch-standard-edition/
+H1Z1,€3.55,https://www.hrkgame.com/media/games/.thumbnails/header_mjTd8Zq.jpg/header_mjTd8Zq-460x215.jpg,/games/product/h1z1-king-of-the-kill/
+No Man's Sky,€21.88,https://www.hrkgame.com/media/games/.thumbnails/header_WryzZSr.jpg/header_WryzZSr-460x215.jpg,/games/product/no-mans-sky/
+ARK: Survival Evolved,$18.99,https://www.hrkgame.com/media/games/.thumbnails/header_Cd3f5cb.jpg/header_Cd3f5cb-460x215.jpg,/games/product/ark-survival-evolved/
+World of Warcraft: Battle for Azeroth,$32.99,https://www.hrkgame.com/media/games/.thumbnails/wwcaze_cover.jpg/wwcaze_cover-460x215.jpg,/games/product/world-of-warcraft-battle-for-azeroth/
+Euro Truck Simulator 2,$5.99,https://www.hrkgame.com/media/games/.thumbnails/header_AWwTQ9u.jpg/header_AWwTQ9u-460x215.jpg,/games/product/euro-truck-simulator-2/
+COD: Black Ops 4,$37.99,https://www.hrkgame.com/media/games/.thumbnails/codbo4_cover_SquUcnG.jpg/codbo4_cover_SquUcnG-460x215.jpg,/games/product/call-of-duty-black-ops-4/
+Far Cry 4,$10.99,https://www.hrkgame.com/media/games/.thumbnails/header_7H0ywNR.jpg/header_7H0ywNR-460x215.jpg,/games/product/far-cry-4/
+FALLOUT 76 EUROPE,$13.99,https://www.hrkgame.com/media/games/.thumbnails/5b1ecdce1ae6624e008b4c4d-750-375.jpg/5b1ecdce1ae6624e008b4c4d-750-375-460x215.jpg,/games/product/fallout-76/
+Tom Clancy’s The Division™,$20.99,https://www.hrkgame.com/media/games/.thumbnails/header_bsfaVfq.jpg/header_bsfaVfq-460x215.jpg,/games/product/tom-clancys-the-divisiontm/
+Conan Exiles,$18.99,https://www.hrkgame.com/media/games/.thumbnails/header_MNkeOvo.jpg/header_MNkeOvo-460x215.jpg,/games/product/conan-exiles/
+Rust EUROPE,$26.99,https://www.hrkgame.com/media/games/.thumbnails/header_OG5D39q.jpg/header_OG5D39q-460x215.jpg,/games/product/rust/
+Battlefield™ V,$33.49,https://www.hrkgame.com/media/games/.thumbnails/b5.jpg/b5-460x215.jpg,/games/product/battlefieldtm-v/
+Mad Max,$4.49,https://www.hrkgame.com/media/games/.thumbnails/header_A2Z47VK.jpg/header_A2Z47VK-460x215.jpg,/games/product/mad-max/
+Windows 7 Professional OEM PC CD Key,$9.99,https://www.hrkgame.com/media/games/.thumbnails/win7pro_cover.jpg/win7pro_cover-460x215.jpg,/games/product/windows-7-professional-pc-cd-key/
+The Elder Scrolls V: Skyrim Special Edition,$16.99,https://www.hrkgame.com/media/games/.thumbnails/header_fpkudNt.jpg/header_fpkudNt-460x215.jpg,/games/product/the-elder-scrolls-v-skyrim-special-edition/
+Mafia III EUROPE,$6.99,https://www.hrkgame.com/media/games/.thumbnails/header_mIO4X2L.jpg/header_mIO4X2L-460x215.jpg,/games/product/mafia-iii/
+Terraria,$5.99,https://www.hrkgame.com/media/games/.thumbnails/header_wciOcl7.jpg/header_wciOcl7-460x215.jpg,/games/product/terraria/
+Sid Meier's Civilization V: Complete Edition,$9.99,https://www.hrkgame.com/media/uploads/games/smcvce/.thumbnails/sm_h.jpg/sm_h-460x215.jpg,/games/product/sid-meiers-civilization-v-complete-edition/
+Cities: Skylines Deluxe Edition,$8.99,https://www.hrkgame.com/media/games/.thumbnails/header_49cCXcS.jpg/header_49cCXcS-460x215.jpg,/games/product/cities-skylines-deluxe-edition-steam-cd-key-global/
+Borderlands 2 Game of the Year,$6.99,https://www.hrkgame.com/media/uploads/games/.thumbnails/bl2goty.jpg/bl2goty-460x215.jpg,/games/product/borderlands-2-game-of-the-year/
+Tabletop Simulator,$12.99,https://www.hrkgame.com/media/games/.thumbnails/header_G4rAUvq.jpg/header_G4rAUvq-460x215.jpg,/games/product/tabletop-simulator/
+SUPERHOT,$5.29,https://www.hrkgame.com/media/games/.thumbnails/header_rEONa15.jpg/header_rEONa15-460x215.jpg,/games/product/superhot/
+SPINTIRES™,$4.3,https://www.hrkgame.com/media/games/.thumbnails/header_kCf0GXV.jpg/header_kCf0GXV-460x215.jpg,/games/product/spintirestm/
+TEKKEN 7,$18.99,https://www.hrkgame.com/media/games/.thumbnails/header_5sHUCwO.jpg/header_5sHUCwO-460x215.jpg,/games/product/tekken-7/
+MONSTER HUNTER: WORLD,$37.99,https://www.hrkgame.com/media/games/.thumbnails/header_DI4ErKR.jpg/header_DI4ErKR-460x215.jpg,/games/product/monster-hunter-world/
+Tom Clancy’s The Division® 2 EUROPE,$49.99,https://www.hrkgame.com/media/games/.thumbnails/header_1BftVv3.jpg/header_1BftVv3-460x215.jpg,/games/product/tom-clancys-the-division-2/
+Killing Floor 2,$6.2,https://www.hrkgame.com/media/games/.thumbnails/header_qEKKIcK.jpg/header_qEKKIcK-460x215.jpg,/games/product/killing-floor-2/
+DiRT 3 Complete Edition,$1.79,https://www.hrkgame.com/media/games/.thumbnails/header_bVuklDc.jpg/header_bVuklDc-460x215.jpg,/games/product/dirt-3-complete-edition/
+Lords Of The Fallen Digital Deluxe Edition,$3.99,https://www.hrkgame.com/media/games/.thumbnails/lorddelux_cover.jpg/lorddelux_cover-460x215.jpg,/games/product/lords-of-the-fallen-digital-deluxe-edition/
+Euro Truck Simulator 2 - Italia,$8.99,https://www.hrkgame.com/media/games/.thumbnails/header_ruYMknx.jpg/header_ruYMknx-460x215.jpg,/games/product/euro-truck-simulator-2-italia/
+TITANFALL® 2,$10.99,https://www.hrkgame.com/media/games/.thumbnails/t.jpg/t-460x215.jpg,/games/product/titanfall-2/
+Northgard,$17.99,https://www.hrkgame.com/media/games/.thumbnails/header_kQQgObA.jpg/header_kQQgObA-460x215.jpg,/games/product/northgard/
+Dead by Daylight,$11.99,https://www.hrkgame.com/media/games/.thumbnails/header_n3SVEry.jpg/header_n3SVEry-460x215.jpg,/games/product/dead-by-daylight/
+Space Engineers,$11.99,https://www.hrkgame.com/media/games/.thumbnails/header_8PjCObW.jpg/header_8PjCObW-460x215.jpg,/games/product/space-engineers/
+The Bureau: XCOM Declassified,$1.29,https://www.hrkgame.com/media/games/.thumbnails/header_BlPwRfB.jpg/header_BlPwRfB-460x215.jpg,/games/product/the-bureau-xcom-declassified/
+Euro Truck Simulator 2 - Vive la France !,$5.99,https://www.hrkgame.com/media/games/.thumbnails/header_7YFfiRX.jpg/header_7YFfiRX-460x215.jpg,/games/product/euro-truck-simulator-2-vive-la-france/
+COD®: Modern Warfare® 3,$9.99,https://www.hrkgame.com/media/games/.thumbnails/header_f6jue3o.jpg/header_f6jue3o-460x215.jpg,/games/product/call-of-duty-modern-warfare-3/
+Wolfenstein: The New Order,$3.99,https://www.hrkgame.com/media/games/.thumbnails/header_myv6x6R.jpg/header_myv6x6R-460x215.jpg,/games/product/wolfenstein-the-new-order/
+Prey Day One Edition,$9.99,https://www.hrkgame.com/media/games/.thumbnails/preydoe_cover.jpg/preydoe_cover-460x215.jpg,/games/product/prey-day-one-edition/
+Just Cause 3,$5.99,https://www.hrkgame.com/media/games/.thumbnails/header_hBH2vKi.jpg/header_hBH2vKi-460x215.jpg,/games/product/just-cause-3/
+The Witcher 3: Wild Hunt - Game of the Year Edition,$14.99,https://www.hrkgame.com/media/games/.thumbnails/w1.jpg/w1-460x215.jpg,/games/product/the-witcher-3-wild-hunt-game-of-the-year-edition/
+Diablo 3 Battlechest,$21.99,https://www.hrkgame.com/media/games/.thumbnails/diablo_3_battlechest-460x215.jpg/diablo_3_battlechest-460x215-460x215.jpg,/games/product/diablo-3-battlechest-eu/

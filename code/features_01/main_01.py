@@ -164,7 +164,7 @@ number_of_regex_found = 0
 
 for url in enumerate(url_list):
     if url[1] in url_done_list:
-        print('Skipping already done link: {}'.format(url[1]))
+        print('Skipping link that already scrapped: {}'.format(url[1]))
         print()
         continue
 
