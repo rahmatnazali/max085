@@ -15,11 +15,10 @@ Reading URLS.txt
 If no URLS.txt was given, the code will end.
 """
 url_list_succeed = 0
-url_list = lib.read_url()
+url_list, url_done_list = lib.read_url()
 if not url_list:
     print("URLS.txt not found.")
     exit(1)
-
 
 
 """
@@ -164,7 +163,12 @@ number_of_regex = len(config.Regex)
 number_of_regex_found = 0
 
 for url in enumerate(url_list):
-    print("Scraping URL ({}/{}) from URLs.txt Using XPath ...".format(url[0] + 1, len((url_list))))
+    if url[1] in url_done_list:
+        print('Skipping already done link: {}'.format(url[1]))
+        print()
+        continue
+
+    print("Scraping URL ({}/{}) from URLs.txt Using XPath ... | {}".format(url[0] + 1, len((url_list)), url[1]))
 
     if config.TestMode:
         # for testing purpose

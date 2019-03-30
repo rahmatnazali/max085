@@ -114,13 +114,12 @@ def read_url(filename = "URLS.txt"):
                 print("Reading URLS:")
 
             for line in url_file:
-                if not line.startswith("#") and not line.strip() == '' and line.strip() not in url_done_list:
+                if not line.startswith("#") and not line.strip() == '':
                     # insert the URL ito url_list
                     url_list.append(line.strip())
                     if config.DebugMode:
                         print(line.strip())
-        return url_list
-    return False
+    return url_list, url_done_list
 
 
 def get_page(url):

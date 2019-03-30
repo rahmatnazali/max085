@@ -99,10 +99,12 @@ Scraping URL (2/5) from URLs.txt Using XPath ...
 		
 https://www.hrkgame.com/en/games/products/?page=3								-> This Link Not scraped -> Correct
 
-																				
+
+[DONE]
 URLs Completed Logged in (URLsDone.txt): 4/5 TotalURLs		-> Print Not Correct, It should be (0/6 TotalURLs), because they are already completed
 
 
+[DONE]
 URLsDone.txt:												-> Not Correct, Line 108,109 already added and done before
 https://www.hrkgame.com/en/games/products/
 https://www.hrkgame.com/en/games/products/?page=2
