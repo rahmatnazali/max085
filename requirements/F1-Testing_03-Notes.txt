@@ -115,7 +115,7 @@ https://www.hrkgame.com/en/games/products/?page=2
 
 ---------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------
-
+[DONE] (No xpath example was given, so I assume it is only problem regarding accessing the site.
 Other Errors:
 
 https://www.amazon.com/s/browse?_encoding=UTF8&node=16225016011
