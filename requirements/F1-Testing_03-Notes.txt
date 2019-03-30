@@ -72,7 +72,7 @@ Regex Search & Replace in Output.csv ... (1/4 Regex Matched)										-> Print N
 Removing Rows In Output.csv If The Row Also In Done.csv ... (0 Rows Removed)						-> Correct
 Removing Rows With Same Column # Values Except 1st Occurrence In Output.csv ... (0 Rows Removed)	-> Correct
 
-
+[DONE]
 URLs Completed Logged in (URLsDone.txt): 5/6 TotalURLs		-> Print Not Correct, It should be (3/6 TotalURLs), it shouldn't count XPath not found
 Errors Logged in (Links-Errors.txt): 1						-> Correct
 Errors Logged in (XPaths-Errors.txt): 2						-> Correct

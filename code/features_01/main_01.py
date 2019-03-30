@@ -176,7 +176,6 @@ for url in enumerate(url_list):
             logger_link.error("Get Request failed for link: " + url[1])
             logger_link_count += 1
             continue
-        url_list_succeed += 1
 
 
 
@@ -244,8 +243,9 @@ for url in enumerate(url_list):
             print(occured_data_dict)
             print()
 
-        # if the link have successfully requested and scrapped for result, log it into URLSDone.txt
+        # if the link have successfully requested and scrapped for result, log it into URLSDone.txt and increment the URL Done counter
         logger_link_done.info(url[1])
+        url_list_succeed += 1
     else:
         print("\tNo data found. The XPATH might be wrong or the page did not contains given XPATH.")
         logger_xpath.error("XPath not found for link: " + url[1])
