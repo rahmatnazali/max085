@@ -35,7 +35,7 @@ XPathFormPassword       = '//*[@id="pass"]'
 XPathRecaptcha          = '//*[@id="recaptcha-anchor"]/div[1]'
 XPathLoginButton        = '//*[@id="login"]'
 
-
+LoginTimeout            = 30 # will wait 30 second until login seems to completed
 
 
 
