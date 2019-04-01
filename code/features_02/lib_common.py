@@ -140,7 +140,7 @@ def init_webdriver(driver = None):
         # time.sleep(60) # wait 1 minute / any given time for user to solve captcha
 
         # option 2
-        input("Captcha found. Please solve it and press any key to continue")
+        input("Captcha found. Please solve it on the browser then press any key here to continue")
 
 
         # todo: or anti-captcha.com services will be called here
