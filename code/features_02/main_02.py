@@ -20,15 +20,6 @@ logger_error = lib.setup_logger('logger_error', 'log/ErrorLog.txt')
 
 url_list, url_done_list = lib.read_url()
 
-logger_link_done.info('done: www.google.com')
-logger_url.info('done: www.google.com')
-logger_file.info('done: file xxxx.zip')
-logger_error.error('xpath not found')
-
-print(url_list)
-print(url_done_list)
-exit()
-
 driver = lib.init_webdriver()
 
 for url in enumerate(url_list):
@@ -102,6 +93,9 @@ for url in enumerate(url_list):
                 time.sleep(config.IntervalsBetweenFiles)
 
             logger_url.info('URL {} : {} element(s) clicked with Selenium'.format(url[1], element_clicked))
+
+    # todo: log url done here
+    logger_link_done.info(url[1])
 
     if isinstance(config.IntervalsBetweenUrls, int):
         print('Waiting {} second(s) for the next URL'.format(config.IntervalsBetweenUrls))
