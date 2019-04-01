@@ -295,7 +295,43 @@ def init_webdriver():
     return driver, is_successfully_login
 
 
-def is_downloadable(url):
+"""
+Regarding Requests Module
+"""
+
+def check_proxy(proxy):
+    """
+    Code to check if proxy is valid.
+    Here, we accessing google.com using given proxy.
+    If request succeed -> then proxy is valid.
+
+    Feel free to change the link from google.com to something else.
+    For example, you might want to open a localhost link or so,
+    or a link that guaranteed to be successfully opened only by using the proxy.
+    :param proxy: the proxy
+    :return: is the proxy valid?
+    """
+    try:
+        requests.get(
+            # feel free to cahnge this link
+            "http://example.com",
+            proxies={
+                # you can also comment the unused (e.g. You may only need the http one)
+                'http': proxy,
+                'htts': proxy,
+                'ftp': proxy,
+            },
+            # set the timeout. Without this, it will take 1 minute ++ just to check an invalid proxy
+            timeout = 5
+        )
+    except IOError:
+        # proxy is not valid
+        return False
+    else:
+        # proxy is valid
+        return True
+
+def is_downloadable(url, cookies = (), header = None):
     """
     Does the url contain a downloadable resource?
 
