@@ -1,0 +1,5 @@
+Invalid Proxy: 149.215.113.110:70
+Invalid Proxy: 149.215.113.111:70
+Invalid Proxy: 149.215.113.112:70
+Invalid Proxy: 149.215.113.113:70
+Invalid Proxy: http://user:pass@10.10.1.10:3128/
