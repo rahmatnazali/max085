@@ -2,3 +2,6 @@
 149.215.113.111:70
 149.215.113.112:70
 149.215.113.113:70
+
+# if there are username and password, make it like this (can be with or without http://)
+http://user:pass@10.10.1.10:3128/
