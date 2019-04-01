@@ -336,34 +336,61 @@ def is_downloadable(url, cookies = (), header = None):
     Else, then the URL is not downloadable.
 
     :param url: url to be downloaded
+    :param cookies: cookies
     :return: boolean if url is downloadable, and its header
     """
+
+    """
+    Here we declare that the request will have session from webdriver's cookies.
+    We will also add user agent later to this request instance.
+    
+    Now, the target server is actually thinks that it came from the same connection/source.
+    """
+    request_session = requests.Session()
+    for cookie in cookies:
+        request_session.cookies.set(cookie['name'], cookie['value'])
 
     """
     We just need the header, so don't waste bandwith by downloading all the content.
     Also we are enabling allow_redirects so that the requests module will keep linking any URL 
     it founds until no redirects happen.
     """
-    h = requests.head(url, allow_redirects=True)
+
+    # todo: dont forget to attach the proxy
+    h = requests.head(url, allow_redirects=True, header = header)
     header = h.headers
     content_type = header.get('content-type')
     if 'text' in content_type.lower() or 'html' in content_type.lower():
         return False, h
     return True, h
 
-def download_binary(url):
+def download_binary(url, cookies = (), header = None):
     """
     Like the funciton name said, this download the binary file contained in URL.
     :param url: url
     :return: request result
     """
-    return requests.get(url, allow_redirects=True)
+
+    """
+    Here we declare that the request will have session from webdriver's cookies.
+    We will also add user agent later to this request instance.
+
+    Now, the target server is actually thinks that it came from the same connection/source.
+    """
+    request_session = requests.Session()
+    for cookie in cookies:
+        request_session.cookies.set(cookie['name'], cookie['value'])
+    # todo: dont forget to attach the proxy
+
+
+    return requests.get(url, allow_redirects=True, header = header)
 
 
 
 def seek_filename(header):
     """
     Get possible filename from header.
+    If no filename found on header, code will autogenerate it with timestamp
 
     :param header: request header
     :return: filename or None
