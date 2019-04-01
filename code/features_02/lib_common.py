@@ -115,9 +115,17 @@ def credential_pop(credentials):
 
 
 
-def init_webdriver(driver = None):
+"""
+Regarding webdriver
+"""
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import NoSuchElementException
+
+def init_webdriver():
     """
-    Code will generate a Chrome webdriver.
+    Code to generate a Chrome webdriver.
     If given driver is None, it will create a webdriver.
     If given driver is there, it will only restart it (clear all cookies, etc)
 
@@ -126,32 +134,78 @@ def init_webdriver(driver = None):
     """
     config.Credentials, username, password = credential_pop(config.Credentials)
 
+    proxy = "149.215.113.110:70"
 
-    if  driver is None:
-        # todo: add profile/options here
-        # headless
-        # proxy
-        # default download directory
-        driver = webdriver.Chrome(config.WebDriverPath)
+    # todo: add profile/options here
+    # default download directory
+    if config.UseProxies:
+        webdriver.DesiredCapabilities.CHROME['proxy'] = {
+            "httpProxy": proxy,
+            "ftpProxy": proxy,
+            "sslProxy": proxy,
+            "noProxy": None,
+            "proxyType": "MANUAL",
+            "class": "org.openqa.selenium.Proxy",
+            "autodetect": False
+        }
 
-    # Clear cookies (logout)
-    driver.delete_all_cookies()
+    # declare an options object
+    chrome_options = Options()
+
+    # setting the browser visibility mode
+    chrome_options.headless = not config.ShowBrowserWindows
+
+    """
+    setting the default download directory
+    not that if same filename already in directory, browser will automatically append with counter (like "files (1).zip" )
+    """
+    prefs = {'download.default_directory': 'result'}
+    chrome_options.add_experimental_option('prefs', prefs)
+
+    # executing the webdriver
+    driver = webdriver.Chrome(config.WebDriverPath, chrome_options=chrome_options)
+
+    if config.TestMode:
+        # for testing, it will download a notepad++ installer
+        driver.get('https://notepad-plus-plus.org/repository/7.x/7.6.5/npp.7.6.5.bin.minimalist.7z')
 
 
-    exit()
+    """
+    Clearing Cookies
+    
+    We seems did not need to clear the cookies, because everytime we close a driver
+    and re-instantiating it, it is a brand new clean web driver with no default configuration.
+    
+    But should that requirements appears, we can always uncomment the code below
+    """
+    # driver.delete_all_cookies()
+
 
 
     # get loading page
     print('Loading Login Page ...')
     driver.get(config.LoginPage)
 
-    # Clicking On Username/Email Input -> Filling Next Username/Email ...
-    # Clicking On Password Input -> Filling Next Password ...
+    """
+    Form filling
+    
+    Clicking On Username/Email Input -> Filling Next Username/Email ...
+    Clicking On Password Input -> Filling Next Password ...
+    """
+    try:
+        driver.find_element_by_xpath(config.XPathFormUserOrEmail).send_keys(username)
+        driver.find_element_by_xpath(config.XPathFormPassword).send_keys(password)
+    except NoSuchElementException as e:
+        print('either username or password input form is not found by xpath. Please check the XPath in configuration.', e)
+        exit()
 
-    driver.find_element_by_xpath(config.XPathFormUserOrEmail).send_keys(username)
-    driver.find_element_by_xpath(config.XPathFormPassword).send_keys(password)
 
-    # If reCaptcha found -> Solving reCaptcha ...
+    """
+    ReCaptcha 
+
+    If reCaptcha found -> Solving reCaptcha ...
+    """
+
     recaptcha_element = driver.find_element_by_xpath(config.XPathRecaptcha)
     if recaptcha_element:
         """
@@ -171,14 +225,17 @@ def init_webdriver(driver = None):
 
     # click login button
     print('Clicking on Login Button ...')
-    driver.find_element_by_xpath(config.XPathLoginButton).click()
+    try:
+        driver.find_element_by_xpath(config.XPathLoginButton).click()
+    except NoSuchElementException as e:
+        print('Login button not found by Xpath. Please check the XPath in confugiration.', e)
+        exit()
 
 
-    # at this time, browser will took time to do login process, might took a little time
 
 
     """
-    Code will check if a certain XPath that will be always appear after successful login, appears.
+    Then the code will check if a certain XPath that will be always appear after successful login, appears.
     If appears, it is guaranteed that the login process is success.
     If not, it may be also running well, but are suspected for error in long term 
     (e.g. browser will keep access something when the login process is failed).
@@ -187,8 +244,9 @@ def init_webdriver(driver = None):
     But because login process must be done via HTML Form, this is considered the best practice to check if login is succesful or not.
     """
     is_successfully_login = False
+    print('Waiting until login is succeed ...')
     try:
-        login_timeout = 10
+        login_timeout = config.LoginTimeout
         WebDriverWait(driver, login_timeout).until(EC.presence_of_element_located((By.XPATH, config.LoggedInXPath)))
         is_successfully_login = True
     except TimeoutException:
@@ -248,6 +306,12 @@ def seek_filename(header):
         if result_list:
             return True, result_list[0]
     return False, 'unnamed_file_' + str(datetime.datetime.now())[:19].replace(":", '_')
+
+
+
+
+
+
 
 
 
