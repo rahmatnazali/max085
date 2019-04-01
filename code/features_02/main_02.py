@@ -5,11 +5,29 @@ lib = importlib.import_module('lib_common')
 import time
 import os
 
+
+# for storing links that already done
+logger_link_done = lib.setup_link_done_logger('logger_link_done', 'log/URLsDone.txt')
+
+# for logging each url's description/status
 logger_url = lib.setup_logger('logger_url', 'log/URLsLog.txt')
+
+# for logging the status of each files downloaded/clicked/
 logger_file = lib.setup_logger('logger_file', 'log/FilesLog.txt')
+
+# for logging an error
 logger_error = lib.setup_logger('logger_error', 'log/ErrorLog.txt')
 
-url_list = lib.read_url()
+url_list, url_done_list = lib.read_url()
+
+logger_link_done.info('done: www.google.com')
+logger_url.info('done: www.google.com')
+logger_file.info('done: file xxxx.zip')
+logger_error.error('xpath not found')
+
+print(url_list)
+print(url_done_list)
+exit()
 
 driver = lib.init_webdriver()
 

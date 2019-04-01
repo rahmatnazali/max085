@@ -41,6 +41,25 @@ def setup_logger(name, log_file, level=logging.INFO):
 
     return logger
 
+link_done_logger_formatter= logging.Formatter('%(message)s')
+
+def setup_link_done_logger(name, log_file, level=logging.INFO):
+    """
+    Function to set Link Done logger
+    :param name: name of logger instance
+    :param log_file: path to the log file
+    :param level: minimum level of considered logging | how logging level works ? https://docs.python.org/2/howto/logging.html#logging-levels
+    :return: the logger instance
+    """
+    handler = logging.FileHandler(log_file)
+    handler.setFormatter(link_done_logger_formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+
+    return logger
+
 
 """
 Regarding reading URL
@@ -52,6 +71,12 @@ def read_url(filename = "URLS.txt"):
     :param filename: filename to look for URL
     :return: the url_list (list    or   False (boolean) if empty
     """
+
+    # check any url that is already Done in URLsDone.txt
+    url_done_list = []
+    if os.path.isfile('log/URLsDone.txt'):
+        url_done_list = [line.rstrip('\n') for line in open('log/URLsDone.txt')]
+
     url_list = []
     if os.path.isfile(filename):
         with open(filename) as url_file:
@@ -64,8 +89,7 @@ def read_url(filename = "URLS.txt"):
                     url_list.append(line.strip())
                     if config.DebugMode:
                         print(line.strip())
-        return url_list
-    return False
+    return url_list, url_done_list
 
 
 def credential_pop(credentials):
