@@ -43,7 +43,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 link_done_logger_formatter= logging.Formatter('%(message)s')
 
-def setup_link_done_logger(name, log_file, level=logging.INFO):
+def setup_message_logger(name, log_file, level=logging.INFO):
     """
     Function to set Link Done logger
     :param name: name of logger instance
@@ -102,16 +102,10 @@ def read_url(filename = "URLS.txt"):
 def read_proxy(filename = "Proxies.txt"):
     """
     Open file that contains the URL, and obtains all valid URL.
-    It also open URLsDone.txt
 
     :param filename: filename to look for URL
     :return: the url_list (list    or   False (boolean) if empty
     """
-
-    # check any url that is already Done in URLsDone.txt
-    proxy_done_list = []
-    if os.path.isfile('log/ProxiesDone.txt'):
-        proxy_done_list = [line.rstrip('\n') for line in open('log/ProxiesDone.txt')]
 
     proxy_list = []
     if os.path.isfile(filename):
@@ -125,7 +119,7 @@ def read_proxy(filename = "Proxies.txt"):
                     proxy_list.append(line.strip())
                     if config.DebugMode:
                         print(line.strip())
-    return proxy_list, proxy_done_list
+    return proxy_list
 
 
 def credential_pop(credentials):
