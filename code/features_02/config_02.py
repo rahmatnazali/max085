@@ -7,10 +7,19 @@ Configuration files for Feature 2
 Webdriver Options
 
 For now, the default will be using Chrome webdriver.
+
+UseProxies
+True: will obtain proxy from Proxies.txt
+False: browser will run without proxy enabled.
+
+ShowBrowserWindows
+True: browser will be shown
+False: browser will be run in headless mode
+
 """
 
 WebDriverPath = '/home/rahmat/PycharmProjects/Selenium Driver/chromedriver'
-UseProxies              = True or False
+UseProxies              = False
 ShowBrowserWindows      = True or False
 
 

@@ -61,13 +61,20 @@ def setup_link_done_logger(name, log_file, level=logging.INFO):
     return logger
 
 
+
+
+
+
+
 """
-Regarding reading URL
+Regarding reading local .txt configuration
 """
 
 def read_url(filename = "URLS.txt"):
     """
-    Open file that contains the URL, and obtains all valid URL
+    Open file that contains the URL, and obtains all valid URL.
+    It also open URLsDone.txt
+
     :param filename: filename to look for URL
     :return: the url_list (list    or   False (boolean) if empty
     """
@@ -90,6 +97,35 @@ def read_url(filename = "URLS.txt"):
                     if config.DebugMode:
                         print(line.strip())
     return url_list, url_done_list
+
+
+def read_proxy(filename = "Proxies.txt"):
+    """
+    Open file that contains the URL, and obtains all valid URL.
+    It also open URLsDone.txt
+
+    :param filename: filename to look for URL
+    :return: the url_list (list    or   False (boolean) if empty
+    """
+
+    # check any url that is already Done in URLsDone.txt
+    proxy_done_list = []
+    if os.path.isfile('log/ProxiesDone.txt'):
+        proxy_done_list = [line.rstrip('\n') for line in open('log/ProxiesDone.txt')]
+
+    proxy_list = []
+    if os.path.isfile(filename):
+        with open(filename) as url_file:
+            if config.DebugMode:
+                print("Reading Proxy:")
+
+            for line in url_file:
+                if not line.startswith("#") and not line.strip() == '':
+                    # insert the URL ito url_list
+                    proxy_list.append(line.strip())
+                    if config.DebugMode:
+                        print(line.strip())
+    return proxy_list, proxy_done_list
 
 
 def credential_pop(credentials):

@@ -19,8 +19,15 @@ logger_file = lib.setup_logger('logger_file', 'log/FilesLog.txt')
 logger_error = lib.setup_logger('logger_error', 'log/ErrorLog.txt')
 
 url_list, url_done_list = lib.read_url()
+proxy_list, proxy_done_list = lib.read_proxy()
+
+# print(proxy_list)
+# print(proxy_done_list)
+
 
 driver = lib.init_webdriver()
+
+exit()
 
 for url in enumerate(url_list):
     print("Loading URL ({}/{}) from URLs.txt ...".format(url[0] + 1, len(url_list)))
