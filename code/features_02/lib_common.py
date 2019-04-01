@@ -170,11 +170,12 @@ def init_webdriver():
     """
     config.Credentials, username, password = credential_pop(config.Credentials)
 
-    proxy = "149.215.113.110:70"
-
-    # todo: add profile/options here
     # default download directory
     if config.UseProxies:
+        # todo: make proxy_pop here
+        # for now, I assume random proxy
+        proxy = "149.215.113.110:70"
+
         webdriver.DesiredCapabilities.CHROME['proxy'] = {
             "httpProxy": proxy,
             "ftpProxy": proxy,
@@ -195,7 +196,7 @@ def init_webdriver():
     setting the default download directory
     not that if same filename already in directory, browser will automatically append with counter (like "files (1).zip" )
     """
-    prefs = {'download.default_directory': 'result'}
+    prefs = {'download.default_directory': 'download'}
     chrome_options.add_experimental_option('prefs', prefs)
 
     # executing the webdriver
@@ -204,15 +205,16 @@ def init_webdriver():
     if config.TestMode:
         # for testing, it will download a notepad++ installer
         driver.get('https://notepad-plus-plus.org/repository/7.x/7.6.5/npp.7.6.5.bin.minimalist.7z')
-
+        input()
+        exit()
 
     """
     Clearing Cookies
     
-    We seems did not need to clear the cookies, because everytime we close a driver
+    We seem did not need to clear the cookies, because everytime we close a driver
     and re-instantiating it, it is a brand new clean web driver with no default configuration.
     
-    But should that requirements appears, we can always uncomment the code below
+    But should that requirements really necessary, we can always uncomment the code below
     """
     # driver.delete_all_cookies()
 
