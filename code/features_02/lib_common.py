@@ -293,7 +293,7 @@ def init_webdriver():
 Regarding Requests Module
 """
 
-def check_proxy(proxy):
+def check_proxy(proxy, timeout = 5):
     """
     Code to check if proxy is valid.
     Here, we accessing google.com using given proxy.
@@ -315,8 +315,12 @@ def check_proxy(proxy):
                 'htts': proxy,
                 'ftp': proxy,
             },
-            # set the timeout. Without this, it will take 1 minute ++ just to check an invalid proxy
-            timeout = 5
+            # Set the time to wait before declaring that the proxy is invalid. The default is 5 secs
+            # This is a trade-off between speed and validity.
+            # give it too long and the proxy check might be more accurate, but it will takes time
+            # give it too small and the valid proxy might be declared invalid due to timeout, but the code will be faster
+
+            timeout = timeout
         )
     except IOError:
         # proxy is not valid

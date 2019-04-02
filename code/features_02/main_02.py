@@ -32,11 +32,10 @@ proxy_list = lib.read_proxy()
 """
 Check if the proxy is valid
 """
-# todo: check if proxy is valid. if not, log into error
-# todo: code is worked, but took so long
+# todo: make a list of dict to contain the proxy and its validity. so code did not need to check it twice after foudn that proxy is valid
 checked_proxy_list = []
 for proxy in proxy_list:
-    print('checking', proxy)
+    print('Checking proxy: ', proxy)
     if lib.check_proxy(proxy):
         checked_proxy_list.append(proxy)
     else:
