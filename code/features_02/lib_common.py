@@ -99,7 +99,7 @@ def read_url(filename = "URLS.txt"):
     return url_list, url_done_list
 
 
-def read_proxy(filename = "Proxies.txt"):
+def read_proxy(logger_proxy_error, filename = "Proxies.txt"):
     """
     Open file that contains the URL, and obtains all valid URL.
 
@@ -119,7 +119,24 @@ def read_proxy(filename = "Proxies.txt"):
                     proxy_list.append(line.strip())
                     if config.DebugMode:
                         print(line.strip())
-    return proxy_list
+
+    """
+    Check if the proxy is valid
+    """
+    checked_proxy_list = []
+    print('Checking all proxies')
+    for proxy in proxy_list:
+        check_result = check_proxy(proxy, timeout=3)
+        if check_result:
+            checked_proxy_list.append({
+                'proxy': proxy,
+                'proxy_instance': check_result
+            })
+        else:
+            logger_proxy_error.warn("Invalid Proxy: {}".format(proxy))
+            print("Found invalid proxy. Logged into ProxyError.txt: {}".format(proxy))
+
+    return checked_proxy_list
 
 
 def credential_pop(credentials):
@@ -309,7 +326,7 @@ def check_proxy(proxy, timeout = 5):
         requests.get(
             # feel free to cahnge this link
             "http://example.com",
-            proxies={
+            proxies = {
                 # you can also comment the unused (e.g. You may only need the http one)
                 'http': proxy,
                 'htts': proxy,
@@ -327,7 +344,14 @@ def check_proxy(proxy, timeout = 5):
         return False
     else:
         # proxy is valid
-        return True
+        # return True
+        return {
+            # you can also comment the unused (e.g. You may only need the http one)
+            'http': proxy,
+            'htts': proxy,
+            'ftp': proxy,
+
+        }
 
 def is_downloadable(url, cookies = (), header = None):
     """

@@ -19,30 +19,14 @@ logger_file = lib.setup_logger('logger_file', 'log/FilesLog.txt')
 logger_error = lib.setup_logger('logger_error', 'log/ErrorLog.txt')
 
 # for logging false proxies
-logger_proxy_error = lib.setup_message_logger('logger_link_done', 'log/ProxyError.txt')
+logger_proxy_error = lib.setup_message_logger('logger_proxy_error', 'log/ProxyError.txt')
 
 
 """
 Read URL and Proxy from txt
 """
 url_list, url_done_list = lib.read_url()
-proxy_list = lib.read_proxy()
-
-
-"""
-Check if the proxy is valid
-"""
-# todo: make a list of dict to contain the proxy and its validity. so code did not need to check it twice after foudn that proxy is valid
-checked_proxy_list = []
-for proxy in proxy_list:
-    print('Checking proxy: ', proxy)
-    if lib.check_proxy(proxy):
-        checked_proxy_list.append(proxy)
-    else:
-        logger_proxy_error.warn("Invalid Proxy: {}".format(proxy))
-        print("Found invalid proxy. Logged into ProxyError.txt: {}".format(proxy))
-proxy_list = checked_proxy_list
-
+proxy_list = lib.read_proxy(logger_proxy_error)
 
 print(proxy_list)
 exit()
