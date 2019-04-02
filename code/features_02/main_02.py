@@ -221,7 +221,7 @@ for url in enumerate(url_list):
 
     if url[0] % config.URLCountToSwitch:
         # switch account and restart
-        driver = lib.init_webdriver(driver)
+        driver = lib.init_webdriver()
 
 print("Done.")
 
