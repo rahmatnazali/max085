@@ -4,7 +4,7 @@ lib = importlib.import_module('lib_common')
 
 import time
 import os
-
+from random import randint
 
 # for storing links that already done
 logger_link_done = lib.setup_message_logger('logger_link_done', 'log/URLsDone.txt')
@@ -142,8 +142,14 @@ for url in enumerate(url_list):
                             open(directory_path, 'wb').write(request_result.content)
                             complete_download += 1
                             logger_file.info('Downloaded in background : {}'.format(filename))
-                            print("File {} downloaded successfully. Waiting for {} secon(s)".format(filename, config.IntervalsBetweenFiles))
-                            time.sleep(config.IntervalsBetweenFiles)
+
+                            if isinstance(config.IntervalsBetweenFiles, tuple):
+                                wait_time = randint(config.IntervalsBetweenFiles[0], config.IntervalsBetweenFiles[1])
+                            else:
+                                wait_time = config.IntervalsBetweenFiles
+
+                            print("File {} downloaded successfully. Waiting for {} secon(s)".format(filename, wait_time))
+                            time.sleep(wait_time)
                         else:
                             logger_file.error('Error download in background: {}'.format(filename))
                             print("Download error. Error obtaining File {} from Link {}".
@@ -192,19 +198,26 @@ for url in enumerate(url_list):
                 element_clicked += 1
 
                 logger_file.info('Selenium download : ' + element.text)
-                print("Element clicked successfully. Waiting for {} secon(s)".format(element.text,
-                                                                                        config.IntervalsBetweenFiles))
 
-                time.sleep(config.IntervalsBetweenFiles)
+                if isinstance(config.IntervalsBetweenFiles, tuple):
+                    wait_time = randint(config.IntervalsBetweenFiles[0], config.IntervalsBetweenFiles[1])
+                else:
+                    wait_time = config.IntervalsBetweenFiles
+
+                print("Element clicked successfully. Waiting for {} second(s)".format(wait_time))
+                time.sleep(wait_time)
 
             logger_url.info('URL {} : {} element(s) clicked with Selenium'.format(url[1], element_clicked))
 
-    # todo: log url done here
     logger_link_done.info(url[1])
 
-    if isinstance(config.IntervalsBetweenUrls, int):
-        print('Waiting {} second(s) for the next URL'.format(config.IntervalsBetweenUrls))
-        time.sleep(config.IntervalsBetweenUrls)
+    if isinstance(config.IntervalsBetweenFiles, tuple):
+        link_wait_time = randint(config.IntervalsBetweenFiles[0], config.IntervalsBetweenFiles[1])
+    else:
+        link_wait_time = config.IntervalsBetweenFiles
+
+    print('Waiting {} second(s) for the next URL'.format(link_wait_time))
+    time.sleep(link_wait_time)
 
     if url[0] % config.URLCountToSwitch:
         # switch account and restart

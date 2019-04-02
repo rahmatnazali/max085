@@ -72,15 +72,32 @@ LoggedInXPath = '//*[@class="logged_in"]'
 
 """
 This is a custom intervals in seconds between each XPath download button click (or) when downloading with request
+
+Give it an integer -> it will wait for a fixed time
+Give it a tuple -> it will wait for a range of time
+
+example
+20 -> fixed wait for 20 seconds
+(20, 30) -> randomly wait between 20 to 30 seconds
 """
-IntervalsBetweenFiles   = 10
+
+# IntervalsBetweenFiles   = 10
+IntervalsBetweenFiles   = (20, 30)
 
 
 
 """
 This is a custom intervals in seconds to move from each URL to the next
+
+Give it an integer -> it will wait for a fixed time
+Give it a tuple -> it will wait for a range of time
+
+example
+20 -> fixed wait for 20 seconds
+(20, 30) -> randomly wait between 20 to 30 seconds
 """
-IntervalsBetweenUrls    = 10
+# IntervalsBetweenUrls    = 10
+IntervalsBetweenUrls    = (20, 30)
 
 
 
