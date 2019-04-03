@@ -51,9 +51,17 @@ LoginTimeout            = 30 # will wait 30 second until login seems to complete
 Scrapping options
 """
 
-XPathFiles              = (
-    '/html/body/div[1]/div/div/a',
-    '//*[@id="Download"]" , "//*[@id="button"]'
+# XPathFiles              = (
+#     '/html/body/div[1]/div/div/a',
+#     '//*[@id="Download"]" , "//*[@id="button"]'
+# )
+
+# add test from apkpure.com
+XPathFiles = (
+    '//dl/dd[@class = "down"]/a[@href]',
+    # '//dl/dd/a[@href]',
+    # '/html/body/div[3]/div[4]/div/ul/li[3]/dl/dd[4]/a',
+    # '/html/body/div[3]/div[4]/div/ul/li[3]/dl/dd[4]/a',
 )
 
 
@@ -84,7 +92,7 @@ example
 """
 
 # IntervalsBetweenFiles   = 10
-IntervalsBetweenFiles   = (20, 30)
+IntervalsBetweenFiles   = (1, 5)
 
 
 
@@ -169,5 +177,5 @@ Download file mode: sequential or not.
 True -> will check for file completion and wait for interval. Download is made by requests module
 False -> will NOT check for file completion. Just wait for interval. Download is made by selenium
 """
-SequentialFiles = True
+SequentialFiles = False
 
