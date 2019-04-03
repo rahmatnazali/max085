@@ -19,9 +19,11 @@ False: browser will be run in headless mode
 """
 
 WebDriverPath = '/home/rahmat/PycharmProjects/Selenium Driver/chromedriver'
-UseProxies              = False
 ShowBrowserWindows      = True or False
 
+# todo: separate login and proxy instance
+UseProxies              = False
+RequireLogin=True or False
 
 # request header for requests module
 RequestHeader = {
