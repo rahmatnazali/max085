@@ -34,21 +34,61 @@ exit()
 driver, is_successfully_login = lib.init_webdriver()
 
 for url in enumerate(url_list):
+
+    """
+    If UseProxies is true but no accounts left
+    """
+    if config.UseProxies and account_counter > len(account_counter):
+        print("No accounts left")
+        exit()
+
+    """
+    If there is no driver initialized, or if this is the time to reset the browser (because browser is closed),
+    then create new browser instance
+    """
+    if driver is None:
+        if config.UseProxies:
+            driver = lib.init_webdriver(proxy_list[proxy_counter], config.Credentials[account_counter])
+
+            # increment proxy with mod, so it scycles
+            proxy_counter = (proxy_counter + 1) % len(proxy_counter)
+
+            # increment account. the code will stop if not accounts left
+            account_counter += 1
+
+        else:
+            driver = lib.init_webdriver()
+
+
+    """
+    Starts to get the URL
+    """
     print("Loading URL ({}/{}) from URLs.txt ...".format(url[0] + 1, len(url_list)))
     driver.get(url[1])
 
+
+
     """
-    Assuming that we got the page that we can not access this without session (logged in),
-    the code then will try to find all elements by XPath, and click it one by one
+    Finding all elements by XPath, and click/downlaod it one by one
     """
+
     for xpath in enumerate(config.XPathFiles):
+
 
         # find all elements by its xpath
         element_founds = driver.find_elements_by_xpath(xpath[1])
+        print("\tScrapping by XPath: Found {} element(s) from XPath: {}".format(len(element_founds), xpath[1]))
+
+        # to print the title and href
+        # for l in element_founds:
+        #     print(l.get_attribute('title').strip())
+        #     print(l.get_attribute('href').strip())
+        #     print()
 
         """
         This marks the download mode that done with requests module
         """
+        # todo: test this
         if config.SequentialFiles:
             """
             Downloading sequentially with request method (in the background)
@@ -148,8 +188,8 @@ for url in enumerate(url_list):
 
             logger_url.info('Scrapped {}. {} file(s) downloaded from link'.format(url[1], complete_download))
 
-
         else:
+
             """
             Downloading with Selenium
             After a click, it will wait for interval between files
@@ -157,40 +197,29 @@ for url in enumerate(url_list):
             Note that this will *not* check for file completion. 
             The code will wait for interval only.
             After interval time is over, browser will continue to click again.
-
             """
 
+            # sometimes, a sites will keep the page loading to stop the scrapper.
+            # So we add a timeout in case it happen. The load will be force stopped, but the file is already downloaded
+            # driver.set_page_load_timeout(10)
+
             element_clicked = 0
-            for element in element_founds:
-
-                """
-                Scroll to the element.
-                
-                For the browser to be able to do a valid click, the clicked element must always visible.
-                When the elements is too many, the page might got scrolled and so we need to scroll to the element we want to click.
-                
-                The code below, in my experience, will rarely fails. But I do face an experience on certain project
-                where this code fails for no reason.
-                Let me know if it is failed on your system.
-                """
-                driver.execute_script("arguments[0].scrollIntoView(true);", element)
-
-                # wait a bit to avoid processing error (i.e. browser might be slower at the time, so scrolling will be lagged, etc)
-                time.sleep(0.5)
-                element.click()
-                element_clicked += 1
-
-                logger_file.info('Selenium download : ' + element.text)
+            element_as_string = [(element.get_attribute('title'), element.get_attribute('href')) for element in element_founds]
+            for index, (title, link) in enumerate(element_as_string):
 
                 if isinstance(config.IntervalsBetweenFiles, tuple):
                     wait_time = randint(config.IntervalsBetweenFiles[0], config.IntervalsBetweenFiles[1])
                 else:
                     wait_time = config.IntervalsBetweenFiles
 
-                print("Element clicked successfully. Waiting for {} second(s)".format(wait_time))
-                time.sleep(wait_time)
+                print("\t\t [{}/{}] {} | and wait for {} second(s)".format(index + 1, len(element_as_string), title, wait_time))
 
-            logger_url.info('URL {} : {} element(s) clicked with Selenium'.format(url[1], element_clicked))
+                driver.get(link)
+                element_clicked += 1
+                logger_file.info('Selenium download : ' + title)
+                driver.implicitly_wait(wait_time)
+
+            logger_url.info('URL {} : {}/{} element(s) clicked with Selenium'.format(url[1], element_clicked, len(element_as_string)))
 
     logger_link_done.info(url[1])
 
@@ -202,9 +231,13 @@ for url in enumerate(url_list):
     print('Waiting {} second(s) for the next URL'.format(link_wait_time))
     time.sleep(link_wait_time)
 
-    if url[0] % config.URLCountToSwitch:
-        # switch account and restart
-        driver = lib.init_webdriver()
+    """
+    If it is the time to renew session/proxy, close the old driver
+    """
+    if url[0] % config.URLCountToSwitch == 0:
+        driver.close()
+        driver = None
+
 
 print("Done.")
 
