@@ -34,7 +34,9 @@ if config.UseProxies:
     proxy_counter = 0
     account_counter = 0
 
-driver, is_successfully_login = lib.init_webdriver()
+
+# initialize driver with an empty variable
+driver = None
 
 for url in enumerate(url_list):
 
