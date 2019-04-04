@@ -32,6 +32,8 @@ if config.UseProxies:
     print(proxy_list)
 
     proxy_counter = 0
+
+if config.RequireLogin:
     account_counter = 0
 
 
@@ -41,29 +43,27 @@ driver = None
 for url in enumerate(url_list):
 
     """
-    If UseProxies is true but no accounts left
+    If config.RequireLogin is true but no accounts left
     """
-    if config.UseProxies and account_counter > len(account_counter):
+    if config.RequireLogin and account_counter > len(account_counter):
         print("No accounts left")
         exit()
 
+
     """
-    If there is no driver initialized, or if this is the time to reset the browser (because browser is closed),
-    then create new browser instance
+    Creating new browser instance, if driver is None
     """
     if driver is None:
-        if config.UseProxies:
-            driver = lib.init_webdriver(proxy_list[proxy_counter], config.Credentials[account_counter])
+        driver = lib.init_webdriver(proxy_list[proxy_counter] if config.UseProxies else None,
+                                    config.Credentials[account_counter] if config.RequireLogin else None)
 
+        if config.UseProxies:
             # increment proxy with mod, so it scycles
             proxy_counter = (proxy_counter + 1) % len(proxy_counter)
 
+        if config.RequireLogin:
             # increment account. the code will stop if not accounts left
             account_counter += 1
-
-        else:
-            driver = lib.init_webdriver()
-
 
     """
     Starts to get the URL
@@ -79,25 +79,31 @@ for url in enumerate(url_list):
 
     for xpath in enumerate(config.XPathFiles):
 
-
         # find all elements by its xpath
         element_founds = driver.find_elements_by_xpath(xpath[1])
         print("\tScrapping by XPath: Found {} element(s) from XPath: {}".format(len(element_founds), xpath[1]))
 
-        # to print the title and href
-        # for l in element_founds:
-        #     print(l.get_attribute('title').strip())
-        #     print(l.get_attribute('href').strip())
-        #     print()
+        if config.DebugMode:
+            # to print the title and href
+            for l in element_founds:
+                print(l.get_attribute('title').strip())
+                print(l.get_attribute('href').strip())
+                print()
 
-        """
-        This marks the download mode that done with requests module
-        """
+
         # todo: test this
         if config.SequentialFiles:
+
             """
-            Downloading sequentially with request method (in the background)
+            This marks the download mode that done with requests module.
             After a completed download, it will wait for interval between files
+
+            For now, I am upset to say that apkpure.com can not be downloaded using requests module yet.
+            I think it must be possible, I just did not find the way yet.
+            
+            Other common case like github etc is fine with this code, I just still don't know why.
+            
+            Warning: not tested yet
             """
 
             # first, we will obtain the cookies from browser
@@ -196,7 +202,7 @@ for url in enumerate(url_list):
         else:
 
             """
-            Downloading with Selenium
+            This marks the code for Downloading with Selenium
             After a click, it will wait for interval between files
 
             Note that this will *not* check for file completion. 
@@ -204,11 +210,8 @@ for url in enumerate(url_list):
             After interval time is over, browser will continue to click again.
             """
 
-            # sometimes, a sites will keep the page loading to stop the scrapper.
-            # So we add a timeout in case it happen. The load will be force stopped, but the file is already downloaded
-            # driver.set_page_load_timeout(10)
-
             element_clicked = 0
+            # todo: make the code below to be adaptive according to the xpath attribute (see F1 lib's)
             element_as_string = [(element.get_attribute('title'), element.get_attribute('href')) for element in element_founds]
             for index, (title, link) in enumerate(element_as_string):
 
@@ -219,13 +222,23 @@ for url in enumerate(url_list):
 
                 print("\t\t [{}/{}] {} | and wait for {} second(s)".format(index + 1, len(element_as_string), title, wait_time))
 
+
+                """
+                Here, we are actually opening the link instead of clicking it.
+                
+                I tested with each of pros and cons, and as far as I see with apkpure.com, it is better to open it than clicking it.
+                
+                click -> if element is not visible, it will produce an error (I just feel that it is too risky for error compared to visiting it)
+                """
                 driver.get(link)
                 element_clicked += 1
                 logger_file.info('Selenium download : ' + title)
                 driver.implicitly_wait(wait_time)
 
-            logger_url.info('URL {} : {}/{} element(s) clicked with Selenium'.format(url[1], element_clicked, len(element_as_string)))
+            # log the report of each xpath found on the link
+            logger_url.info('URL {}, XPath {}: | {}/{} element(s) clicked with Selenium'.format(url[1], xpath[1], element_clicked, len(element_as_string)))
 
+    # log the successful link
     logger_link_done.info(url[1])
 
     if isinstance(config.IntervalsBetweenFiles, tuple):
@@ -240,7 +253,10 @@ for url in enumerate(url_list):
     If it is the time to renew session/proxy, close the old driver
     """
     if url[0] % config.URLCountToSwitch == 0:
-        driver.close()
+
+        # quit is better than close, as close maybe left background task
+        # driver.close()
+        driver.quit()
         driver = None
 
 

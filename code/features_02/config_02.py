@@ -23,7 +23,7 @@ ShowBrowserWindows      = True or False
 
 # todo: separate login and proxy instance
 UseProxies              = False
-RequireLogin=True or False
+RequireLogin            = True
 
 # request header for requests module
 RequestHeader = {
