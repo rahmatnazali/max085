@@ -1,1 +1,2 @@
-2019-04-01 09:00:08,141 INFO done: www.google.com
+2019-04-04 20:48:28,717 INFO URL https://apkpure.com/ : 6/92 element(s) clicked with Selenium
+2019-04-04 20:48:44,727 INFO URL https://apkpure.com/ : 6/92 element(s) clicked with Selenium
