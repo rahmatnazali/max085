@@ -1,1 +1,6 @@
-2019-04-01 09:00:08,142 INFO done: file xxxx.zip
+2019-04-04 20:44:14,901 INFO Selenium download : Download Max Cleaner latest version apk
+2019-04-04 20:44:46,666 INFO Selenium download : Download Pooking - Billiards City latest version apk
+2019-04-04 20:44:59,191 INFO Selenium download : Download Google Play Movies & TV latest version apk
+2019-04-04 20:45:10,032 INFO Selenium download : Download Halodoc - Doctors, Medicine & Labs latest version apk
+2019-04-04 21:01:20,193 INFO Selenium download : Download Ultimate FunBox latest version apk
+2019-04-04 21:01:34,685 INFO Selenium download : Download Grubhub: Local Food Delivery & Restaurant Takeout latest version apk
