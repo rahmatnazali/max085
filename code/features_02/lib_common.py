@@ -179,9 +179,16 @@ def init_webdriver():
     :param driver: the webdriver
     :return: the webdriver
     """
-    config.Credentials, username, password = credential_pop(config.Credentials)
 
-    # default download directory
+    """
+    In some case, you might want to make the load strategy to "None" to greatly improve
+    the scrapping.
+    In apkpure.com's case though, it should be set to "Normal", so I can't demonstrate it here
+
+    More about loading strategy: https://stackoverflow.com/a/44771628/6558550
+    """
+    # webdriver.DesiredCapabilities.CHROME['pageLoadStrategy'] = "none"
+
     if config.UseProxies:
         # todo: make proxy_pop here
         # for now, I assume random proxy
