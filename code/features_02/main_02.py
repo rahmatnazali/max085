@@ -26,10 +26,13 @@ logger_proxy_error = lib.setup_message_logger('logger_proxy_error', 'log/ProxyEr
 Read URL and Proxy from txt
 """
 url_list, url_done_list = lib.read_url()
-proxy_list = lib.read_proxy(logger_proxy_error)
 
-print(proxy_list)
-exit()
+if config.UseProxies:
+    proxy_list = lib.read_proxy(logger_proxy_error)
+    print(proxy_list)
+
+    proxy_counter = 0
+    account_counter = 0
 
 driver, is_successfully_login = lib.init_webdriver()
 
