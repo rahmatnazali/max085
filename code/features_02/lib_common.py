@@ -170,8 +170,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
-def init_webdriver():
+def init_webdriver(proxy_dict = None, account_credentials = None):
     """
+    todo: renew doc
     Code to generate a Chrome webdriver.
     If given driver is None, it will create a webdriver.
     If given driver is there, it will only restart it (clear all cookies, etc)
@@ -190,14 +191,12 @@ def init_webdriver():
     # webdriver.DesiredCapabilities.CHROME['pageLoadStrategy'] = "none"
 
     if config.UseProxies:
-        # todo: make proxy_pop here
-        # for now, I assume random proxy
-        proxy = "149.215.113.110:70"
+        username, password = account_credentials.split(':')
 
         webdriver.DesiredCapabilities.CHROME['proxy'] = {
-            "httpProxy": proxy,
-            "ftpProxy": proxy,
-            "sslProxy": proxy,
+            "httpProxy": proxy_dict.get('httpProxy', ''),
+            "ftpProxy": proxy_dict.get('ftpProxy', ''),
+            "sslProxy": proxy_dict.get('sslProxy', ''),
             "noProxy": None,
             "proxyType": "MANUAL",
             "class": "org.openqa.selenium.Proxy",
@@ -212,19 +211,42 @@ def init_webdriver():
 
     """
     setting the default download directory
-    not that if same filename already in directory, browser will automatically append with counter (like "files (1).zip" )
+    note that if same filename already in directory, browser will automatically append with counter (like "files (1).zip" )
     """
-    prefs = {'download.default_directory': 'download'}
+    # todo: disable download harm file warning
+    prefs = {
+        # setting default directory: download/
+        'download.default_directory': 'download',
+
+
+        # all of the codes below are experimental preference that worked for me
+        # you can turn it off by commenting it
+
+        # disable chrome popup asking that file downloaded might be harm. The pop up prevent the download
+        'safebrowsing.enabled': True,
+
+        # disable image (this will increase the bot speed, but there will be no image appear)
+        'profile.managed_default_content_settings.images': 2,
+
+        # use diskcache. This will save cache on disk.
+        # 4096 fo 4gb, so you can configure yours. The bigger the better, but as high as 8gb would be wasteful I think
+        'disk-cache-size': 4096
+
+        # for downloading multiple files
+        # 'profile.default_content_setting_values.automatic_downloads': 1,
+        # 'download.prompt_for_download': False
+    }
+    chrome_options.add_argument('--safebrowsing-disable-download-protection')
     chrome_options.add_experimental_option('prefs', prefs)
 
     # executing the webdriver
     driver = webdriver.Chrome(config.WebDriverPath, chrome_options=chrome_options)
 
-    if config.TestMode:
-        # for testing, it will download a notepad++ installer
-        driver.get('https://notepad-plus-plus.org/repository/7.x/7.6.5/npp.7.6.5.bin.minimalist.7z')
-        input()
-        exit()
+    # if config.TestMode:
+    #     for testing, it will download a notepad++ installer
+        # driver.get('https://notepad-plus-plus.org/repository/7.x/7.6.5/npp.7.6.5.bin.minimalist.7z')
+        # input()
+        # exit()
 
     """
     Clearing Cookies
@@ -236,81 +258,88 @@ def init_webdriver():
     """
     # driver.delete_all_cookies()
 
+    if config.UseProxies:
+        # get loading page
+        print('Loading Login Page ...')
+        driver.get(config.LoginPage)
 
-
-    # get loading page
-    print('Loading Login Page ...')
-    driver.get(config.LoginPage)
-
-    """
-    Form filling
-    
-    Clicking On Username/Email Input -> Filling Next Username/Email ...
-    Clicking On Password Input -> Filling Next Password ...
-    """
-    try:
-        driver.find_element_by_xpath(config.XPathFormUserOrEmail).send_keys(username)
-        driver.find_element_by_xpath(config.XPathFormPassword).send_keys(password)
-    except NoSuchElementException as e:
-        print('either username or password input form is not found by xpath. Please check the XPath in configuration.', e)
-        exit()
-
-
-    """
-    ReCaptcha 
-
-    If reCaptcha found -> Solving reCaptcha ...
-    """
-
-    recaptcha_element = driver.find_element_by_xpath(config.XPathRecaptcha)
-    if recaptcha_element:
         """
-        For now we have 2 options:
-        1. Wait for certain seconds to solve recaptcha
-        2. CLI will ask for input (it will wait forever). So user can take time to solve captcha, 
-           and after that user will need to go to CLI and press any key (say, enter)
+        Form filling
+        
+        Clicking On Username/Email Input -> Filling Next Username/Email ...
+        Clicking On Password Input -> Filling Next Password ...
         """
-        # option 1
-        # time.sleep(60) # wait 1 minute / any given time for user to solve captcha
-
-        # option 2
-        input("Captcha found. Please solve it on the browser then press any key here to continue")
-
-
-        # todo: or anti-captcha.com services will be called here
-
-    # click login button
-    print('Clicking on Login Button ...')
-    try:
-        driver.find_element_by_xpath(config.XPathLoginButton).click()
-    except NoSuchElementException as e:
-        print('Login button not found by Xpath. Please check the XPath in confugiration.', e)
-        exit()
+        try:
+            driver.find_element_by_xpath(config.XPathFormUserOrEmail).send_keys(username)
+            driver.find_element_by_xpath(config.XPathFormPassword).send_keys(password)
+        except NoSuchElementException as e:
+            print('either username or password input form is not found by xpath. Please check the XPath in configuration.', e)
+            exit()
 
 
-
-
-    """
-    Then the code will check if a certain XPath that will be always appear after successful login, appears.
-    If appears, it is guaranteed that the login process is success.
-    If not, it may be also running well, but are suspected for error in long term 
-    (e.g. browser will keep access something when the login process is failed).
+        """
+        ReCaptcha 
     
-    If login is done via requests method, we can easily see the status_code to determine if login was successful.
-    But because login process must be done via HTML Form, this is considered the best practice to check if login is succesful or not.
-    """
-    is_successfully_login = False
-    print('Waiting until login is succeed ...')
-    try:
-        login_timeout = config.LoginTimeout
-        WebDriverWait(driver, login_timeout).until(EC.presence_of_element_located((By.XPATH, config.LoggedInXPath)))
-        is_successfully_login = True
-    except TimeoutException:
-        print("Login takes too much time. Code can not tell if browser is logged in or not."
-              "This is not an error statement but a warning, as in some case this may lead to an error."
-              "This is because the code did not know if browser is successfully logged or not")
+        If reCaptcha found -> Solving reCaptcha ...
+        """
 
-    return driver, is_successfully_login
+        recaptcha_element = driver.find_element_by_xpath(config.XPathRecaptcha)
+        if recaptcha_element:
+            """
+            For now we have 2 options:
+            1. Wait for certain seconds to solve recaptcha
+            2. CLI will ask for input (it will wait forever). So user can take time to solve captcha, 
+               and after that user will need to go to CLI and press any key (say, enter)
+            """
+            # option 1
+            # time.sleep(60) # wait 1 minute / any given time for user to solve captcha
+
+            # option 2
+            input("Captcha found. Please solve it on the browser then press any key here to continue")
+
+
+            # todo: or anti-captcha.com services will be called here
+
+        # click login button
+        print('Clicking on Login Button ...')
+        try:
+            driver.find_element_by_xpath(config.XPathLoginButton).click()
+        except NoSuchElementException as e:
+            print('Login button not found by Xpath. Please check the XPath in confugiration.', e)
+            exit()
+
+
+
+
+        """
+        Then the code will check if a certain XPath that will be always appear after successful login, appears.
+        If appears, it is guaranteed that the login process is success.
+        If not, it may be also running well, but are suspected for error in long term 
+        (e.g. browser will keep access something when the login process is failed).
+        
+        If login is done via requests method, we can easily see the status_code to determine if login was successful.
+        But because login process must be done via HTML Form, this is considered the best practice to check if login is succesful or not.
+        """
+        is_successfully_login = False
+        print('Waiting until login is succeed ...')
+        try:
+            login_timeout = config.LoginTimeout
+            WebDriverWait(driver, login_timeout).until(EC.presence_of_element_located((By.XPATH, config.LoggedInXPath)))
+            is_successfully_login = True
+        except TimeoutException:
+            print("Login takes too much time. Code can not tell if browser is logged in or not."
+                  "This is not an error statement but a warning, as in some case this may lead to an error."
+                  "This is because the code did not know if browser is successfully logged or not")
+
+        if not is_successfully_login:
+            # todo: need variety of error case to be coded more specifically
+            print('Login/get sessions seems to be failed')
+            exit()
+
+        return driver
+
+    else:
+        return driver
 
 
 """
