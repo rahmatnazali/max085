@@ -54,7 +54,7 @@ WebDriverPath = '/home/rahmat/PycharmProjects/Selenium Driver/chromedriver'
 ShowBrowserWindows      = True or False
 
 UseProxies              = False
-RequireLogin            = True
+RequireLogin            = False
 
 SequentialFiles         = False
 
@@ -262,7 +262,7 @@ This mode will only try to test downloading notepad++ installer and then exit.
 value: True | False
 """
 
-TestMode = True
+TestMode = False
 
 
 

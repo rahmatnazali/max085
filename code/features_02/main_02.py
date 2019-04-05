@@ -45,7 +45,7 @@ for url in enumerate(url_list):
     """
     If config.RequireLogin is true but no accounts left
     """
-    if config.RequireLogin and account_counter > len(account_counter):
+    if config.RequireLogin and account_counter > len(config.Credentials):
         print("No accounts left")
         exit()
 
