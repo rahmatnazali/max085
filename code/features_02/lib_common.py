@@ -274,6 +274,9 @@ def init_webdriver(proxy_dict = None, account_credentials = None):
     # create the webdriver according to its path and options, then the browser will appears
     driver = webdriver.Chrome(config.WebDriverPath, chrome_options=chrome_options)
 
+    # for firefox (gecko driver) you will run this
+    # driver = webdriver.Firefox(config.WebDriverPath)
+
     if config.TestMode:
         # for testing, it will download a notepad++ installer and then exit
         driver.get('https://notepad-plus-plus.org/repository/7.x/7.6.5/npp.7.6.5.bin.minimalist.7z')
