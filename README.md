@@ -17,7 +17,7 @@ Python flexible web scrapper
 
 
 
-## Important Notes
+### Important Notes
 What I know is that we differ in system. You use windows and I use Linux.
 The logical will still the same, but you might encounter different syntax.
 
@@ -26,7 +26,7 @@ Example:
 - I used `pip3 install module_name` to install a module. You might be need to use `pip install module_name` instead
 
 
-## Setting virtual environtment
+### Setting virtual environtment
 [What is Virtual Env?](https://packaging.python.org/guides/installing-using-pip-and-virtualenv/) or  [Why should I use virtual env?](https://stackoverflow.com/questions/41972261/what-is-a-virtualenv-and-why-should-i-use-one)
 
 This is optional. But I strongly recommend that you use virtual env so you did not messed up your global dependency, knowing that you also code in python already.
@@ -164,6 +164,49 @@ You are ready to go.
   
 ## Feature 2
 
-- the coding template is finished
-- I will start coding for feature 2 while you test the feature 1
+**Note**: Make sure to do all the step in "Before Starting" before configuring the code.
 
+Additionally, you might want to run this code again to renew the dependency, assuming you are inside the virutal environtment.
+```
+pip3 install -r requirements.txt
+```
+
+
+### Configuring
+
+(work in progress)
+
+### Running
+- Assuming that you already inside virtualenv, go to `Feature 01` directory and run [main_02.py](code/features_02/main_02.py)
+  ```
+  cd code/features_02/
+  python3 main_02.py
+  ```
+
+
+### Example Case
+
+#### Case 1: APKPure
+
+##### Purpose
+
+We want to download all the APK from the homepage of [apkpure.com](https://apkpure.com).
+
+This case is done without Login and Proxy feature
+
+##### Analyze
+
+- Open apkpure.com
+- We then know that for every link that lead to the download page of an APK will have an XPath like this
+  `//dl/dd[@class = "down"]/a[@href]`
+  
+  in other word: `<a href>` inside of `<dd class = "down">` inside of `<dl>`
+  
+- We then write the xpath into `config_02/XPathFiles`
+- Set `RequiredLogin` and `UseProxy` to **`False`**
+
+##### Run the code
+
+- run the code
+
+ 
