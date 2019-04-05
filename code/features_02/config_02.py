@@ -149,9 +149,7 @@ If captcha element is found, then there are 2 options (declared in variable ReCa
 
 - AntiCaptchaAPIKey
 For now, this seems unused.
-For we are to request a anti-captcha service, 
-
-Anti Captcha options
+For we are to request a anti-captcha service, we must first know the documentation of the service.
 
 
 
