@@ -420,10 +420,9 @@ def is_downloadable(url, cookies = (), header = None):
     it founds until no redirects happen.
     """
 
-    # todo: dont forget to attach the proxy
-    h = requests.head(url, allow_redirects=True, header = header)
+    h = requests.head(url, allow_redirects=True, header = header, proxies = proxy)
     header = h.headers
-    content_type = header.get('content-type')
+    content_type = header.get('content-type', header = header, proxies = proxy)
     if 'text' in content_type.lower() or 'html' in content_type.lower():
         return False, h
     return True, h
