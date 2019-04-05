@@ -389,7 +389,9 @@ def check_proxy(proxy, timeout = 5):
 
         }
 
-def is_downloadable(url, cookies = (), header = None):
+
+
+def is_downloadable(url, cookies = (), header = None, proxy = None):
     """
     Does the url contain a downloadable resource?
 
@@ -427,7 +429,8 @@ def is_downloadable(url, cookies = (), header = None):
         return False, h
     return True, h
 
-def download_binary(url, cookies = (), header = None):
+
+def download_binary(url, cookies = (), header = None, proxy = None):
     """
     Like the funciton name said, this download the binary file contained in URL.
     :param url: url
@@ -443,10 +446,8 @@ def download_binary(url, cookies = (), header = None):
     request_session = requests.Session()
     for cookie in cookies:
         request_session.cookies.set(cookie['name'], cookie['value'])
-    # todo: dont forget to attach the proxy
 
-
-    return requests.get(url, allow_redirects=True, header = header)
+    return requests.get(url, allow_redirects=True, header = header, proxies = proxy)
 
 
 

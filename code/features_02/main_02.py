@@ -122,7 +122,7 @@ for url in enumerate(url_list):
                     If a link is downloadable, it is very likely that it also contains the filename.
                     So we return the whole header object too for further evaluation regarding it.
                     """
-                    is_downloadable, header = lib.is_downloadable(file_url, cookies = cookies, header = config.RequestHeader)
+                    is_downloadable, header = lib.is_downloadable(file_url, cookies = cookies, header = config.RequestHeader, proxy = proxy_list[proxy_counter])
 
 
                     """
@@ -148,7 +148,7 @@ for url in enumerate(url_list):
                         Note that we pass a cookies and a header.
                         These two parameters will be used to make the request looks like it was from your very own browser.
                         """
-                        request_result = lib.download_binary(file_url, cookies = cookies, header = config.RequestHeader)
+                        request_result = lib.download_binary(file_url, cookies = cookies, header = config.RequestHeader, proxy = proxy_list[proxy_counter])
 
                         """
                         If download is succeed (indicated by status code of 200), 
