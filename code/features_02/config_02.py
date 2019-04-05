@@ -61,7 +61,8 @@ SequentialFiles         = False
 RequestHeader           = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 
-SaveDirectory           = 'C:\Script\Zipfiles'
+# SaveDirectory           = 'C:\Script\Zipfiles'
+SaveDirectory           = ''
 DefaultSaveDirectory    = 'download'
 
 
@@ -130,9 +131,12 @@ Let me know if you want this approach, because currently I did not made it until
 
 
 - ReCaptchaOption (integer)
-Option taken when Captcha is found
-1: Show captcha in browser window and prompt the user to solve it
-2: anti-captcha.com service
+For now we have 2 options:
+1. Wait for certain seconds to solve recaptcha
+2. CLI will ask for input (it will wait forever). So user can take time to solve captcha, 
+   and after that user will need to go to CLI and press any key (say, enter)
+3. Requesting anti-captcha service (for now it is not available because we need the 
+documentation of the API service. Feel free to inform me about this)
 
 
 - XPathRecaptcha
@@ -179,7 +183,7 @@ XPathFormUserOrEmail    = '//*[@id="user"]'
 XPathFormPassword       = '//*[@id="pass"]'
 XPathLoginButton        = '//*[@id="login"]'
 
-ReCaptchaOption         = 1
+ReCaptchaOption         = 2
 XPathRecaptcha          = '//*[@id="recaptcha-anchor"]/div[1]'
 AntiCaptchaAPIKey       = "dce6bcbb1a728ea8d563de6d169a2057"
 
