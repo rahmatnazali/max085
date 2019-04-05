@@ -10,3 +10,6 @@
 2019-04-05 14:31:23,662 INFO Selenium download : Download Yoodo latest version apk
 2019-04-05 14:31:27,733 INFO Selenium download : Download Twitter Lite latest version apk
 2019-04-05 14:31:29,473 INFO Selenium download : Download シャドウバース (Shadowverse) latest version apk
+2019-04-05 22:10:39,810 INFO Selenium download : Download 배달의민족 latest version apk
+2019-04-05 22:11:07,640 INFO Selenium download : Download Adobe Lightroom CC - Photo Editor latest version apk
+2019-04-05 22:11:34,482 INFO Selenium download : Download Subway Surfers latest version apk

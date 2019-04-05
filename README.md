@@ -196,7 +196,7 @@ This case is done without Login and Proxy feature
 
 ##### Analyze
 
-- Open apkpure.com
+- Opening apkpure.com
 - We then know that for every link that lead to the download page of an APK will have an XPath like this
   `//dl/dd[@class = "down"]/a[@href]`
   
@@ -207,6 +207,16 @@ This case is done without Login and Proxy feature
 
 ##### Run the code
 
-- run the code
+- Assuming that you already inside virtualenv, go to `Feature 01` directory and run [main_02.py](code/features_02/main_02.py)
+  ```
+  cd code/features_02/
+  python3 main_02.py
+  ```
 
+This is the example video capture of the run: [Captured video](/assets/f2/Kazam_screencast_00002.mp4)
+
+It shows that the code are capable of downloading each APK with separate interval around 5-10 seconds.
+
+#### Case 2, and so on 
+(feel free to ask with any link, and I will insert the step-by-step here)
  
