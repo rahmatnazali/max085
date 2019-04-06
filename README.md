@@ -1,8 +1,34 @@
 # max085
 Python flexible web scrapper
 
-
 **this documentation is still work in progress**
+
+
+##### Feature
+
+This code has two features.
+
+- Feature 1
+
+  Scrapping data from a page that did not require JS/script to load and did not need to login.
+  
+  The code will accept flexible enough variety of any URL, with the trade-off that the configuration must be done thoroughly, because user will need to exactly specify the XPath of the desired data.
+
+  - Requirement 1: [F1.txt](requirements/F1.txt)
+  - Requiremetn 2: [F1-Xpath](requirements/F1-XPath.txt)
+  - Testing feedback
+    - Feedback 1: [Testing 01](requirements/F1-Testing_01-Notes.txt)
+    - Feedback 2: [Testing 02](requirements/F1-Testing_02-Notes.txt)
+    - Feedback 3: [Testing 03](requirements/F1-Testing_03-Notes.txt)
+
+- Feature 2
+
+  Same as Feature 1, but this is for a case where JS/scipt must be load and/or a login is needed to access the page. This feature will also able to switch proxy, given a list of valid proxies.
+
+  - Requirement 2: [F2.txt](requirements/F2.txt)
+
+
+
 
 
 ## Before Starting
