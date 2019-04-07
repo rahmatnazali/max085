@@ -1,0 +1,15 @@
+
+1. You mentioned earlier in Feature 1 "Unit Testing", but I didn't quite understand what is it for exactly?
+
+2. I've seen that Scrapy Splash is also works for scraping JS pages, do you know how it differs from selenuim in terms of speed, performence or reliability?
+
+3. Can these features (1 & 2) be converted to a Web App? where config is entered into a web form and the software ran on a server?
+
+4. Can I utilize concurrency and multithreading when running the softwars to decrease the runtime? (for example: scraping 10 URLs at once)
+
+5. Do you have experince in the following fields:
+* Django/Flask
+* PHP
+* HTML/CSS/JS
+* Python Qt5 GUI
+* Python HTML/JS GUI (for example: https://github.com/manatlan/wuy , https://github.com/Andrew-Shay/Neuron , https://github.com/ChrisKnott/Eel)
