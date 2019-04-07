@@ -9,10 +9,38 @@
 # testing live mode
 https://www.hrkgame.com/en/games/products/
 https://www.hrkgame.com/en/games/products/?page=2
-https://www.hrkgame.com/en/404/
-https://www.hrkgame.com/en/randomkeyshop/make-bundle/
-https://www.hrkgame.com/en/account/login/
 https://www.hrkgame.com/en/games/products/?page=3
+https://www.hrkgame.com/en/games/products/?page=4
+https://www.hrkgame.com/en/games/products/?page=5
+https://www.hrkgame.com/en/games/products/?page=6
+https://www.hrkgame.com/en/games/products/?page=7
+https://www.hrkgame.com/en/games/products/?page=8
+https://www.hrkgame.com/en/games/products/?page=9
+https://www.hrkgame.com/en/games/products/?page=10
+https://www.hrkgame.com/en/games/products/?page=11
+https://www.hrkgame.com/en/games/products/?page=12
+https://www.hrkgame.com/en/games/products/?page=13
+https://www.hrkgame.com/en/games/products/?page=14
+https://www.hrkgame.com/en/games/products/?page=15
+https://www.hrkgame.com/en/games/products/?page=16
+https://www.hrkgame.com/en/games/products/?page=17
+https://www.hrkgame.com/en/games/products/?page=18
+https://www.hrkgame.com/en/games/products/?page=19
+https://www.hrkgame.com/en/games/products/?page=20
+https://www.hrkgame.com/en/games/products/?page=21
+https://www.hrkgame.com/en/games/products/?page=22
+https://www.hrkgame.com/en/games/products/?page=23
+https://www.hrkgame.com/en/games/products/?page=24
+https://www.hrkgame.com/en/games/products/?page=25
+https://www.hrkgame.com/en/games/products/?page=26
+https://www.hrkgame.com/en/games/products/?page=27
+https://www.hrkgame.com/en/games/products/?page=28
+https://www.hrkgame.com/en/games/products/?page=29
+https://www.hrkgame.com/en/games/products/?page=30
+
+#https://www.hrkgame.com/en/404/
+#https://www.hrkgame.com/en/randomkeyshop/make-bundle/
+#https://www.hrkgame.com/en/account/login/
 
 # old samsung link
 # https://www.samsung.com/us/televisions-home-theater/tvs/all-tvs/s/samsung_tv_upgrade-buy_online/_/n-10+11+hv1uh+g5+trqdm/

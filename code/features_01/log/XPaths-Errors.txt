@@ -32,3 +32,11 @@
 2019-03-30 23:21:34,678 ERROR XPath not found for link: https://www.hrkgame.com/en/account/login/
 2019-03-30 23:24:35,722 ERROR XPath not found for link: https://www.hrkgame.com/en/randomkeyshop/make-bundle/
 2019-03-30 23:24:36,973 ERROR XPath not found for link: https://www.hrkgame.com/en/account/login/
+2019-04-06 16:05:28,066 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=23
+2019-04-06 16:05:29,206 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=24
+2019-04-06 16:05:30,248 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=25
+2019-04-06 16:05:31,397 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=26
+2019-04-06 16:05:32,032 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=27
+2019-04-06 16:05:32,685 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=28
+2019-04-06 16:05:33,300 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=29
+2019-04-06 16:05:34,438 ERROR XPath not found for link: https://www.hrkgame.com/en/games/products/?page=30
