@@ -1,0 +1,256 @@
+
+1. You mentioned earlier in Feature 1 "Unit Testing", but I didn't quite understand what is it for exactly?
+
+
+
+Shortly in general, Unit testing is for testing "unit". Unit here can means anything such as a Class or a Function.
+
+When we make a code, we tend to make multiple functions and classes.
+
+In almost every cases of development, it is far way better to "make sure that each of the class and function is worked as expected in their small scope" first, and then build them altogether to create a single application that is of course, will be guaranteed to work as expected. Unit Test is the process of testing those smaller pieces of the codes.
+
+Without unit test, we will face trivial error that may be very hard to debug, because we did not know where the error is or where we should find the code for the corresponding error.
+
+Making Unit Test is literally writing a several case that can be both succeed and fails, and ensure (assert) that the code/function/class will yield the same expected result.
+
+If you are interested in unit test, you might search with a keyword of "Test-Driven Development" or TDD.
+
+
+In another word that might be easier to understand, unit test is to code a sample of cases as much as possible to test that the code work with its specified case, we then could run the unit test (i.e. automatically run the each case to be applied to the code) and we can know if there are error in the code far away before code is in production phase / delivered to client.
+
+
+If a test is done without error, then there is a guarantee that all of the tested code *will always work* to the specified test case. This is very important for big project, because an error could mean a days to debug, and so we choose to "develop it slowly but sure", so that we did not face random error when the scope gets too big.
+
+
+
+TDD is very powerful, but also costly in time, because we are literally need to write all the possible error case of an application scope. So it really took times, but it really pay well if the application is run in long term.
+
+For normal timeline project, we need a minimum of 2 developers. One to code the application, the other one to code the test. It can be as big as the application itself, so should one developer work against code and testing, he sure will need more time as the pressure will be twice as much.
+
+
+But I believe it is hard to give a proper example of TDD if the scope of the application is too small.
+There are plenty examples on the internet regarding this, but the scope is so small that we hardly know if the method can actually improve something.
+
+TDD will greatly get awesome as the scope got bigger.
+
+I can give you an example of unit testing from my old django project if you are interested, you can let me know.
+
+Or given time, I can also make a case example of unit test. I feel I am a nerd that I think I want to show TDD to every one else regarding how much it save us developer from debugging. It is really beautiful for me.
+
+
+
+Also,
+
+I did said about making a unit test on the feature 1, and you might already saw the todo template. But to be honest, the time is not enough to write the entire unit test, so I tested each function my self manually using console.
+
+
+Let me know if you want a further test on your F1 and F2 code. With a time, I believe I can develop it.
+
+
+
+
+
+
+
+
+2. I've seen that Scrapy Splash is also works for scraping JS pages, do you know how it differs from selenuim in terms of speed, performence or reliability?
+
+
+First, if we are to scrap html without JS, we know that we can use lxml, scrappy, or requests.
+This case is clearly just requesting a HTML code, and scrap it.
+These modules *can not* run a javascript code, and so it will fail if the page contains JS to load.
+
+So what happen when we need JS to be loaded? We use browser.
+Yes, like the browser we used to surf the internet.
+
+But if we are just to use browser, we will not unable to command the browser directly (say, we can not tell the browser to stop loading, or to open google.com, or to click any element, etc).
+
+In order to command the browser, we need middleware we call it "driver".
+
+Selenium is a "driver" or "webdriver" (both have same meaning).
+At the start, selenium will make a connection to the browser. 
+If you remember the code from F2: 
+webdriver.Chrome() 
+
+The selenium is trying to connect with the browser, and so Selenium can command it.
+
+
+
+But how about scrappy?
+Scrappy is only a scrapper, not a driver. And so it will not be able to load JS.
+
+And there are open source, lighweight browser called splash (https://scrapinghub.com/splash)
+
+And so they made a middle ware to connect between scrappy and splash, and so the "Scrappy-splash" is born.
+
+
+You will notice they are the same thing:
+
+Selenium
+    driver: selenium webdriver
+    browser: flexible (can be chrome, firefox, safari)
+
+Scrappy-splash
+    driver: scrappy-splash module
+    browser: splash
+
+
+
+
+But then what differs?
+
+- Selenium comes with ready to run code. No another configuration. Just download and run.
+- Scrappy-splash however, need a proper configuration to connect the browser with the driver. So people often solved it with Docker. This is to state that scrappy-splash is harder to configure than selenium
+
+Honestly I have no real project experience in Scrappy-Splash, so I can not say a lot for sure. But at least I am sure of this:
+- Google is a top notch developer, and Chrome is built by them. So I personally feel that chromium browser is far better than splash. Beside, I saw pricing section in splash homepage so I think that is not a good news. 
+- A hard configuration will nearly always mean that the module will be very robust, because we will do all the configuration ourself, so it can match our case. *But* for general scrapping, there is no way to tell the difference between the two regarding the speed and performance, so I will likely pick selenium instead.
+- As for the reliability, for a certain rare case, I believe scrappy-splash will be more reliable than selenium. But until now I can not find a scrapping case where Selenium can not handle it.
+
+
+
+
+
+
+
+
+3. Can these features (1 & 2) be converted to a Web App? where config is entered into a web form and the software ran on a server?
+
+
+
+Yes, it can.
+
+Because F1 and F2 is already written in Python, I will strongly recommends a Python framework for the webapps to save your time.
+
+A simple webapp framework that can be run on anywhere (even on your own pc/laptop), where it can shows you a humanly readable form rather than config.py to input each of the configuration file, then a button to trigger all the F1 and F2 code that we already created. It will then save the result in database or csv or what you need, to be able to be recovered later.
+
+
+
+
+
+
+
+
+4. Can I utilize concurrency and multithreading when running the softwars to decrease the runtime? (for example: scraping 10 URLs at once)
+
+
+
+You can.
+
+It is a matter of time to add a threading feature to existing code, because threading only manage the thread and what code it will run, while we already have a fully working code.
+
+A thing to be note, however, while thread is powerful, it also hard to manage. A 10 threads will run individually and each of them might accessing a same file, and thus, a proper program flow is needed or an I/O error might occurs.
+
+Please also note that, say, 10 thread scrapping will also mean that the networking will be divided into 10 (each of thread will be requesting html), so the speed of HTML request will also be reduced. You will not notice this though if you have high internet speed, but on a low internet speed, there is really no different between threaded program or normal sequential program as it might be scrap faster but the request time will also increase.
+
+
+
+
+
+
+5. Do you have experince in the following fields:
+
+
+* Django/Flask
+
+For django: yes, around 2 years with several real projects.
+For Flask: yes, in theory. But I only code it for side project. No experience in real project.
+
+The thing is: django and flask is just the same (in a certain way).
+
+They both are web framework. Both is used to make a web. The difference is that Django is more opinionated.
+
+Simply saying, the flask is a "naked" framework. it comes with nothing, just the frameworks. It became famous because it is so lightweight and fast. And because it is "naked", we can configure/upgrade it to any form we want for certain case of web development. If you see a web that connects with robot, or parking machine, CCTV camera, x-ray rontgen, and such embedded things, it can be made with flask.
+
+Django is also a Flask, but Django comes with several tools that ready to be used for "general common website"
+
+Imagine if you want to make a site that have session: a username and password for each account, and also a role for each account (i.e. administrator can delete all record, but the guest can only read the record), here Django will stands.
+
+Django have built in administration module. So we can achieve user and role management just after you install django. And better than that, it comes with builtin GUI. so we can humanly manage an account and fill some record to the database, while the developer did not need to think about it can continue to develop the functionality.
+
+In the Flask, it may require 1 week to write functional user/role management code.
+
+So when the web is a "general common", we pick django.
+If the case is otherwise, we pick flask.
+
+
+
+
+
+* PHP
+
+Yes. PHP is one of language that I mainly use before I learn python.
+
+Before I work full time, I worked for startup regarding online taxi and transportation, just like Grab or Uber, if you may know.
+
+I wrote a back-end for the system using PHP (it was using CodeIgniter and laravel). 
+I code the core function regarding "How can we connect driver to passenger according to their geolocation coordinate".
+
+Personally I do love PHP, but I prefer python more because of the python package manager.
+
+But if it comes to a project regarding web development, PHP is sure an option to be considered.
+
+
+
+
+* HTML/CSS/JS
+
+Yes. It is the basic of web page so whatever backend I used, it will always be involed in html, css, and js.
+
+Everyday I code for projects with several frontend framework like VueJS, React, and Angular. All of them require a deep understanding about html, css, js. One can not work with it if one did not have a proper understanding regarding html, css, js. It is the very basic, in my opinion.
+
+
+
+
+
+* Python Qt5 GUI
+
+Unfortunately, I once coded Python GUI when Qt is not that good. It was Qt3 back then, and that time I feel that TKInter is way better than Qt, so I pick TkInter instead.
+
+I coded my undergraduate thesis with TKInter as the GUI (if you want to see: https://github.com/rahmatnazali/image-copy-move-detection).
+
+In my opinion, it is a matter of syntax research, because I am sure that the logic will stay the same even if the module is different.
+
+Nowadays, TKInter seems to be ignored. People will tend to use other modules (Qt5 is one of them), but I did not have any experience on the real project with Qt5.
+
+
+
+
+
+* Python HTML/JS GUI (for example: 
+https://github.com/manatlan/wuy , 
+https://github.com/Andrew-Shay/Neuron , 
+https://github.com/ChrisKnott/Eel
+)
+
+
+I did not have experience using 3 modules above. But I do have experience in the other module that works the same.
+
+Here, what we want to achieve is to design a GUI for python with html, because we know python's standard GUI: TKinter module is kinda hard (i.e. hard to debug, hard to be build fast). So people make a turnaround by converting html to dekstop. It is easier because HTML is way more humanly to code than TKinter.
+
+I have just finished a project like this, where I designed a UI with html for a mobile and dekstop application.
+I used Electron (https://electronjs.org/) to achieve that. The name is clearly differs, but the purpose is the same: to contains a HTML UI so that it can be delivered in desktop or other platform.
+
+
+
+=====
+
+
+
+
+With all due respect, I code python for a hobby, but at my work they ask me to code everything, everyday. I do wordpress, mobile devs (native, js), responsive web development, and dev ops (docker, CI/CD) etc, and all are served on Indonesian government's domain (www.go.id). I coded with nearly all language (yes, I am not kidding). I taught to understand the logic, not the language's syntax. So when I got the logic, I can code it to every language, because the language are just a tools to achieve the deliverable. 
+
+
+As a new freelancer, I believed it is easier to focus on one thing first to develop a career, so at first I decided to show off my python skill so that I could focus to short term project rather than web dev that might require months.
+
+Beside, I saw that there are more webscrap project than web development on the site.
+
+But that is my own strategy when I first enter this site without a single client.
+
+Now that you seems interested, of course I do welcome any project should I feel capable of.
+
+But I will not waste your time, so if I feel I can not do it I will say it clearly, and then I might be able to at least helping you with architectural or technological opinion regarding how you should start it and how you find freelancer that are capable of doing it. This is the least I can do for you, after all you did for me.
+
+
+
+
