@@ -1,5 +1,34 @@
+# URL from Max
+https://apkpure.com/easyrentcars-cheap-global-car-rental/com.easyrentcars.android
+https://apkpure.com/vidmate-downloader-hd-live-tv/com.nemo.vidmate
+https://apkpure.com/amazon-prime-video/com.amazon.avod.thirdpartyclient
+https://apkpure.com/youtube/com.google.android.youtube
+https://apkpure.com/whatsapp-messenger/com.whatsapp
+https://apkpure.com/404
+https://apkpure.com/amazon-india-online-shopping-and-payments/in.amazon.mShop.android.shopping
+https://apkpure.com/chilindo/com.chilindo
+https://apkpure.com/facebook-lite/com.facebook.lite
+https://apkpure.com/mahjong-premium/magory.mahjongpremium
+https://apkpure.com/mx-player/com.mxtech.videoplayer.ad
+https://apkpure.com/textnow-free-texting-calling-app/com.enflick.android.TextNow
+https://apkpure.com/pubg-lite/com.tencent.iglite
+https://apkpure.com/notes-with-caller-id/com.caller.notes
+https://apkpure.com/about.html
+https://apkpure.com/google-play-store/com.android.vending
+https://apkpure.com/google-play-store/com.android.vending
+https://apkpure.com/tiktok/com.ss.android.ugc.trill
+https://apkpure.com/google-chrome-fast-secure/com.android.chrome
+https://apkpure.com/iflix/iflix.play
+https://apkpure.com/messenger-lite/com.facebook.mlite
+https://apkpure.com/amazon-shopping/com.amazon.mShop.android.shopping
+https://apkpure.com/viber-messenger-messages-group-chats-calls/com.viber.voip
+https://apkpure.com/app-flame/online.appflame.app
+https://apkpure.com/es-file-explorer-file-manager/com.estrongs.android.pop
+https://apkpure.com/netflix/com.netflix.mediaclient
+https://apkpure.com/spotify-premium-music/com.spotify.music
+
 # testing APKPure
-https://apkpure.com/
+#https://apkpure.com/
 
 # testing amazon
 #https://www.amazon.com/s/browse?_encoding=UTF8&node=16225016011

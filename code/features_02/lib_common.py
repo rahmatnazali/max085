@@ -134,9 +134,9 @@ def read_proxy(logger_proxy_error, filename = "Proxies.txt"):
     so we will also describe a timeout here.
     """
     checked_proxy_list = []
-    print('Checking all proxies')
+    print('Checking {} proxies with {} seconds timeout'.format(len(proxy_list), config.ProxyCheckTimeout))
     for proxy in proxy_list:
-        check_result = check_proxy(proxy, timeout=3)
+        check_result = check_proxy(proxy, timeout=config.ProxyCheckTimeout)
         if check_result:
             checked_proxy_list.append({
                 'proxy': proxy,
@@ -145,6 +145,8 @@ def read_proxy(logger_proxy_error, filename = "Proxies.txt"):
         else:
             logger_proxy_error.warn("Invalid Proxy: {}".format(proxy))
             print("Found invalid proxy. Logged into ProxyError.txt: {}".format(proxy))
+
+    print("{} of {} proxies are valid.".format(len(checked_proxy_list), len(proxy_list)))
 
     return checked_proxy_list
 
@@ -433,7 +435,7 @@ def check_proxy(proxy, timeout = 5):
             proxies = {
                 # you can also comment the unused (e.g. You may only need the http one)
                 'http': proxy,
-                'htts': proxy,
+                'https': proxy,
                 'ftp': proxy,
             },
 
